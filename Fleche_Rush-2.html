@@ -1,0 +1,1122 @@
+<!doctype html><html lang="fr"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Flèche Rush · Tour du monde</title>
+<style>
+:root{--gap:20px;--pad:20px;--bp:14px 18px;--fs:1;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);--bg:#fff;--bg2:#e6ecf5;--ink:#111;--acc:#2f80ff;--on:#fff}
+html{height:100%}*{box-sizing:border-box;-webkit-tap-highlight-color:transparent;user-select:none}
+body{margin:0;min-height:100%;color:var(--ink);font:600 calc(16px*var(--fs)) system-ui,sans-serif;background:linear-gradient(160deg,var(--bg2),var(--bg) 60%) fixed;overflow-x:hidden}
+[hidden]{display:none!important}
+.v{max-width:520px;margin:0 auto;padding:var(--pad);display:flex;flex-direction:column;align-items:center;gap:var(--gap)}
+.bar{display:flex;justify-content:space-between;align-items:center;width:100%;gap:8px}
+.row{display:flex;gap:8px;flex-wrap:wrap;justify-content:center}
+.btn{border:0;border-radius:16px;padding:var(--bp);font:inherit;color:var(--ink);background:#8883;cursor:pointer;transition:transform .1s}
+.btn:active{transform:scale(.95)}.btn:disabled{opacity:.45}
+.big{background:var(--acc);color:var(--on);font-size:22px;padding:18px 44px;border-radius:22px;box-shadow:0 8px 24px color-mix(in srgb,var(--acc) 45%,transparent)}
+.chip{background:#8883;border-radius:14px;padding:6px 12px}
+.sub{opacity:.7;margin:0;text-align:center}
+.lg{margin:8px 0 0;font-size:40px;letter-spacing:2px;color:var(--acc);text-align:center}
+.prog{width:100%;height:10px;border-radius:9px;background:#8883;overflow:hidden}.prog i{display:block;height:100%;width:0;background:var(--acc);transition:width .3s}
+#bd{width:min(94vw,500px);max-height:62vh;background:#8881;border-radius:20px;color:var(--ink);touch-action:manipulation}
+.ar{cursor:pointer}.g{filter:drop-shadow(0 0 3px currentColor)}
+.bad{animation:sh .4s}.bad .v{stroke:#e63946}.bad polygon.v{fill:#e63946}
+.hint{animation:pl .5s 3;transform-box:fill-box;transform-origin:center}.hint .v{stroke:#2f80ff}.hint polygon.v{fill:#2f80ff}
+.eon{outline:3px solid var(--acc)}
+@keyframes sh{25%{transform:translateX(-4px)}75%{transform:translateX(4px)}}@keyframes pl{50%{transform:scale(1.25);opacity:.5}}
+#sp{position:fixed;inset:0;z-index:20;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;background:linear-gradient(160deg,#0b1020,#2a1065);color:#fff;text-align:center}
+#sp h1{font-size:44px;margin:0;letter-spacing:3px;color:#ffd166;text-shadow:0 0 24px #ffd166}
+.ld{width:200px;height:6px;border-radius:6px;background:#fff3;overflow:hidden}.ld i{display:block;height:100%;width:0;background:#ffd166;animation:ld 1.8s forwards}
+@keyframes ld{to{width:100%}}@keyframes dr{to{stroke-dashoffset:0}}@keyframes bl{50%{opacity:.3}}.bk{animation:bl 1.2s infinite}
+#ov{position:fixed;inset:0;background:#000b;display:flex;align-items:center;justify-content:center;padding:16px;z-index:10}
+#ovc{background:var(--bg);color:var(--ink);border:2px solid var(--acc);border-radius:28px;padding:calc(var(--pad) + 4px);text-align:center;display:flex;flex-direction:column;gap:calc(var(--gap)*.7);align-items:center;width:min(92vw,460px);max-height:90vh;overflow:auto}
+#ovc h2,#ovc h3{margin:0}
+.it{display:flex;justify-content:space-between;align-items:center;width:100%;gap:8px;text-align:left}
+#lg{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;max-height:50vh;overflow:auto;width:100%}
+#lg button{border:0;border-radius:12px;background:#8883;color:var(--ink);font:inherit;line-height:1.2;padding:6px 2px}#lg small{display:block;font-size:10px}#lg button:disabled{opacity:.3}
+#toast{position:fixed;top:calc(env(safe-area-inset-top,0px) + 12px);left:50%;transform:translateX(-50%);background:var(--acc);color:var(--on);border-radius:14px;padding:8px 16px;z-index:30}
+.card{width:100%;background:#8881;border-radius:24px;padding:var(--pad);display:flex;flex-direction:column;gap:calc(var(--gap)*.7);box-shadow:0 2px 14px #0001}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:calc(var(--gap)*.6);width:100%}
+.tile{border:0;border-radius:22px;padding:calc(var(--pad)*.9) 8px;display:flex;flex-direction:column;align-items:center;gap:6px;background:#8882;color:var(--ink);font:inherit;font-size:.9em;cursor:pointer;transition:transform .1s}
+.tile:active{transform:scale(.96)}.tile b{font-size:1.7em;font-weight:600}.tile small{opacity:.65;font-size:.8em}
+.tile.hero{background:var(--acc);color:var(--on);padding:calc(var(--pad)*1.3) 8px}
+.st{font-size:.78em;opacity:.6;letter-spacing:1.5px;text-transform:uppercase;width:100%;text-align:left;margin:4px 0 -4px 4px}
+.opts{display:flex;flex-direction:column;gap:calc(var(--gap)*.5);width:100%}.opts .btn{text-align:left;font-size:1.02em}
+.qt{font-size:1.2em;line-height:1.35}
+.sw{display:flex;gap:8px}.sw .btn{flex:1;padding:10px 4px}.on1{outline:3px solid var(--acc)}
+.span2{grid-column:span 2}
+#tb{position:fixed;top:calc(env(safe-area-inset-top,0px) + 14px);left:50%;transform:translateX(-50%);z-index:60;width:min(92vw,420px);background:linear-gradient(135deg,#ffd166,#ff9f1c);color:#3a2410;border-radius:22px;padding:14px 18px;display:flex;gap:14px;align-items:center;box-shadow:0 12px 34px #0006;animation:tbi .5s cubic-bezier(.2,1.4,.4,1)}
+@keyframes tbi{from{transform:translate(-50%,-140%)}}
+.cf{position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:55}.cf i{position:absolute;top:-24px;width:9px;height:14px;border-radius:2px;animation:cff 2.8s linear forwards}@keyframes cff{to{transform:translateY(112vh) rotate(720deg)}}
+.tr{border:0;border-radius:22px;padding:16px 8px;display:flex;flex-direction:column;align-items:center;gap:6px;background:#8881;color:var(--ink);font:inherit;font-size:.85em;text-align:center}
+.tr .ic{width:62px;height:62px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:30px;background:#8882;box-shadow:inset 0 0 0 3px #8884}
+.tr.ok{background:linear-gradient(160deg,#ffd16633,#ff9f1c22)}.tr.ok .ic{background:linear-gradient(135deg,#ffd166,#ff9f1c);box-shadow:0 0 18px #ffb52e99}
+.tr.no .ic{filter:grayscale(1);opacity:.55}.tr small{opacity:.7}
+input[type=range]{flex:1;max-width:55%;accent-color:var(--acc)}
+.cwg{display:grid;gap:2px;justify-content:center}
+.cwc{position:relative;width:var(--cs);height:var(--cs);background:#fff;color:#111;border-radius:5px;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:calc(var(--cs)*.55);box-shadow:inset 0 0 0 1px #0003;cursor:pointer}
+.cwc i{position:absolute;top:1px;left:3px;font-size:calc(var(--cs)*.26);font-style:normal;font-weight:600;color:#555}
+.cwc.hl{background:#cfe3ff}.cwc.sl{background:#ffd166}.cwc.bad{background:#ffb3b3;color:#b00020}.cwc.rv{color:#0a7d3a}.cwb{width:var(--cs);height:var(--cs)}
+.kb{display:flex;gap:4px;justify-content:center;width:100%}.kb .btn{padding:10px 0;flex:1;min-width:0;font-size:1em;border-radius:10px}
+</style></head><body>
+<div id="toast" hidden></div><div id="tb" hidden></div>
+<div id="sp"><svg width="120" height="120" viewBox="0 0 120 120"><polyline points="15,95 15,25 65,25 65,75 98,75" fill="none" stroke="#ffd166" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" pathLength="1" stroke-dasharray="1" style="stroke-dashoffset:1;animation:dr 1.6s forwards"/><polygon points="114,75 96,64 96,86" fill="#ffd166"/></svg>
+<h1>FLÈCHE RUSH</h1><p class="sub">Tour du monde · 195 drapeaux · 195 animaux nationaux</p><div style="font-size:34px">🌍🦁🦘🐘🦅</div><div class="ld"><i></i></div><p id="tp" class="bk" hidden>Touchez pour jouer</p></div>
+<div id="home" class="v" hidden>
+ <div class="bar"><span class="chip" id="cn0"></span><span class="row" style="flex-wrap:nowrap"><button class="btn" id="bpf">👤</button><button class="btn" id="btw">🏆</button><button class="btn" id="bs0">⚙️</button></span></div>
+ <h1 class="lg">FLÈCHE RUSH</h1><p class="sub">Jeux de réflexion & culture du monde</p>
+ <div id="hb" style="width:100%;display:flex;flex-direction:column;gap:var(--gap)"></div>
+</div>
+<div id="game" class="v" hidden>
+ <div class="bar"><button class="btn" id="bb">←</button><b id="ttl"></b><span class="row" style="flex-wrap:nowrap"><button class="btn" id="bsh1">🛒</button><button class="btn" id="bs1">⚙️</button></span></div>
+ <div class="sub" id="cinfo"></div>
+ <div class="bar"><span class="chip" id="cn1"></span><span class="chip" id="hud"></span><span class="chip" id="cmb"></span></div>
+ <div class="prog"><i id="pg"></i></div><div class="sub" id="rm"></div>
+ <svg id="bd"></svg>
+ <div class="row"><button class="btn" id="bh"></button><button class="btn" id="bu"></button><button class="btn" id="be"></button><button class="btn" id="br">⟳</button><button class="btn" id="bsn">🔊</button></div>
+</div>
+<div id="cq" class="v" hidden></div>
+<div id="ov" hidden><div id="ovc"></div></div>
+<script>
+// ===== Moteur de drapeaux : espace drapeau u∈[0,3], v∈[0,2] =====
+const w='#ffffff',k='#151515',r='#d8202f',b='#1c3f94',lb='#4aa8e0',g='#0e9a47',dg='#00663a',y='#fcd116',o='#f78a1d',gr='#8e8e8e',br='#8b5a2b',pu='#7b2d8e',db='#0a2a6b',mr='#8d1b3d';
+const H=(a,wt)=>['H',a,wt],V=(a,wt)=>['V',a,wt],Fl=c=>['F',c],Re=(a,b2,c,d,e)=>['R',a,b2,c,d,e],Ci=(u,v,rr,c)=>['C',u,v,rr,c],Ri=(u,v,r1,r2,c)=>['O',u,v,r1,r2,c],St=(u,v,R,c,n=5,rot=0)=>['S',u,v,R,c,n,rot],Po=(p,c)=>['P',p,c],Sx=(wd,c)=>['X',wd,c],Cr=(u,v,wd,c)=>['K',u,v,wd,c],UJ=(a,b2,c,d)=>['J',a,b2,c,d];
+function fc(L,u,v,K){let o='#888';
+ for(const l of L){const t=l[0];
+  if(t=='F')o=l[1];
+  else if(t=='H'||t=='V'){const a=l[1],ws=l[2]||a.map(()=>1),T=ws.reduce((x,y)=>x+y,0);let p=Math.max(0,Math.min(.9999,(t=='H'?v/2:u/3)))*T,i=0;while(i<a.length-1&&p>=ws[i]){p-=ws[i];i++}o=a[i]}
+  else if(t=='R'){if(u>=l[1]&&v>=l[2]&&u<=l[3]&&v<=l[4])o=l[5]}
+  else if(t=='C'){const dx=(u-l[1])*K.a,dy=(v-l[2])*K.b,q=l[3]*K.s;if(dx*dx+dy*dy<=q*q)o=l[4]}
+  else if(t=='O'){const dx=(u-l[1])*K.a,dy=(v-l[2])*K.b,d=dx*dx+dy*dy;if(d<=(l[4]*K.s)**2&&d>=(l[3]*K.s)**2)o=l[5]}
+  else if(t=='S'){const dx=(u-l[1])*K.a,dy=(v-l[2])*K.b,R=l[3]*K.s,n=l[5],rad=Math.hypot(dx,dy);if(rad<=R){const ir=R*(n==5?.4:.5),st=Math.PI/n,P=2*st;let a=((Math.atan2(dx,-dy)-l[6])%P+P)%P;if(a>st)a=P-a;const x0=R,y0=0,x1=ir*Math.cos(st),y1=ir*Math.sin(st),px=rad*Math.cos(a),py=rad*Math.sin(a),sd=(x1-x0)*(py-y0)-(y1-y0)*(px-x0),so=(x1-x0)*(0-y0)-(y1-y0)*(0-x0);if(sd*so>=0)o=l[4]}}
+  else if(t=='P'){const p=l[1];let c=0;for(let i=0,j=p.length-2;i<p.length;j=i,i+=2)if((p[i+1]>v)!=(p[j+1]>v)&&u<(p[j]-p[i])*(v-p[i+1])/(p[j+1]-p[i+1])+p[i])c=!c;if(c)o=l[2]}
+  else if(t=='X'){if(Math.min(Math.abs(v-u*2/3),Math.abs(v-2+u*2/3))<=l[1])o=l[2]}
+  else if(t=='K'){if(Math.abs(u-l[1])<=l[3]/2||Math.abs(v-l[2])<=l[3]/2)o=l[4]}
+  else if(t=='J'){const p=(u-l[1])/(l[3]-l[1]),q=(v-l[2])/(l[4]-l[2]);if(p>=0&&p<=1&&q>=0&&q<=1){let c='#1b2f85';const d=Math.min(Math.abs(q-p),Math.abs(q-1+p));if(d<.12)c='#fff';if(d<.05)c='#d8202f';if(Math.abs(p-.5)<.13||Math.abs(q-.5)<.13)c='#fff';if(Math.abs(p-.5)<.07||Math.abs(q-.5)<.07)c='#d8202f';o=c}}
+ }return o}
+const CT=[];const C=(id,n,ct,an,ann,fl)=>CT.push({id,n,ct,an,ann,fl});
+const AF='Afrique';
+C('DZ','Algérie',AF,'wolf','Fennec',[V([g,w]),Ci(1.5,1,.5,r),Ci(1.64,1,.4,w),St(1.78,1,.28,r)]);
+C('AO','Angola',AF,'antelope','Antilope noire géante',[H([r,k]),Ci(1.5,1,.4,y)]);
+C('BJ','Bénin',AF,'bigcat','Léopard',[Re(0,0,1.2,2,g),Re(1.2,0,3,1,y),Re(1.2,1,3,2,r)]);
+C('BW','Botswana',AF,'zebra','Zèbre',[H([lb,w,k,w,lb],[9,1,6,1,9])]);
+C('BF','Burkina Faso',AF,'horse','Étalon',[H([r,dg]),St(1.5,1,.55,y)]);
+C('BI','Burundi',AF,'lion','Lion',[Fl(w),Po([0,0,3,0,1.5,1],r),Po([0,2,3,2,1.5,1],r),Po([0,0,0,2,1.5,1],g),Po([3,0,3,2,1.5,1],g),Sx(.1,w),Ci(1.5,1,.5,w)]);
+C('CV','Cap-Vert',AF,'turtle','Tortue caouanne',[H([db,w,r,w,db],[5,.6,.6,.6,5]),Ri(1.1,1.1,.5,.62,y)]);
+C('CM','Cameroun',AF,'lion','Lion indomptable',[V([g,r,y]),St(1.5,1,.45,y)]);
+C('CF','Centrafrique',AF,'elephant','Éléphant de forêt',[H([b,w,g,y]),Re(1.3,0,1.7,2,r),St(.4,.4,.3,y)]);
+C('TD','Tchad',AF,'ibex','Chèvre du Sahel',[V([db,y,r])]);
+C('KM','Comores',AF,'fish','Cœlacanthe',[H([y,w,r,db]),Po([0,0,0,2,1.3,1],g),Ci(.4,1,.3,w)]);
+C('CD','RD Congo',AF,'zebra','Okapi',[Fl(lb),Po([0,1.55,0,2,.6,2,3,.4,3,0,2.5,0],y),Po([0,1.75,0,2,.35,2,3,.25,3,0,2.7,0],r),St(.45,.45,.35,y)]);
+C('CG','Congo',AF,'bigcat','Panthère',[Fl(y),Po([0,0,1.95,0,0,1.3],g),Po([3,2,1.05,2,3,.7],r)]);
+C('CI','Côte d’Ivoire',AF,'elephant','Éléphant',[V([o,w,dg])]);
+C('DJ','Djibouti',AF,'antelope','Oryx beïsa',[H([lb,g]),Po([0,0,0,2,1.6,1],w),St(.5,1,.3,r)]);
+C('EG','Égypte',AF,'eagle','Aigle de Saladin',[H([r,w,k]),Ci(1.5,1,.28,y)]);
+C('GQ','Guinée équatoriale',AF,'gorilla','Gorille',[H([g,w,r]),Po([0,0,0,2,.9,1],lb)]);
+C('ER','Érythrée',AF,'camel','Dromadaire',[Po([0,0,3,0,3,1],g),Po([3,1,3,2,0,2],lb),Po([0,0,3,1,0,2],r)]);
+C('SZ','Eswatini',AF,'elephant','Éléphant',[H([db,y,mr,y,db],[6,1,16,1,6]),Ci(1.5,1,.38,w)]);
+C('ET','Éthiopie',AF,'lion','Lion d’Abyssinie',[H([g,y,r]),Ci(1.5,1,.55,db),St(1.5,1,.4,y)]);
+C('GA','Gabon',AF,'bigcat','Panthère noire',[H([g,y,db])]);
+C('GM','Gambie',AF,'crocodile','Crocodile du Nil',[H([r,w,db,w,g],[6,1,4,1,6])]);
+C('GH','Ghana',AF,'eagle','Aigle',[H([r,y,g]),St(1.5,1,.45,k)]);
+C('GN','Guinée',AF,'elephant','Éléphant (Syli)',[V([r,y,g])]);
+C('GW','Guinée-Bissau',AF,'hippo','Hippopotame',[Re(0,0,1,2,r),Re(1,0,3,1,y),Re(1,1,3,2,g),St(.5,1,.4,k)]);
+C('KE','Kenya',AF,'lion','Lion',[H([k,w,r,w,g],[6,1,6,1,6]),Ci(1.5,1,.45,r)]);
+C('LS','Lesotho',AF,'horse','Cheval basotho',[H([b,w,g],[3,4,3]),Ci(1.5,1,.3,k)]);
+C('LR','Libéria',AF,'hippo','Hippopotame pygmée',[H([r,w,r,w,r,w,r,w,r,w,r]),Re(0,0,1,1,db),St(.5,.5,.35,w)]);
+C('LY','Libye',AF,'falcon','Faucon de Quraych',[H([r,k,g],[1,2,1]),Ci(1.5,1,.38,w),Ci(1.64,1,.3,k),St(1.7,1,.17,w)]);
+C('MG','Madagascar',AF,'monkey','Maki catta',[Fl(w),Re(1,0,3,1,r),Re(1,1,3,2,g)]);
+C('MW','Malawi',AF,'lion','Lion',[H([k,r,g]),Ci(1.5,.3,.45,r)]);
+C('ML','Mali',AF,'lion','Lion',[V([g,y,r])]);
+C('MR','Mauritanie',AF,'camel','Dromadaire',[Fl(g),Re(0,0,3,.3,r),Re(0,1.7,3,2,r),Ci(1.5,1.1,.55,y),Ci(1.5,.85,.5,g),St(1.5,.9,.2,y)]);
+C('MU','Maurice',AF,'dodo','Dodo',[H([r,b,y,g])]);
+C('MA','Maroc',AF,'lion','Lion de l’Atlas',[Fl(r),St(1.5,1,.65,g),Ci(1.5,1.05,.25,r)]);
+C('MZ','Mozambique',AF,'elephant','Éléphant',[H([g,w,k,w,y],[6,1,6,1,6]),Po([0,0,0,2,1.3,1],r),St(.4,1,.35,y)]);
+C('NA','Namibie',AF,'antelope','Oryx',[Fl(r),Po([0,0,1.95,0,0,1.3],b),Po([3,2,1.05,2,3,.7],g),Ci(.5,.5,.3,y)]);
+C('NE','Niger',AF,'giraffe','Girafe',[H([o,w,g]),Ci(1.5,1,.3,o)]);
+C('NG','Nigéria',AF,'eagle','Aigle',[V([g,w,g])]);
+C('RW','Rwanda',AF,'gorilla','Gorille de montagne',[H([lb,y,g],[2,1,1]),Ci(2.5,.5,.35,y)]);
+C('ST','Sao Tomé-et-Principe',AF,'parrot','Perroquet gris',[H([g,y,g],[1,2,1]),Po([0,0,0,2,.9,1],r),St(1.5,1,.25,k),St(2.3,1,.25,k)]);
+C('SN','Sénégal',AF,'lion','Lion',[V([g,y,r]),St(1.5,1,.45,g)]);
+C('SC','Seychelles',AF,'turtle','Tortue géante d’Aldabra',[Fl(w),Po([0,2,0,0,1,0],b),Po([0,2,1,0,2,0],y),Po([0,2,2,0,3,0,3,1],r),Po([0,2,3,1,3,1.5],w),Po([0,2,3,1.5,3,2],g)]);
+C('SL','Sierra Leone',AF,'lion','Lion',[H([g,w,lb])]);
+C('SO','Somalie',AF,'bigcat','Léopard',[Fl(lb),St(1.5,1,.6,w)]);
+C('ZA','Afrique du Sud',AF,'antelope','Springbok',[H([r,db]),Re(1.2,.8,3,1.2,g),Po([0,0,.5,0,1.6,.8,1.6,1.2,.5,2,0,2,1.1,1],g),Po([0,.28,.95,1,0,1.72],y),Po([0,.4,.8,1,0,1.6],k)]);
+C('SS','Soudan du Sud',AF,'eagle','Aigle pêcheur',[H([k,w,r,w,g],[6,1,6,1,6]),Po([0,0,0,2,1.4,1],db),St(.45,1,.3,y)]);
+C('SD','Soudan',AF,'crane','Messager sagittaire',[H([r,w,k]),Po([0,0,0,2,1,1],g)]);
+C('TZ','Tanzanie',AF,'giraffe','Girafe',[Fl(g),Po([0,2,3,0,3,2],lb),Po([0,1.58,2.37,0,3,0,3,.42,.63,2,0,2],y),Po([0,1.7,2.55,0,3,0,3,.3,.45,2,0,2],k)]);
+C('TG','Togo',AF,'lion','Lion',[H([g,y,g,y,g]),Re(0,0,1.2,1.2,r),St(.6,.6,.45,w)]);
+C('TN','Tunisie',AF,'horse','Cheval barbe',[Fl(r),Ci(1.5,1,.65,w),Ci(1.5,1,.48,r),Ci(1.64,1,.38,w),St(1.68,1,.25,r)]);
+C('UG','Ouganda',AF,'crane','Grue royale',[H([k,y,r,k,y,r]),Ci(1.5,1,.4,w)]);
+C('ZM','Zambie',AF,'eagle','Aigle pêcheur',[Fl(g),Re(2,1,2.33,2,r),Re(2.33,1,2.67,2,k),Re(2.67,1,3,2,o)]);
+C('ZW','Zimbabwe',AF,'antelope','Antilope rouanne',[H([g,y,r,k,r,y,g]),Po([0,0,0,2,1.3,1],w),Po([0,.25,0,1.75,1,1],k),St(.45,1,.35,r)]);
+const EU='Europe';
+C('AL','Albanie',EU,'eagle','Aigle bicéphale',[Fl(r),Ci(1.5,1,.55,k)]);
+C('AD','Andorre',EU,'ibex','Isard',[V([db,y,r],[1,1.2,1])]);
+C('AT','Autriche',EU,'eagle','Aigle impérial',[H([r,w,r])]);
+C('BY','Biélorussie',EU,'buffalo','Bison d’Europe',[H([r,g],[2,1]),Re(0,0,.4,2,w),Re(.08,0,.16,2,r)]);
+C('BE','Belgique',EU,'lion','Lion belge',[V([k,y,r])]);
+C('BA','Bosnie-Herzégovine',EU,'lion','Lion de Bosnie',[Fl(db),Po([.8,0,2.4,0,2.4,2],y)]);
+C('BG','Bulgarie',EU,'lion','Lion bulgare',[H([w,g,r])]);
+C('HR','Croatie',EU,'wolf','Martre des hêtres',[H([r,w,db]),Re(1.2,.55,1.8,1.45,r)]);
+C('CY','Chypre',EU,'ibex','Mouflon de Chypre',[Fl(w),Ci(1.5,.95,.45,o)]);
+C('CZ','Tchéquie',EU,'lion','Lion tchèque',[H([w,r]),Po([0,0,0,2,1.5,1],db)]);
+C('DK','Danemark',EU,'swan','Cygne tuberculé',[Fl(r),Cr(1.1,1,.4,w)]);
+C('EE','Estonie',EU,'dove','Hirondelle rustique',[H([lb,k,w])]);
+C('FI','Finlande',EU,'bear','Ours brun',[Fl(w),Cr(1.1,1,.5,b)]);
+C('FR','France',EU,'rooster','Coq gaulois',[V([b,w,r])]);
+C('DE','Allemagne',EU,'eagle','Aigle fédéral',[H([k,r,y])]);
+C('GR','Grèce',EU,'dolphin','Dauphin',[H([lb,w,lb,w,lb,w,lb,w,lb]),Re(0,0,1.1,1.11,lb),Re(.45,0,.65,1.11,w),Re(0,.45,1.1,.65,w)]);
+C('HU','Hongrie',EU,'falcon','Turul (faucon)',[H([r,w,g])]);
+C('IS','Islande',EU,'falcon','Faucon gerfaut',[Fl(db),Cr(1.1,1,.55,w),Cr(1.1,1,.28,r)]);
+C('IE','Irlande',EU,'wolf','Lévrier irlandais',[V([g,w,o])]);
+C('IT','Italie',EU,'wolf','Loup d’Italie',[V([g,w,r])]);
+C('LV','Lettonie',EU,'dove','Bergeronnette',[H([mr,w,mr],[2,1,2])]);
+C('LI','Liechtenstein',EU,'ibex','Chamois',[H([b,r]),Ci(.6,.5,.35,y)]);
+C('LT','Lituanie',EU,'crane','Cigogne blanche',[H([y,g,r])]);
+C('LU','Luxembourg',EU,'lion','Lion luxembourgeois',[H([r,w,lb])]);
+C('MT','Malte',EU,'wolf','Chien du Pharaon',[V([w,r]),Re(.1,.1,.4,.4,gr)]);
+C('MD','Moldavie',EU,'bull','Aurochs',[V([b,y,r]),Ci(1.5,1,.3,br)]);
+C('MC','Monaco',EU,'dolphin','Dauphin',[H([r,w])]);
+C('ME','Monténégro',EU,'eagle','Aigle royal',[Fl(y),Re(.1,.1,2.9,1.9,r),Ci(1.5,1,.4,y)]);
+C('NL','Pays-Bas',EU,'lion','Lion néerlandais',[H([r,w,b])]);
+C('MK','Macédoine du Nord',EU,'lion','Lion macédonien',[Fl(r),St(1.5,1,1.5,y,8),Ci(1.5,1,.42,r),Ri(1.5,1,.3,.42,y)]);
+C('NO','Norvège',EU,'lion','Lion norvégien',[Fl(r),Cr(1.1,1,.45,w),Cr(1.1,1,.22,db)]);
+C('PL','Pologne',EU,'eagle','Aigle blanc',[H([w,r])]);
+C('PT','Portugal',EU,'wolf','Loup ibérique',[V([g,r],[2,3]),Ci(1.2,1,.4,y)]);
+C('RO','Roumanie',EU,'wolf','Loup carpatique',[V([b,y,r])]);
+C('RU','Russie',EU,'bear','Ours brun',[H([w,b,r])]);
+C('SM','Saint-Marin',EU,'falcon','Faucon pèlerin',[H([w,lb]),Ci(1.5,1,.2,y)]);
+C('RS','Serbie',EU,'eagle','Aigle blanc',[H([r,b,w]),Re(.5,.45,1.1,1.5,r)]);
+C('SK','Slovaquie',EU,'bigcat','Lynx boréal',[H([w,b,r]),Re(.5,.5,1.2,1.7,r),Cr(.85,1.05,.2,w)]);
+C('SI','Slovénie',EU,'horse','Cheval lipizzan',[H([w,b,r]),Re(.4,.3,1,1.1,b)]);
+C('ES','Espagne',EU,'bull','Taureau',[H([r,y,r],[1,2,1])]);
+C('SE','Suède',EU,'deer','Élan',[Fl(b),Cr(1.1,1,.4,y)]);
+C('CH','Suisse',EU,'ibex','Bouquetin des Alpes',[Fl(r),Re(1.35,.3,1.65,1.7,w),Re(1,.7,2,1.3,w)]);
+C('UA','Ukraine',EU,'dove','Rossignol',[H([b,y])]);
+C('GB','Royaume-Uni',EU,'lion','Lion d’Angleterre',[UJ(0,0,3,2)]);
+C('VA','Vatican',EU,'dove','Colombe de la paix',[V([y,w]),Ci(2.2,1,.5,gr)]);
+const AS='Asie';
+C('AF','Afghanistan',AS,'bigcat','Léopard des neiges',[V([k,r,g]),Ci(1.5,1,.3,w)]);
+C('AM','Arménie',AS,'eagle','Aigle',[H([r,db,o])]);
+C('AZ','Azerbaïdjan',AS,'horse','Cheval du Karabakh',[H([lb,r,g]),Ci(1.5,1,.3,w),Ci(1.57,1,.24,r)]);
+C('BH','Bahreïn',AS,'antelope','Oryx d’Arabie',[Fl(r),Po([0,0,.9,0,1.2,.25,.9,.5,1.2,.75,.9,1,1.2,1.25,.9,1.5,1.2,1.75,.9,2,0,2],w)]);
+C('BD','Bangladesh',AS,'bigcat','Tigre du Bengale',[Fl(dg),Ci(1.35,1,.6,r)]);
+C('BT','Bhoutan',AS,'buffalo','Takin',[Fl(o),Po([0,2,0,0,3,0],y),Ci(1.5,1,.45,w)]);
+C('BN','Brunéi',AS,'monkey','Nasique',[Fl(y),Po([0,.1,0,.65,3,1.55,3,1],w),Po([0,.65,0,.9,3,1.8,3,1.55],k),Ci(1.5,1,.4,r)]);
+C('KH','Cambodge',AS,'bull','Kouprey',[H([db,r,db],[1,2,1]),Re(.9,.7,2.1,1.3,w)]);
+C('CN','Chine',AS,'panda','Panda géant',[Fl(r),St(.5,.5,.4,y),St(1.1,.25,.14,y),St(1.3,.5,.14,y),St(1.3,.85,.14,y)]);
+C('GE','Géorgie',AS,'wolf','Loup',[Fl(w),Cr(1.5,1,.4,r)]);
+C('IN','Inde',AS,'bigcat','Tigre du Bengale',[H([o,w,g]),Ri(1.5,1,.22,.3,db)]);
+C('ID','Indonésie',AS,'lizard','Dragon de Komodo',[H([r,w])]);
+C('IR','Iran',AS,'bigcat','Guépard asiatique',[H([g,w,r]),Ci(1.5,1,.25,r)]);
+C('IQ','Irak',AS,'horse','Cheval arabe',[H([r,w,k])]);
+C('IL','Israël',AS,'dove','Huppe fasciée',[Fl(w),Re(0,.2,3,.45,b),Re(0,1.55,3,1.8,b),St(1.5,1,.45,b,6)]);
+C('JP','Japon',AS,'rooster','Faisan vert',[Fl(w),Ci(1.5,1,.6,r)]);
+C('JO','Jordanie',AS,'antelope','Oryx d’Arabie',[H([k,w,g]),Po([0,0,0,2,1.4,1],r),St(.45,1,.25,w,7)]);
+C('KZ','Kazakhstan',AS,'eagle','Aigle royal',[Fl(lb),Ci(1.5,.9,.6,y)]);
+C('KW','Koweït',AS,'camel','Dromadaire',[H([g,w,r]),Po([0,0,.8,.65,.8,1.35,0,2],k)]);
+C('KG','Kirghizistan',AS,'bigcat','Léopard des neiges',[Fl(r),Ci(1.5,1,.65,y),Ci(1.5,1,.4,r)]);
+C('LA','Laos',AS,'elephant','Éléphant d’Asie',[H([r,db,r],[1,2,1]),Ci(1.5,1,.5,w)]);
+C('LB','Liban',AS,'wolf','Hyène rayée',[H([r,w,r],[1,2,1]),Po([1.3,1.5,1.5,.5,1.7,1.5],g)]);
+C('MY','Malaisie',AS,'bigcat','Tigre de Malaisie',[H([r,w,r,w,r,w,r,w,r,w,r,w,r,w]),Re(0,0,1.6,1.1,db),Ci(.6,.55,.4,y),Ci(.7,.55,.32,db),St(1,.55,.28,y,14)]);
+C('MV','Maldives',AS,'turtle','Tortue verte',[Fl(r),Re(.5,.4,2.5,1.6,dg),Ci(1.5,1,.45,w),Ci(1.62,1,.38,dg)]);
+C('MN','Mongolie',AS,'horse','Cheval mongol',[V([r,lb,r]),Re(.2,.4,.4,1.6,y)]);
+C('MM','Myanmar',AS,'elephant','Éléphant blanc',[H([y,g,r]),St(1.5,1,.8,w)]);
+C('NP','Népal',AS,'bull','Vache',[Fl(w),Po([.4,0,2.3,1.2,1.2,1.2,2.3,2,.4,2],db),Po([.55,.35,1.75,1,.9,1,1.9,1.7,.55,1.7],r)]);
+C('KP','Corée du Nord',AS,'bigcat','Tigre de Sibérie',[H([db,w,r,w,db],[3,.4,6,.4,3]),Ci(1,1,.55,w),St(1,1,.5,r)]);
+C('OM','Oman',AS,'ibex','Tahr d’Arabie',[H([w,r,g]),Re(0,0,.9,2,r)]);
+C('PK','Pakistan',AS,'ibex','Markhor',[V([w,dg],[1,3]),Ci(2.1,1,.55,w),Ci(2.25,.9,.45,dg),St(2.45,.75,.25,w)]);
+C('PH','Philippines',AS,'buffalo','Carabao',[H([b,r]),Po([0,0,0,2,1.7,1],w),Ci(.5,1,.3,y)]);
+C('QA','Qatar',AS,'antelope','Oryx d’Arabie',[Fl(mr),Po([0,0,.7,0,1,.15,.7,.3,1,.45,.7,.6,1,.75,.7,.9,1,1.05,.7,1.2,1,1.35,.7,1.5,1,1.65,.7,1.8,1,1.9,.7,2,0,2],w)]);
+C('SA','Arabie saoudite',AS,'camel','Dromadaire',[Fl(dg),Re(.6,.55,2.4,.9,w),Re(.6,1.3,2.4,1.45,w)]);
+C('SG','Singapour',AS,'lion','Merlion',[H([r,w]),Ci(.5,.5,.45,w),Ci(.62,.5,.36,r),St(1,.5,.15,w)]);
+C('KR','Corée du Sud',AS,'bigcat','Tigre de Sibérie',[Fl(w),Ci(1.5,1,.55,r),Ci(1.5,1.27,.3,db),Re(.35,.25,.9,.4,k),Re(2.1,.25,2.65,.4,k),Re(.35,1.6,.9,1.75,k),Re(2.1,1.6,2.65,1.75,k)]);
+C('LK','Sri Lanka',AS,'rooster','Coq de Ceylan',[Fl(y),Re(.07,.1,2.93,1.9,mr),Re(.3,.3,.7,1.7,g),Re(.7,.3,1.1,1.7,o)]);
+C('SY','Syrie',AS,'falcon','Faucon de Qoreich',[H([r,w,k]),St(1,1,.3,g),St(2,1,.3,g)]);
+C('TJ','Tadjikistan',AS,'ibex','Markhor',[H([r,w,g],[2,3,2]),Ci(1.5,1,.35,y)]);
+C('TH','Thaïlande',AS,'elephant','Éléphant d’Asie',[H([r,w,db,w,r],[1,1,2,1,1])]);
+C('TL','Timor oriental',AS,'crocodile','Crocodile',[Fl(r),Po([0,0,1.8,1,0,2],y),Po([0,0,1,1,0,2],k),St(.35,1,.3,w)]);
+C('TR','Turquie',AS,'wolf','Loup gris',[Fl(r),Ci(1,1,.55,w),Ci(1.12,1,.44,r),St(1.6,1,.3,w)]);
+C('TM','Turkménistan',AS,'horse','Akhal-Téké',[Fl(dg),Re(.3,0,.8,2,mr)]);
+C('AE','Émirats arabes unis',AS,'falcon','Faucon pèlerin',[H([g,w,k]),Re(0,0,.7,2,r)]);
+C('UZ','Ouzbékistan',AS,'antelope','Gazelle à goitre',[H([lb,r,w,r,g],[6,.2,5,.2,6]),Ci(.5,.5,.3,w)]);
+C('VN','Viêt Nam',AS,'buffalo','Buffle d’eau',[Fl(r),St(1.5,1,.8,y)]);
+C('YE','Yémen',AS,'bigcat','Léopard d’Arabie',[H([r,w,k])]);
+C('PS','Palestine',AS,'hummingbird','Souimanga de Palestine',[H([k,w,g]),Po([0,0,0,2,1,1],r)]);
+const AM='Amériques',OC='Océanie';
+C('AG','Antigua-et-Barbuda',AM,'deer','Daim',[Fl(r),Po([0,0,3,0,1.5,2],k),Ci(1.5,.3,.45,y)]);
+C('AR','Argentine',AM,'dove','Hornero roux',[H([lb,w,lb]),Ci(1.5,1,.3,y)]);
+C('BS','Bahamas',AM,'flamingo','Flamant rose',[H([lb,y,lb]),Po([0,0,0,2,1.4,1],k)]);
+C('BB','Barbade',AM,'pelican','Pélican brun',[V([db,y,db]),Re(1.4,.4,1.6,1.6,k)]);
+C('BZ','Belize',AM,'hippo','Tapir de Baird',[Fl(db),Re(0,0,3,.25,r),Re(0,1.75,3,2,r),Ci(1.5,1,.7,w),Ci(1.5,1,.55,g)]);
+C('BO','Bolivie',AM,'eagle','Condor des Andes',[H([r,y,g])]);
+C('BR','Brésil',AM,'bigcat','Jaguar',[Fl(g),Po([1.5,.15,2.85,1,1.5,1.85,.15,1],y),Ci(1.5,1,.5,db)]);
+C('CA','Canada',AM,'beaver','Castor',[V([r,w,r],[1,2,1]),St(1.5,1,.55,r,8)]);
+C('CL','Chili',AM,'deer','Huemul',[H([w,r]),Re(0,0,1,1,db),St(.5,.5,.35,w)]);
+C('CO','Colombie',AM,'eagle','Condor des Andes',[H([y,db,r],[2,1,1])]);
+C('CR','Costa Rica',AM,'deer','Cerf de Virginie',[H([b,w,r,w,b],[1,1,2,1,1])]);
+C('CU','Cuba',AM,'parrot','Tocoro',[H([b,w,b,w,b]),Po([0,0,0,2,1.7,1],r),St(.5,1,.4,w)]);
+C('DM','Dominique',AM,'parrot','Sisserou',[Fl(g),Cr(1.5,1,.5,y),Cr(1.5,1,.25,w),Ci(1.5,1,.45,r)]);
+C('DO','République dominicaine',AM,'dove','Palmiste',[Fl(w),Re(0,0,1.3,.9,b),Re(1.7,0,3,.9,r),Re(0,1.1,1.3,2,r),Re(1.7,1.1,3,2,b)]);
+C('EC','Équateur',AM,'eagle','Condor des Andes',[H([y,b,r],[2,1,1])]);
+C('SV','Salvador',AM,'dove','Torogoz',[H([b,w,b]),Ci(1.5,1,.3,y)]);
+C('GD','Grenade',AM,'dove','Tourterelle de Grenade',[Fl(y),Po([0,0,1.5,1,0,2],g),Po([3,0,1.5,1,3,2],g),Re(0,0,3,.2,r),Re(0,1.8,3,2,r),Ci(1.5,1,.35,r),St(1.5,1,.25,y)]);
+C('GT','Guatemala',AM,'parrot','Quetzal resplendissant',[V([lb,w,lb]),Ci(1.5,1,.35,g)]);
+C('GY','Guyana',AM,'bigcat','Jaguar',[Fl(g),Po([0,0,3,1,0,2],w),Po([0,.1,2.75,1,0,1.9],y),Po([0,0,1.6,1,0,2],k),Po([0,.15,1.3,1,0,1.85],r)]);
+C('HT','Haïti',AM,'parrot','Trogon d’Hispaniola',[H([db,r]),Re(1,.6,2,1.4,w)]);
+C('HN','Honduras',AM,'deer','Cerf de Virginie',[H([lb,w,lb]),St(1.5,1,.25,lb)]);
+C('JM','Jamaïque',AM,'hummingbird','Colibri docteur',[Fl(y),Po([0,0,3,0,1.5,1],g),Po([0,2,3,2,1.5,1],g),Po([0,0,0,2,1.5,1],k),Po([3,0,3,2,1.5,1],k)]);
+C('MX','Mexique',AM,'eagle','Aigle royal',[V([g,w,r]),Ci(1.5,1,.3,br)]);
+C('NI','Nicaragua',AM,'parrot','Motmot à sourcils bleus',[H([b,w,b]),Ci(1.5,1,.3,y)]);
+C('PA','Panama',AM,'eagle','Harpie féroce',[Fl(w),Re(1.5,0,3,1,r),Re(0,1,1.5,2,b),St(.75,.5,.4,b),St(2.25,1.5,.4,r)]);
+C('PY','Paraguay',AM,'bigcat','Puma',[H([r,w,b]),Ci(1.5,1,.3,y)]);
+C('PE','Pérou',AM,'llama','Vigogne',[V([r,w,r])]);
+C('KN','Saint-Christophe-et-Niévès',AM,'monkey','Singe vert',[Fl(g),Po([0,2,3,0,3,2],r),Po([0,1.58,2.37,0,3,0,3,.42,.63,2,0,2],y),Po([0,1.7,2.55,0,3,0,3,.3,.45,2,0,2],k)]);
+C('LC','Sainte-Lucie',AM,'parrot','Amazone de Sainte-Lucie',[Fl(lb),Po([1.5,.25,2.2,1.75,.8,1.75],w),Po([1.5,.5,2.05,1.75,.95,1.75],k),Po([1.5,1.2,2.05,1.75,.95,1.75],y)]);
+C('VC','Saint-Vincent-et-les-Grenadines',AM,'parrot','Amazone de Saint-Vincent',[V([db,y,g],[1,2,1]),Po([1.2,.5,1.5,.9,1.8,.5],g)]);
+C('SR','Suriname',AM,'bigcat','Jaguar',[H([g,w,r,w,g],[2,1,4,1,2]),St(1.5,1,.45,y)]);
+C('TT','Trinité-et-Tobago',AM,'flamingo','Ibis rouge',[Fl(r),Po([0,0,.83,0,3,1.45,3,2,2.17,2,0,.55],w),Po([.45,0,3,1.7,3,2,2.55,2,0,.3,0,0],k)]);
+C('US','États-Unis',AM,'eagle','Pygargue à tête blanche',[H([r,w,r,w,r,w,r,w,r,w,r,w,r]),Re(0,0,1.3,1.08,db)]);
+C('UY','Uruguay',AM,'dove','Vanneau téru-téro',[H([w,lb,w,lb,w,lb,w,lb,w]),Re(0,0,1,1,w),Ci(.5,.5,.3,y)]);
+C('VE','Venezuela',AM,'dove','Troupiale',[H([y,db,r]),Ri(1.5,1.4,.8,.9,w)]);
+C('AU','Australie',OC,'kangaroo','Kangourou rouge',[Fl(db),UJ(0,0,1.5,1),St(.75,1.5,.4,w,7),St(2.2,.5,.2,w,7),St(2.6,1.2,.2,w,7),St(2.2,1.7,.2,w,7)]);
+C('FJ','Fidji',OC,'lizard','Iguane des Fidji',[Fl(lb),UJ(0,0,1.5,1),Re(1.9,.5,2.7,1.5,w),Re(1.9,.5,2.7,.8,r)]);
+C('KI','Kiribati',OC,'eagle','Frégate',[Fl(db),Re(0,0,3,1,r),Ci(1.5,1,.55,y),Re(0,1.15,3,1.3,w),Re(0,1.5,3,1.65,w)]);
+C('MH','Îles Marshall',OC,'turtle','Tortue verte',[Fl(db),Po([0,2,3,.1,3,.55],o),Po([0,2,3,.55,3,1],w),St(.5,.5,.35,w,12)]);
+C('FM','Micronésie',OC,'dove','Colombe de Micronésie',[Fl(lb),St(1.5,.4,.3,w),St(1.5,1.6,.3,w),St(.8,1,.3,w),St(2.2,1,.3,w)]);
+C('NR','Nauru',OC,'dove','Noddi brun',[Fl(db),Re(0,.9,3,1.1,y),St(.8,1.5,.4,w,12)]);
+C('NZ','Nouvelle-Zélande',OC,'kiwi','Kiwi',[Fl(db),UJ(0,0,1.5,1),St(2.1,.5,.25,r),St(2.4,1.2,.25,r),St(1.8,1.2,.25,r),St(2.1,1.8,.25,r)]);
+C('PW','Palaos',OC,'dolphin','Dugong',[Fl(lb),Ci(1.3,1,.65,y)]);
+C('PG','Papouasie-Nouvelle-Guinée',OC,'peacock','Oiseau de paradis',[Fl(r),Po([0,0,0,2,3,2],k),St(.6,1.5,.3,w)]);
+C('WS','Samoa',OC,'dove','Manumea',[Fl(r),Re(0,0,1.5,1.1,db),St(.4,.6,.22,w)]);
+C('SB','Îles Salomon',OC,'crocodile','Crocodile marin',[Fl(g),Po([0,0,3,0,0,2],db),Po([0,1.7,2.55,0,3,0,3,.3,.45,2,0,2],y)]);
+C('TO','Tonga',OC,'dove','Colombe de Tonga',[Fl(r),Re(0,0,1.2,1,w),Cr(.6,.5,.4,r)]);
+C('TV','Tuvalu',OC,'fish','Poisson',[Fl(lb),UJ(0,0,1.5,1),St(2.2,.5,.2,y)]);
+C('VU','Vanuatu',OC,'crab','Crabe de cocotier',[H([r,g]),Po([0,0,0,2,1.6,1],y),Po([0,.3,0,1.7,.9,1],k)]);
+// id: [capitale, monnaie]
+const KD={};const E='Euro',F='Franc CFA',XC='Dollar des Caraïbes orientales',USD='Dollar américain';
+Object.assign(KD,{DZ:['Alger','Dinar algérien'],AO:['Luanda','Kwanza'],BJ:['Porto-Novo',F],BW:['Gaborone','Pula'],BF:['Ouagadougou',F],BI:['Gitega','Franc burundais'],CV:['Praia','Escudo cap-verdien'],CM:['Yaoundé',F],CF:['Bangui',F],TD:['N’Djamena',F],KM:['Moroni','Franc comorien'],CD:['Kinshasa','Franc congolais'],CG:['Brazzaville',F],CI:['Yamoussoukro',F],DJ:['Djibouti','Franc djiboutien'],EG:['Le Caire','Livre égyptienne'],GQ:['Malabo',F],ER:['Asmara','Nakfa'],SZ:['Mbabane','Lilangeni'],ET:['Addis-Abeba','Birr'],GA:['Libreville',F],GM:['Banjul','Dalasi'],GH:['Accra','Cedi'],GN:['Conakry','Franc guinéen'],GW:['Bissau',F],KE:['Nairobi','Shilling kényan'],LS:['Maseru','Loti'],LR:['Monrovia','Dollar libérien'],LY:['Tripoli','Dinar libyen'],MG:['Antananarivo','Ariary'],MW:['Lilongwe','Kwacha malawien'],ML:['Bamako',F],MR:['Nouakchott','Ouguiya'],MU:['Port-Louis','Roupie mauricienne'],MA:['Rabat','Dirham marocain'],MZ:['Maputo','Metical'],NA:['Windhoek','Dollar namibien'],NE:['Niamey',F],NG:['Abuja','Naira'],RW:['Kigali','Franc rwandais'],ST:['São Tomé','Dobra'],SN:['Dakar',F],SC:['Victoria','Roupie seychelloise'],SL:['Freetown','Leone'],SO:['Mogadiscio','Shilling somalien'],ZA:['Pretoria','Rand'],SS:['Djouba','Livre sud-soudanaise'],SD:['Khartoum','Livre soudanaise'],TZ:['Dodoma','Shilling tanzanien'],TG:['Lomé',F],TN:['Tunis','Dinar tunisien'],UG:['Kampala','Shilling ougandais'],ZM:['Lusaka','Kwacha zambien'],ZW:['Harare','Dollar zimbabwéen'],
+AL:['Tirana','Lek'],AD:['Andorre-la-Vieille',E],AT:['Vienne',E],BY:['Minsk','Rouble biélorusse'],BE:['Bruxelles',E],BA:['Sarajevo','Mark convertible'],BG:['Sofia',E],HR:['Zagreb',E],CY:['Nicosie',E],CZ:['Prague','Couronne tchèque'],DK:['Copenhague','Couronne danoise'],EE:['Tallinn',E],FI:['Helsinki',E],FR:['Paris',E],DE:['Berlin',E],GR:['Athènes',E],HU:['Budapest','Forint'],IS:['Reykjavik','Couronne islandaise'],IE:['Dublin',E],IT:['Rome',E],LV:['Riga',E],LI:['Vaduz','Franc suisse'],LT:['Vilnius',E],LU:['Luxembourg',E],MT:['La Valette',E],MD:['Chisinau','Leu moldave'],MC:['Monaco',E],ME:['Podgorica',E],NL:['Amsterdam',E],MK:['Skopje','Denar'],NO:['Oslo','Couronne norvégienne'],PL:['Varsovie','Zloty'],PT:['Lisbonne',E],RO:['Bucarest','Leu roumain'],RU:['Moscou','Rouble russe'],SM:['Saint-Marin',E],RS:['Belgrade','Dinar serbe'],SK:['Bratislava',E],SI:['Ljubljana',E],ES:['Madrid',E],SE:['Stockholm','Couronne suédoise'],CH:['Berne','Franc suisse'],UA:['Kiev','Hryvnia'],GB:['Londres','Livre sterling'],VA:['Cité du Vatican',E],
+AF:['Kaboul','Afghani'],AM:['Erevan','Dram'],AZ:['Bakou','Manat azerbaïdjanais'],BH:['Manama','Dinar bahreïni'],BD:['Dacca','Taka'],BT:['Thimphou','Ngultrum'],BN:['Bandar Seri Begawan','Dollar de Brunéi'],KH:['Phnom Penh','Riel'],CN:['Pékin','Yuan'],GE:['Tbilissi','Lari'],IN:['New Delhi','Roupie indienne'],ID:['Jakarta','Roupie indonésienne'],IR:['Téhéran','Rial iranien'],IQ:['Bagdad','Dinar irakien'],IL:['Jérusalem','Shekel'],JP:['Tokyo','Yen'],JO:['Amman','Dinar jordanien'],KZ:['Astana','Tenge'],KW:['Koweït','Dinar koweïtien'],KG:['Bichkek','Som kirghize'],LA:['Vientiane','Kip'],LB:['Beyrouth','Livre libanaise'],MY:['Kuala Lumpur','Ringgit'],MV:['Malé','Rufiyaa'],MN:['Oulan-Bator','Tugrik'],MM:['Naypyidaw','Kyat'],NP:['Katmandou','Roupie népalaise'],KP:['Pyongyang','Won nord-coréen'],OM:['Mascate','Rial omanais'],PK:['Islamabad','Roupie pakistanaise'],PH:['Manille','Peso philippin'],QA:['Doha','Riyal qatari'],SA:['Riyad','Riyal saoudien'],SG:['Singapour','Dollar de Singapour'],KR:['Séoul','Won sud-coréen'],LK:['Sri Jayawardenapura Kotté','Roupie sri-lankaise'],SY:['Damas','Livre syrienne'],TJ:['Douchanbé','Somoni'],TH:['Bangkok','Baht'],TL:['Dili',USD],TR:['Ankara','Livre turque'],TM:['Achgabat','Manat turkmène'],AE:['Abou Dabi','Dirham des Émirats'],UZ:['Tachkent','Soum ouzbek'],VN:['Hanoï','Dông'],YE:['Sanaa','Rial yéménite'],PS:['Ramallah','Shekel'],
+AG:['Saint John’s',XC],AR:['Buenos Aires','Peso argentin'],BS:['Nassau','Dollar bahaméen'],BB:['Bridgetown','Dollar barbadien'],BZ:['Belmopan','Dollar bélizien'],BO:['Sucre','Boliviano'],BR:['Brasilia','Réal'],CA:['Ottawa','Dollar canadien'],CL:['Santiago','Peso chilien'],CO:['Bogota','Peso colombien'],CR:['San José','Colón costaricien'],CU:['La Havane','Peso cubain'],DM:['Roseau',XC],DO:['Saint-Domingue','Peso dominicain'],EC:['Quito',USD],SV:['San Salvador',USD],GD:['Saint-Georges',XC],GT:['Guatemala','Quetzal'],GY:['Georgetown','Dollar guyanien'],HT:['Port-au-Prince','Gourde'],HN:['Tegucigalpa','Lempira'],JM:['Kingston','Dollar jamaïcain'],MX:['Mexico','Peso mexicain'],NI:['Managua','Córdoba'],PA:['Panama','Balboa'],PY:['Asunción','Guaraní'],PE:['Lima','Sol'],KN:['Basseterre',XC],LC:['Castries',XC],VC:['Kingstown',XC],SR:['Paramaribo','Dollar surinamien'],TT:['Port-d’Espagne','Dollar de Trinité-et-Tobago'],US:['Washington',USD],UY:['Montevideo','Peso uruguayen'],VE:['Caracas','Bolivar'],
+AU:['Canberra','Dollar australien'],FJ:['Suva','Dollar fidjien'],KI:['Tarawa-Sud','Dollar australien'],MH:['Majuro',USD],FM:['Palikir',USD],NR:['Yaren','Dollar australien'],NZ:['Wellington','Dollar néo-zélandais'],PW:['Ngerulmud',USD],PG:['Port Moresby','Kina'],WS:['Apia','Tala'],SB:['Honiara','Dollar des Îles Salomon'],TO:['Nukuʻalofa','Paʻanga'],TV:['Funafuti','Dollar australien'],VU:['Port-Vila','Vatu']});
+CT.forEach(c=>{c.cap=KD[c.id][0];c.mon=KD[c.id][1]});
+// ===== Silhouettes (100x100, tournées vers la droite) : e=ellipse r=rect p=polygone x=trou (œil) =====
+const AN={};
+const mir=p=>p.map((v,i)=>i%2?v:100-v);
+function Q(o={}){const d=Object.assign({bx:42,by:52,rx:26,ry:14,lw:6,fy:92,hx:82,hy:30,hr:9,mz:13,mh:7,nk:9,tail:1,ex:[]},o);
+ const{bx,by,rx,ry,lw,fy,hx,hy,hr,mz,nk}=d,s=[['e',bx,by,rx,ry]],top=by+ry*.3,h=fy-top;
+ [bx-rx*.72,bx-rx*.36,bx+rx*.3,bx+rx*.66].forEach(x=>s.push(['r',x-lw/2,top,lw,h]));
+ s.push(['p',[bx+rx*.2,by-ry*.95,hx-nk*.7,hy-hr*.5,hx+nk*.4,hy+hr*.7,bx+rx*.85,by+ry*.5]]);
+ s.push(['e',hx,hy,hr,hr*.82]);
+ s.push(['p',[hx,hy-hr*.4,hx+hr+mz,hy+hr*.1,hx+hr+mz,hy+hr*.8,hx+hr*.2,hy+hr*.8]]);
+ if(d.tail)s.push(['p',[bx-rx+3,by-ry*.5,bx-rx-7,by+ry*.1,bx-rx-5,by+ry+8,bx-rx,by+ry+8,bx-rx+1,by+ry*.2,bx-rx+5,by-ry*.1]]);
+ s.push(...d.ex);s.push(['x',hx+hr*.2,hy-hr*.25,1.5]);return s}
+AN.lion=Q({bx:38,by:56,rx:27,ry:15,lw:8,hx:78,hy:44,hr:11,mz:5,nk:14,fy:91,tail:0,ex:[['e',70,44,18,21],['p',[14,52,6,46,4,34,8,26,12,28,9,36,10,44,16,50]],['e',8,24,5,7]]});
+AN.bigcat=Q({bx:42,by:52,rx:30,ry:12,lw:7,hx:80,hy:36,hr:9,mz:7,nk:11,fy:91,tail:0,ex:[['p',[13,46,4,50,1,38,5,24,11,20,13,24,8,30,7,40,12,44]],['p',[74,30,76,20,82,28]],['p',[80,28,86,20,88,30]]]});
+AN.elephant=Q({bx:44,by:52,rx:30,ry:24,lw:13,fy:94,hx:76,hy:42,hr:17,mz:0,nk:14,tail:0,ex:[['p',[88,48,98,54,100,72,96,84,90,84,92,70,90,62,84,58]],['p',[14,48,8,56,10,72,13,72,12,58,16,52]],['p',[86,62,95,70,91,73,84,67]]]});
+AN.giraffe={s:0};AN.giraffe=[['e',36,66,22,13],['p',[42,58,54,58,68,16,58,14]],['e',66,12,10,7],['p',[70,8,86,12,84,18,68,18]],['r',60,2,2,6],['r',66,2,2,6],['r',18,74,6,22],['r',26,76,6,20],['r',44,76,6,20],['r',52,74,6,22],['p',[14,60,8,76,10,76,16,64]],['x',70,11,1.5]];
+AN.zebra=Q({bx:42,by:52,rx:26,ry:13,lw:6,hx:80,hy:28,hr:8,mz:12,nk:9,tail:0,ex:[['p',[56,40,62,20,68,22,62,42]],['p',[72,22,72,10,78,18]],['p',[16,46,6,52,4,78,9,80,10,58,18,52]]]});
+AN.horse=Q({bx:42,by:52,rx:26,ry:14,lw:6,hx:82,hy:26,hr:8,mz:12,nk:9,tail:0,ex:[['p',[56,42,64,16,70,18,64,44]],['p',[74,20,74,8,80,16]],['p',[16,46,6,52,4,78,9,80,10,58,18,52]]]});
+AN.deer=Q({bx:40,by:56,rx:24,ry:13,lw:5,hx:76,hy:28,hr:7,mz:9,nk:8,fy:92,ex:[['p',[72,22,66,10,60,4,64,4,70,10,72,2,76,2,76,14,76,22]],['p',[76,22,82,8,88,2,90,4,84,14,80,22]]]});
+AN.antelope=Q({bx:40,by:56,rx:23,ry:12,lw:5,hx:78,hy:30,hr:7,mz:9,nk:8,fy:92,ex:[['p',[72,26,62,6,56,0,60,0,70,4,78,24]],['p',[70,26,62,24,64,30]]]});
+AN.camel=Q({bx:42,by:54,rx:26,ry:13,lw:6,hx:84,hy:22,hr:7,mz:10,nk:7,fy:92,ex:[['e',40,38,11,12],['p',[16,48,10,54,12,72,16,72,16,56]]]});
+AN.llama=Q({bx:40,by:58,rx:21,ry:14,lw:5,hx:70,hy:20,hr:6,mz:8,nk:7,fy:92,ex:[['p',[66,16,62,2,68,12]],['p',[70,14,74,2,76,14]],['e',38,50,20,12]]});
+AN.ibex=Q({bx:40,by:56,rx:22,ry:12,lw:5,hx:72,hy:38,hr:8,mz:7,nk:10,fy:92,ex:[['p',[68,32,60,14,48,6,48,10,56,18,66,38]],['p',[76,44,74,56,79,46]]]});
+AN.bull=Q({bx:44,by:52,rx:28,ry:17,lw:7,hx:84,hy:50,hr:9,mz:6,nk:12,fy:92,tail:0,ex:[['e',60,38,12,10],['p',[82,44,76,30,74,22,78,26,88,38]],['p',[16,46,8,52,10,78,14,78,14,56,20,50]]]});
+AN.buffalo=Q({bx:42,by:52,rx:28,ry:18,lw:8,hx:80,hy:54,hr:10,mz:6,nk:12,fy:92,ex:[['p',[76,46,66,40,58,32,56,40,66,50]],['p',[84,46,94,38,98,28,92,30,88,40]],['e',58,40,12,10]]});
+AN.wolf=Q({bx:40,by:54,rx:24,ry:11,lw:5,hx:78,hy:38,hr:8,mz:10,mh:6,nk:9,fy:92,tail:0,ex:[['p',[72,32,72,18,80,30]],['p',[78,30,84,18,88,32]],['p',[18,48,4,36,2,54,10,68,22,58]]]});
+AN.bear=Q({bx:40,by:54,rx:26,ry:20,lw:11,hx:78,hy:44,hr:12,mz:8,nk:14,fy:92,ex:[['p',[70,34,72,28,78,32]],['e',44,38,12,10]]});
+AN.hippo=Q({bx:44,by:56,rx:32,ry:22,lw:12,fy:92,hx:80,hy:52,hr:14,mz:3,nk:12,ex:[['e',72,38,4,4],['e',84,38,4,4]]});
+AN.kangaroo=[['p',[30,50,52,32,66,34,70,50,62,74,40,82]],['e',72,24,7,8],['p',[76,22,90,28,86,33,76,32]],['p',[68,18,66,4,72,14]],['p',[72,16,76,4,78,16]],['p',[66,44,78,50,76,55,64,51]],['p',[40,68,62,70,66,90,40,92,34,80]],['r',40,88,36,5],['p',[30,70,12,86,6,96,14,98,36,82,40,74]],['x',75,22,1.5]];
+AN.beaver=[['e',46,64,26,18],['e',72,54,12,11],['e',80,48,3,3],['p',[22,66,4,72,4,82,22,78]],['r',34,76,10,14],['r',54,76,10,14],['r',82,56,5,9],['e',66,44,4,4],['x',76,52,1.5]];
+AN.panda=[['e',50,68,28,26],['e',50,28,20,18],['e',32,12,7,7],['e',68,12,7,7],['e',24,66,9,20],['e',76,66,9,20],['e',34,92,12,7],['e',66,92,12,7],['x',42,26,4],['x',58,26,4],['x',50,34,3]];
+AN.gorilla=[['e',46,54,26,26],['e',62,26,13,13],['e',30,60,9,24],['e',70,60,9,24],['e',33,88,10,9],['e',64,88,10,9],['e',40,86,10,10],['e',58,86,10,10],['x',58,24,2],['x',68,24,2],['x',63,32,2]];
+AN.monkey=[['e',40,58,15,20],['e',50,28,11,11],['e',39,27,4,4],['e',61,27,4,4],['e',60,40,6,3],['e',28,86,10,6],['e',50,86,10,6],['e',58,56,5,15],['e',24,52,5,14],['p',[28,72,14,76,6,64,10,50,16,50,13,60,19,68,29,64]],['x',48,26,1.5],['x',54,26,1.5]];
+AN.eagle=[['p',[56,40,68,32,80,24,94,16,99,20,92,28,99,32,91,38,97,44,88,50,80,56,66,62,56,64]],['p',mir([56,40,68,32,80,24,94,16,99,20,92,28,99,32,91,38,97,44,88,50,80,56,66,62,56,64])],['e',50,56,9,24],['e',50,26,7,8],['p',[50,22,62,27,52,34]],['p',[42,76,58,76,64,96,36,96]],['r',42,76,4,14],['r',54,76,4,14],['x',52,25,1.5]];
+AN.falcon=[['p',[56,42,72,38,92,34,100,38,86,50,72,58,56,62]],['p',mir([56,42,72,38,92,34,100,38,86,50,72,58,56,62])],['e',50,56,8,24],['e',50,28,6,7],['p',[50,24,60,29,51,35]],['p',[44,76,56,76,58,98,42,98]],['x',52,27,1.3]];
+AN.parrot=[['e',42,56,15,26],['e',52,24,11,11],['p',[58,14,72,20,70,32,62,32,60,26]],['p',[34,76,46,76,42,98,30,98]],['r',18,80,62,4],['x',55,22,2]];
+AN.peacock=[['e',32,42,30,34],['e',44,68,16,12],['p',[50,62,58,58,62,34,56,34]],['e',60,30,5,5],['p',[58,26,56,14,60,22,62,12,62,26]],['p',[64,29,72,31,64,33]],['r',44,78,4,16],['r',54,78,4,16],['x',20,32,3],['x',32,22,3],['x',44,32,3],['x',22,50,3],['x',36,46,3],['x',14,42,3]];
+AN.rooster=[['e',44,56,20,22],['p',[26,50,10,20,8,34,14,28,12,44,22,56]],['p',[58,50,66,34,72,40,66,56]],['e',64,30,8,9],['p',[60,22,62,10,66,18,68,8,72,20]],['e',70,40,3,5],['p',[70,28,82,32,70,35]],['r',40,76,4,18],['r',50,76,4,18],['r',32,92,16,3],['r',46,92,16,3],['x',66,29,1.5]];
+AN.crane=[['e',42,50,22,12],['p',[56,46,66,42,68,18,62,16,60,36,52,44]],['e',65,14,5,4],['p',[68,12,92,16,68,18]],['p',[22,48,6,44,8,56,22,56]],['r',40,60,4,32],['r',50,60,4,32],['r',34,90,14,3],['r',46,90,14,3],['x',66,13,1.2]];
+AN.swan=[['e',44,68,30,14],['e',70,58,8,10],['e',74,46,6,10],['e',70,34,6,8],['e',68,22,6,8],['e',74,14,6,5],['p',[78,12,94,16,78,19]],['p',[16,60,4,52,10,66,18,72]],['x',75,13,1.3]];
+AN.flamingo=[['e',42,42,20,13],['p',[56,38,64,32,62,18,66,10,72,8,74,12,70,16,68,24,70,34,62,46]],['e',72,9,5,4],['p',[74,7,86,12,74,14]],['r',36,52,4,40],['r',48,52,4,36],['r',44,86,10,3],['r',30,90,12,3],['p',[22,38,6,40,8,48,24,48]]];
+AN.pelican=[['e',42,58,24,16],['p',[58,52,66,42,64,30,70,26,72,32,70,44,64,56]],['e',70,24,7,6],['p',[74,22,98,26,98,30,76,34]],['p',[76,32,96,32,90,44,76,38]],['r',36,72,4,20],['r',46,72,4,20],['p',[20,52,6,54,8,64,22,66]],['r',30,90,14,3],['r',42,90,14,3]];
+AN.kiwi=[['e',46,56,28,24],['e',74,48,8,8],['p',[78,50,98,64,98,67,76,56]],['r',38,76,5,16],['r',52,76,5,16],['r',32,90,14,3],['r',46,90,14,3],['x',76,46,1.5]];
+AN.dove=[['e',44,54,20,14],['e',66,42,9,9],['p',[72,42,82,45,72,48]],['p',[26,52,4,58,6,66,28,60]],['r',40,66,4,14],['r',50,66,4,14],['r',34,78,14,3],['r',46,78,14,3],['x',68,40,1.5]];
+AN.hummingbird=[['e',42,52,12,9],['e',54,44,7,7],['p',[56,45,96,42,96,46,56,50]],['p',[40,46,28,14,34,8,48,42]],['p',[46,44,52,16,62,12,54,44]],['p',[32,54,8,66,12,70,36,58]],['x',57,42,1.3]];
+AN.dodo=[['e',46,58,26,24],['e',72,34,11,12],['p',[80,28,98,32,98,42,92,48,90,40,80,40]],['r',38,78,6,14],['r',52,78,6,14],['p',[22,50,10,42,12,56,22,62]],['x',74,30,2]];
+AN.dolphin=[['p',[6,76,14,56,34,40,58,36,76,44,88,40,98,38,96,46,84,52,70,60,52,66,30,72]],['p',[46,38,56,20,62,40]],['p',[8,76,0,62,12,62,10,74,0,90,10,84,18,78]],['p',[54,62,48,78,62,66]],['x',82,44,1.5]];
+AN.turtle=[['e',46,50,32,24],['r',14,62,64,8],['e',84,52,9,8],['r',24,68,12,14],['r',54,68,12,14],['p',[14,56,4,62,14,66]],['x',46,44,6],['x',32,54,4],['x',60,54,4],['x',86,50,1.5]];
+AN.fish=[['e',44,50,30,20],['p',[68,50,96,26,90,50,96,74]],['p',[34,34,56,32,48,16]],['p',[40,66,56,66,44,80]],['x',24,46,3]];
+AN.crocodile=[['e',42,60,30,10],['p',[66,54,98,58,98,66,66,68]],['p',[20,58,2,70,22,68]],['r',24,64,8,14],['r',38,64,8,14],['r',54,64,8,14],['r',64,64,8,14],['e',30,50,4,4],['e',42,49,4,4],['e',54,49,4,4],['x',76,57,1.5]];
+AN.lizard=[['e',46,58,24,9],['p',[66,54,84,50,94,54,88,62,66,64]],['p',[24,56,10,60,4,74,10,76,18,66,30,64]],['r',28,62,7,16],['r',44,64,7,14],['r',56,62,7,16],['r',64,60,7,16],['x',84,53,1.5]];
+AN.crab=[['e',50,60,26,17],['e',20,32,13,12],['e',80,32,13,12],['p',[28,44,36,54,30,60,22,44]],['p',[72,44,64,54,70,60,78,44]],['r',16,70,14,4],['r',70,70,14,4],['r',20,78,14,4],['r',66,78,14,4],['r',40,40,4,12],['r',56,40,4,12],['x',15,32,3],['x',85,32,3]];
+// ===== Banque de questions : QQ(thème, question, bonne réponse, faux, faux, faux) =====
+const QB=[];const QQ=(c,q,a,b,d,e)=>QB.push({c,q,o:[a,b,d,e]});
+// 🌍 Géographie, déserts, relief, eaux
+QQ('geo','Quel est le plus grand désert chaud du monde ?','Le Sahara','Le Gobi','Le Kalahari','Le désert d’Arabie');
+QQ('geo','Quel est le plus grand désert du monde, toutes catégories ?','L’Antarctique','Le Sahara','L’Arctique','Le Gobi');
+QQ('geo','Quel désert est l’un des plus secs de la planète, au Chili ?','L’Atacama','Le Namib','Le Mojave','Le Thar');
+QQ('geo','Le désert de Gobi s’étend entre la Chine et…','La Mongolie','Le Kazakhstan','L’Inde','La Russie');
+QQ('geo','Le désert du Namib borde quel océan ?','L’Atlantique','L’océan Indien','Le Pacifique','L’Arctique');
+QQ('geo','Dans quelle région d’Afrique se trouve le désert du Kalahari ?','Afrique australe','Afrique du Nord','Afrique de l’Est','Afrique de l’Ouest');
+QQ('geo','Le désert du Thar est partagé entre l’Inde et…','Le Pakistan','L’Iran','La Chine','Le Népal');
+QQ('geo','Quel désert abrite la Vallée de la Mort ?','Le Mojave','Le Sonora','Le Karakoum','Le Néguev');
+QQ('geo','Quel désert couvre l’essentiel de la péninsule arabique ?','Le Rub al-Khali','Le Takla-Makan','L’Atacama','Le Kalahari');
+QQ('geo','Le Sahara touche environ combien de pays ?','Une dizaine','3','25','Un seul');
+QQ('geo','Quel est le plus long fleuve d’Afrique ?','Le Nil','Le Congo','Le Niger','Le Zambèze');
+QQ('geo','Quel est le plus long fleuve d’Europe ?','La Volga','Le Danube','Le Rhin','La Loire');
+QQ('geo','Quel fleuve traverse Paris ?','La Seine','La Loire','Le Rhône','La Garonne');
+QQ('geo','Quelle est la plus haute montagne du monde ?','L’Everest','Le K2','Le Kilimandjaro','Le Mont Blanc');
+QQ('geo','Quel est le plus haut sommet d’Afrique ?','Le Kilimandjaro','Le mont Kenya','Le Toubkal','Le mont Cameroun');
+QQ('geo','Quel est le plus grand océan ?','Le Pacifique','L’Atlantique','L’océan Indien','L’Arctique');
+QQ('geo','Quelle est la plus grande île du monde ?','Le Groenland','Madagascar','Bornéo','La Nouvelle-Guinée');
+QQ('geo','Quel lac est le plus profond du monde ?','Le Baïkal','Le Tanganyika','Le Titicaca','Le lac Supérieur');
+QQ('geo','Quel détroit sépare l’Europe de l’Afrique ?','Gibraltar','Le Bosphore','Magellan','Béring');
+QQ('geo','Quel est le point le plus bas des terres émergées ?','La mer Morte','La mer Caspienne','La mer Rouge','Le lac Victoria');
+QQ('geo','Quel pays est le plus étendu du monde ?','La Russie','Le Canada','La Chine','Les États-Unis');
+QQ('geo','Quel est le plus petit pays du monde ?','Le Vatican','Monaco','Nauru','Saint-Marin');
+QQ('geo','Quel pays est le plus peuplé du monde ?','L’Inde','La Chine','Les États-Unis','L’Indonésie');
+QQ('geo','Quel canal relie l’Atlantique au Pacifique ?','Panama','Suez','Corinthe','Kiel');
+QQ('geo','Quelle chaîne de montagnes longe l’Amérique du Sud ?','Les Andes','Les Rocheuses','L’Atlas','L’Himalaya');
+QQ('geo','Quel fleuve a creusé le Grand Canyon ?','Le Colorado','Le Mississippi','Le Missouri','L’Hudson');
+QQ('geo','Quelle est la plus grande forêt tropicale du monde ?','L’Amazonie','Le bassin du Congo','Bornéo','La Taïga');
+QQ('geo','Quel est le plus grand pays d’Afrique par la superficie ?','L’Algérie','La RD Congo','Le Soudan','La Libye');
+QQ('geo','Les chutes Victoria sont à la frontière de la Zambie et…','Du Zimbabwe','Du Kenya','De la Tanzanie','Du Botswana');
+QQ('geo','Quel est le plus grand lac d’Afrique ?','Le lac Victoria','Le lac Tchad','Le lac Malawi','Le lac Volta');
+QQ('geo','Quel est le plus grand lac artificiel de Côte d’Ivoire ?','Kossou','Buyo','Ayamé','Taabo');
+QQ('geo','Sur quel continent se trouve la Côte d’Ivoire ?','L’Afrique','L’Asie','L’Amérique','L’Océanie');
+// 🪐 Espace
+QQ('spa','Quelle planète est la plus proche du Soleil ?','Mercure','Vénus','Mars','La Terre');
+QQ('spa','Quelle est la plus grosse planète du système solaire ?','Jupiter','Saturne','Neptune','Uranus');
+QQ('spa','Quelle planète est surnommée la planète rouge ?','Mars','Vénus','Mercure','Jupiter');
+QQ('spa','Quelle planète est célèbre pour ses anneaux ?','Saturne','Mars','Mercure','La Terre');
+QQ('spa','Combien de planètes compte le système solaire ?','8','9','7','10');
+QQ('spa','Comment s’appelle notre galaxie ?','La Voie lactée','Andromède','Le Triangle','Le Sombrero');
+QQ('spa','Qui fut le premier homme dans l’espace ?','Youri Gagarine','Neil Armstrong','Alan Shepard','Buzz Aldrin');
+QQ('spa','Qui a posé le pied sur la Lune en premier, en 1969 ?','Neil Armstrong','Buzz Aldrin','Michael Collins','Youri Gagarine');
+QQ('spa','Quelle planète est la plus chaude ?','Vénus','Mercure','Mars','Jupiter');
+QQ('spa','Quelle planète tourne « couchée » sur le côté ?','Uranus','Neptune','Saturne','Mars');
+QQ('spa','Combien de temps la lumière du Soleil met-elle pour atteindre la Terre ?','Environ 8 minutes','Environ 8 secondes','Environ 1 heure','Environ 1 jour');
+QQ('spa','Quel est le plus haut volcan du système solaire ?','Olympus Mons','Mauna Kea','L’Etna','Le Kilimandjaro');
+QQ('spa','Quelle planète naine était autrefois la neuvième planète ?','Pluton','Cérès','Éris','Hauméa');
+QQ('spa','Quel télescope spatial a été lancé en 1990 ?','Hubble','James Webb','Kepler','Spitzer');
+QQ('spa','Une éclipse solaire se produit quand…','La Lune passe devant le Soleil','La Terre passe devant la Lune','Mars passe devant le Soleil','Le Soleil s’éteint');
+QQ('spa','Combien de satellites naturels la Terre possède-t-elle ?','1','2','0','3');
+QQ('spa','Quel est le plus gros satellite de Saturne ?','Titan','Encelade','Triton','Europe');
+QQ('spa','Quelle est l’étoile du système solaire ?','Le Soleil','Sirius','Polaris','Proxima');
+QQ('spa','Quel satellite artificiel fut lancé en 1957 ?','Spoutnik 1','Apollo 11','Hubble','Explorer 9');
+// 🏛️ Histoire
+QQ('his','En quelle année a débuté la Révolution française ?','1789','1776','1804','1815');
+QQ('his','Qui fut le premier empereur des Français ?','Napoléon Ier','Louis XIV','Charlemagne','Louis XVI');
+QQ('his','En quelle année est tombé le mur de Berlin ?','1989','1991','1979','1961');
+QQ('his','En quelle année s’est terminée la Seconde Guerre mondiale ?','1945','1939','1918','1950');
+QQ('his','Qui a atteint l’Amérique en 1492 ?','Christophe Colomb','Magellan','Vasco de Gama','Hernán Cortés');
+QQ('his','Quelle civilisation a bâti le Machu Picchu ?','Les Incas','Les Mayas','Les Aztèques','Les Olmèques');
+QQ('his','Qui était Cléopâtre ?','Reine d’Égypte','Impératrice de Rome','Reine de Perse','Déesse grecque');
+QQ('his','Quel empire fut fondé par Gengis Khan ?','L’empire mongol','L’empire ottoman','L’empire perse','L’empire byzantin');
+QQ('his','Qui fut le premier président des États-Unis ?','George Washington','Abraham Lincoln','Thomas Jefferson','John Adams');
+QQ('his','Quel pays a offert la statue de la Liberté aux États-Unis ?','La France','L’Angleterre','L’Espagne','L’Italie');
+QQ('his','Quelle ville fut détruite par le Vésuve en l’an 79 ?','Pompéi','Athènes','Carthage','Troie');
+QQ('his','Quel fut le premier empereur romain ?','Auguste','Jules César','Néron','Constantin');
+QQ('his','En quelle année la Côte d’Ivoire est-elle devenue indépendante ?','1960','1958','1962','1957');
+QQ('his','Qui fut le premier président de la Côte d’Ivoire ?','Félix Houphouët-Boigny','Laurent Gbagbo','Henri Konan Bédié','Alassane Ouattara');
+QQ('his','Quel fut le premier pays d’Afrique subsaharienne indépendant, en 1957 ?','Le Ghana','Le Nigéria','Le Sénégal','Le Kenya');
+QQ('his','Qui devint président d’Afrique du Sud en 1994 après l’apartheid ?','Nelson Mandela','Desmond Tutu','Thabo Mbeki','Steve Biko');
+QQ('his','En quelle année l’Inde est-elle devenue indépendante ?','1947','1930','1950','1962');
+QQ('his','Quel conflit opposa la France et l’Angleterre de 1337 à 1453 ?','La guerre de Cent Ans','La guerre de Trente Ans','La guerre de Sept Ans','La guerre de Crimée');
+QQ('his','Quelle héroïne française a libéré Orléans en 1429 ?','Jeanne d’Arc','Marie Curie','Aliénor d’Aquitaine','Olympe de Gouges');
+QQ('his','En quelle année a débuté la Première Guerre mondiale ?','1914','1905','1920','1939');
+QQ('his','Quel empire africain était dirigé par Mansa Moussa ?','L’empire du Mali','L’empire du Ghana','Le royaume du Kongo','L’empire Songhaï');
+QQ('his','Quel peuple a construit les pyramides de Gizeh ?','Les Égyptiens anciens','Les Romains','Les Grecs','Les Perses');
+// ⚽ Sports
+QQ('spo','Combien de joueurs un onze de football aligne-t-il sur le terrain ?','11','9','10','12');
+QQ('spo','Quel pays a remporté la Coupe du monde de football 2022 ?','L’Argentine','La France','Le Brésil','La Croatie');
+QQ('spo','Quel pays a remporté la Coupe du monde 2018 ?','La France','La Croatie','La Belgique','L’Allemagne');
+QQ('spo','Quels pays co-organisent la Coupe du monde 2026 ?','États-Unis, Canada, Mexique','Brésil, Argentine, Chili','Espagne, Portugal, Maroc','Japon, Corée, Chine');
+QQ('spo','Tous les combien d’années ont lieu les Jeux olympiques d’été ?','4 ans','2 ans','3 ans','5 ans');
+QQ('spo','Dans quel sport joue-t-on à Roland-Garros ?','Le tennis','Le golf','Le rugby','Le cyclisme');
+QQ('spo','Combien de joueurs une équipe de basket aligne-t-elle sur le terrain ?','5','6','7','11');
+QQ('spo','Quelle est la distance d’un marathon ?','42,195 km','21 km','50 km','10 km');
+QQ('spo','Quel art martial est né au Japon ?','Le judo','Le taekwondo','Le kung-fu','La capoeira');
+QQ('spo','Qui détient le record du monde du 100 m (9″58) ?','Usain Bolt','Carl Lewis','Tyson Gay','Justin Gatlin');
+QQ('spo','Quel pays a inventé le football moderne ?','L’Angleterre','Le Brésil','L’Italie','L’Allemagne');
+QQ('spo','Quel sport se joue avec un volant ?','Le badminton','Le squash','Le tennis de table','Le padel');
+QQ('spo','De quelle couleur est le maillot du leader du Tour de France ?','Jaune','Vert','Rouge','Blanc');
+QQ('spo','Quelle nation a gagné le plus de Coupes du monde de football ?','Le Brésil','L’Allemagne','L’Italie','L’Argentine');
+QQ('spo','Quelle ville a accueilli les JO d’été de 2024 ?','Paris','Tokyo','Londres','Rio de Janeiro');
+QQ('spo','Quelle ville accueillera les JO d’été de 2028 ?','Los Angeles','Brisbane','Pékin','Madrid');
+QQ('spo','Combien d’anneaux compte le symbole olympique ?','5','4','6','7');
+QQ('spo','Quel sport de combat japonais oppose des lutteurs imposants ?','Le sumo','Le karaté','Le kendo','L’aïkido');
+QQ('spo','Qui détient le plus de titres du Grand Chelem chez les hommes ?','Novak Djokovic','Rafael Nadal','Roger Federer','Pete Sampras');
+QQ('spo','Quel pays a le plus de Coupes d’Afrique des nations de football ?','L’Égypte','Le Cameroun','La Côte d’Ivoire','Le Ghana');
+QQ('spo','Quel joueur a remporté le plus de Ballons d’or ?','Lionel Messi','Cristiano Ronaldo','Michel Platini','Johan Cruyff');
+QQ('spo','Quelle équipe de la NBA Michael Jordan a-t-il menée à six titres ?','Les Chicago Bulls','Les Lakers','Les Celtics','Les Knicks');
+QQ('spo','Quel pays est la patrie du rugby des All Blacks ?','La Nouvelle-Zélande','L’Afrique du Sud','L’Australie','L’Écosse');
+QQ('spo','Quelle est la durée d’un match de football (hors prolongations) ?','90 minutes','60 minutes','80 minutes','100 minutes');
+// 🔬 Sciences
+QQ('sci','Quel est le symbole chimique de l’or ?','Au','Or','Ag','Go');
+QQ('sci','Quelle est la formule chimique de l’eau ?','H2O','CO2','O2','NaCl');
+QQ('sci','À quelle température l’eau bout-elle au niveau de la mer ?','100 °C','90 °C','80 °C','120 °C');
+QQ('sci','Quelle est la vitesse de la lumière, environ ?','300 000 km/s','30 000 km/s','3 000 km/s','3 millions km/s');
+QQ('sci','Quel gaz est le plus abondant dans l’atmosphère ?','L’azote','L’oxygène','Le CO2','L’hydrogène');
+QQ('sci','Quel est l’élément le plus léger ?','L’hydrogène','L’hélium','Le lithium','L’oxygène');
+QQ('sci','Qui a formulé la théorie de la relativité ?','Albert Einstein','Isaac Newton','Galilée','Niels Bohr');
+QQ('sci','Quel savant est associé à la loi de la gravitation universelle ?','Isaac Newton','Albert Einstein','Marie Curie','Pasteur');
+QQ('sci','Qui a créé le tableau périodique des éléments ?','Mendeleïev','Lavoisier','Curie','Bohr');
+QQ('sci','Quelle est l’unité de mesure de la force ?','Le newton','Le joule','Le watt','Le pascal');
+QQ('sci','Quel est le pH d’une solution neutre ?','7','0','14','1');
+QQ('sci','Quel métal est liquide à température ambiante ?','Le mercure','Le plomb','L’étain','Le cuivre');
+QQ('sci','De quel élément le diamant est-il constitué ?','Le carbone','Le silicium','Le calcium','Le fer');
+QQ('sci','Que produisent les plantes lors de la photosynthèse ?','De l’oxygène','Du méthane','De l’azote','De l’hélium');
+QQ('sci','Qui a découvert la pénicilline ?','Alexander Fleming','Louis Pasteur','Robert Koch','Marie Curie');
+QQ('sci','Quelle scientifique a reçu deux prix Nobel (physique et chimie) ?','Marie Curie','Rosalind Franklin','Ada Lovelace','Lise Meitner');
+QQ('sci','Le son se propage-t-il dans le vide ?','Non','Oui, plus vite','Oui, plus lentement','Seulement la nuit');
+QQ('sci','Quelle forme a la molécule d’ADN ?','Une double hélice','Un cube','Une sphère','Un anneau simple');
+QQ('sci','Quelle unité mesure l’intensité du courant électrique ?','L’ampère','Le volt','L’ohm','Le watt');
+// 🐾 Animaux
+QQ('ani','Quel est le plus grand animal terrestre ?','L’éléphant d’Afrique','La girafe','Le rhinocéros','L’hippopotame');
+QQ('ani','Quel est le plus grand animal de la planète ?','La baleine bleue','L’éléphant','Le requin-baleine','Le calmar géant');
+QQ('ani','Quel est l’animal terrestre le plus rapide ?','Le guépard','Le lion','L’antilope','Le lévrier');
+QQ('ani','Quel mammifère peut voler ?','La chauve-souris','L’écureuil volant','Le pingouin','Le colibri');
+QQ('ani','Combien de pattes a une araignée ?','8','6','10','4');
+QQ('ani','Quel animal est un marsupial ?','Le kangourou','Le lapin','Le lion','Le singe');
+QQ('ani','Quel est l’animal le plus grand par la taille debout ?','La girafe','L’éléphant','L’autruche','L’ours polaire');
+QQ('ani','De quoi se nourrit principalement le panda géant ?','De bambou','De poisson','De viande','De fruits');
+QQ('ani','Le dauphin est un…','Mammifère','Poisson','Reptile','Amphibien');
+QQ('ani','Quel oiseau est le plus rapide en piqué ?','Le faucon pèlerin','L’aigle royal','Le colibri','Le pigeon');
+QQ('ani','Quel est l’animal national de l’Écosse ?','La licorne','Le lion','Le cerf','L’aigle');
+QQ('ani','Combien de cœurs possède une pieuvre ?','3','1','2','8');
+QQ('ani','Quel est le plus grand félin ?','Le tigre','Le lion','Le jaguar','Le léopard');
+QQ('ani','Quel animal vit le plus longtemps parmi les vertébrés terrestres ?','La tortue géante','L’éléphant','Le perroquet','Le crocodile');
+QQ('ani','Combien de bosses a un dromadaire ?','1','2','3','0');
+QQ('ani','Comment appelle-t-on le cri de l’éléphant ?','Le barrissement','Le rugissement','Le hennissement','Le braiment');
+QQ('ani','Quel oiseau australien ne vole pas ?','L’émeu','Le toucan','Le colibri','Le perroquet');
+QQ('ani','Quel est le seul mammifère à pondre des œufs ?','L’ornithorynque','Le hérisson','Le koala','Le castor');
+// 🫀 Corps humain
+QQ('bod','Combien d’os compte le corps humain adulte ?','206','150','300','412');
+QQ('bod','Quel est le plus grand organe du corps humain ?','La peau','Le foie','Le cœur','Les poumons');
+QQ('bod','Combien de cavités le cœur humain compte-t-il ?','4','2','3','6');
+QQ('bod','Quelle vitamine le corps produit-il grâce au soleil ?','La vitamine D','La vitamine C','La vitamine A','La vitamine B12');
+QQ('bod','Quel est le plus long os du corps ?','Le fémur','Le tibia','L’humérus','Le radius');
+QQ('bod','Quel organe produit l’insuline ?','Le pancréas','Le foie','Le rein','L’estomac');
+QQ('bod','Combien de dents compte un adulte (dents de sagesse incluses) ?','32','28','30','36');
+QQ('bod','Combien de chromosomes l’être humain possède-t-il ?','46','23','48','44');
+QQ('bod','Quelle molécule des globules rouges transporte l’oxygène ?','L’hémoglobine','La mélanine','L’insuline','La kératine');
+QQ('bod','Quel est le plus petit os du corps humain ?','L’étrier','Le coccyx','La phalange','Le sésamoïde');
+QQ('bod','Quels organes filtrent le sang et produisent l’urine ?','Les reins','Les poumons','Le foie','La rate');
+QQ('bod','Quel est le groupe sanguin donneur universel ?','O négatif','AB positif','A positif','B négatif');
+QQ('bod','Quel sens est lié à l’organe de la cochlée ?','L’ouïe','La vue','L’odorat','Le goût');
+QQ('bod','Quel organe contrôle la pensée et les mouvements ?','Le cerveau','Le foie','L’estomac','La rate');
+// 🎨 Arts & littérature
+QQ('art','Qui a peint la Joconde ?','Léonard de Vinci','Michel-Ange','Raphaël','Botticelli');
+QQ('art','Qui a peint « La Nuit étoilée » ?','Vincent van Gogh','Claude Monet','Paul Cézanne','Edvard Munch');
+QQ('art','Qui a peint « Guernica » ?','Pablo Picasso','Salvador Dalí','Joan Miró','Goya');
+QQ('art','Dans quelle ville se trouve le musée du Louvre ?','Paris','Rome','Londres','Madrid');
+QQ('art','Qui a écrit « Les Misérables » ?','Victor Hugo','Émile Zola','Alexandre Dumas','Balzac');
+QQ('art','Qui a écrit « Roméo et Juliette » ?','William Shakespeare','Molière','Goethe','Dante');
+QQ('art','Qui a écrit « Le Petit Prince » ?','Antoine de Saint-Exupéry','Jules Verne','Albert Camus','Hergé');
+QQ('art','Qui a écrit « Don Quichotte » ?','Cervantès','Lope de Vega','Borges','García Márquez');
+QQ('art','Qui est l’auteur de la saga « Harry Potter » ?','J. K. Rowling','J. R. R. Tolkien','C. S. Lewis','Roald Dahl');
+QQ('art','Qui a sculpté le « David » à Florence ?','Michel-Ange','Donatello','Rodin','Bernin');
+QQ('art','Qui a peint « Le Cri » ?','Edvard Munch','Gustav Klimt','Egon Schiele','Paul Gauguin');
+QQ('art','Qui a écrit « 1984 » ?','George Orwell','Aldous Huxley','Ray Bradbury','Franz Kafka');
+QQ('art','Qui fut le premier Africain prix Nobel de littérature (1986) ?','Wole Soyinka','Chinua Achebe','Léopold Senghor','Ngũgĩ wa Thiong’o');
+QQ('art','Qui a créé le personnage de Tintin ?','Hergé','Goscinny','Uderzo','Morris');
+QQ('art','Qui a écrit « L’Étranger » ?','Albert Camus','Jean-Paul Sartre','Marcel Proust','André Gide');
+QQ('art','Quel poète grec est l’auteur de « L’Odyssée » ?','Homère','Sophocle','Platon','Hésiode');
+QQ('art','Quel peintre est célèbre pour ses nénuphars ?','Claude Monet','Edgar Degas','Renoir','Matisse');
+QQ('art','Quel écrivain ivoirien a écrit « Les Soleils des indépendances » ?','Ahmadou Kourouma','Bernard Dadié','Tiburce Koffi','Véronique Tadjo');
+// 🎵 Musique & cinéma
+QQ('mus','Qui est surnommé le « Roi de la pop » ?','Michael Jackson','Elvis Presley','Prince','Justin Timberlake');
+QQ('mus','Combien de cordes une guitare classique a-t-elle ?','6','4','5','8');
+QQ('mus','Quel compositeur, devenu sourd, a écrit la 9e symphonie ?','Beethoven','Mozart','Bach','Chopin');
+QQ('mus','Qui a réalisé « Titanic » ?','James Cameron','Steven Spielberg','Ridley Scott','Christopher Nolan');
+QQ('mus','Quel est le premier long métrage d’animation de Disney ?','Blanche-Neige et les Sept Nains','Cendrillon','Bambi','Pinocchio');
+QQ('mus','Quelle récompense décerne-t-on au Festival de Cannes ?','La Palme d’or','L’Ours d’or','Le Lion d’or','L’Oscar');
+QQ('mus','De quel pays vient le reggae ?','La Jamaïque','Le Brésil','Cuba','Le Ghana');
+QQ('mus','Qui a inventé l’afrobeat ?','Fela Kuti','Salif Keita','Manu Dibango','Youssou N’Dour');
+QQ('mus','Quel genre musical est né à Abidjan au début des années 2000 ?','Le coupé-décalé','Le makossa','Le zouglou','L’afrobeat');
+QQ('mus','De quel pays vient la danse du tango ?','L’Argentine','L’Espagne','Le Mexique','Le Portugal');
+QQ('mus','De quel pays vient le flamenco ?','L’Espagne','L’Italie','Le Portugal','Cuba');
+QQ('mus','De quel pays vient la K-pop ?','La Corée du Sud','Le Japon','La Chine','Le Vietnam');
+QQ('mus','Comment appelle-t-on l’industrie du cinéma nigérian ?','Nollywood','Bollywood','Hollywood','Cinécittà');
+QQ('mus','Qui a réalisé « Star Wars » (1977) ?','George Lucas','Steven Spielberg','Francis Ford Coppola','James Cameron');
+QQ('mus','Qui a composé « Les Quatre Saisons » ?','Vivaldi','Mozart','Haydn','Verdi');
+QQ('mus','Quel instrument possède des touches noires et blanches ?','Le piano','Le violon','La flûte','La trompette');
+// 💻 Technologie & inventions
+QQ('tec','Qui est l’inventeur de l’ampoule électrique à incandescence commerciale ?','Thomas Edison','Nikola Tesla','Alexander Bell','Volta');
+QQ('tec','Qui a inventé l’imprimerie à caractères mobiles en Europe ?','Gutenberg','Da Vinci','Galilée','Newton');
+QQ('tec','Qui est considéré comme l’inventeur du World Wide Web ?','Tim Berners-Lee','Bill Gates','Steve Jobs','Linus Torvalds');
+QQ('tec','Quel est le fondateur de Microsoft ?','Bill Gates','Steve Jobs','Mark Zuckerberg','Elon Musk');
+QQ('tec','Qui a inventé le téléphone ?','Alexander Graham Bell','Edison','Marconi','Tesla');
+QQ('tec','Qui ont réalisé le premier vol motorisé en 1903 ?','Les frères Wright','Les frères Lumière','Les frères Montgolfier','Santos-Dumont');
+QQ('tec','Que signifie CPU en informatique ?','Unité centrale de traitement','Carte de puissance universelle','Câble pour USB','Contrôleur de pixels');
+QQ('tec','Combien de bits contient un octet ?','8','4','16','10');
+QQ('tec','Quel est le nom d’un langage de programmation célèbre, aussi nom d’un serpent ?','Python','Java','Ruby','Swift');
+QQ('tec','Qui a fondé Google avec Larry Page ?','Sergey Brin','Jeff Bezos','Eric Schmidt','Sundar Pichai');
+QQ('tec','Qui sont les inventeurs du cinématographe ?','Les frères Lumière','Les frères Wright','Georges Méliès','Charlie Chaplin');
+QQ('tec','Qui a mis au point le vaccin contre la rage ?','Louis Pasteur','Edward Jenner','Robert Koch','Fleming');
+QQ('tec','Que signifie « Wi-Fi » dans l’usage courant ?','Réseau sans fil local','Fibre optique','Réseau satellite','Câble Ethernet');
+QQ('tec','Quel est le premier SMS de l’histoire (1992) ?','Merry Christmas','Hello world','Bonjour','Test');
+// 🔱 Mythologie & religions
+QQ('myt','Qui est le roi des dieux dans la mythologie grecque ?','Zeus','Poséidon','Hadès','Apollon');
+QQ('myt','Quel est le dieu romain de la guerre ?','Mars','Jupiter','Mercure','Vulcain');
+QQ('myt','Quelle déesse grecque incarne la sagesse ?','Athéna','Aphrodite','Héra','Artémis');
+QQ('myt','Quel dieu égyptien est le dieu du soleil ?','Rê','Anubis','Osiris','Horus');
+QQ('myt','Quel dieu nordique manie un marteau ?','Thor','Odin','Loki','Freyr');
+QQ('myt','Quel est le livre sacré de l’islam ?','Le Coran','La Torah','La Bible','Les Védas');
+QQ('myt','Quelle fête hindoue est la fête des lumières ?','Diwali','Holi','Vesak','Navratri');
+QQ('myt','Comment s’appelle le pèlerinage à La Mecque ?','Le Hajj','Le Ramadan','L’Aïd','La Hégire');
+QQ('myt','Quel est le livre sacré du judaïsme ?','La Torah','Le Coran','Le Tripitaka','Le Guru Granth');
+QQ('myt','Quel dieu hindou a une tête d’éléphant ?','Ganesh','Shiva','Vishnou','Hanuman');
+QQ('myt','Quel dieu égyptien a une tête de chacal ?','Anubis','Horus','Thot','Sobek');
+QQ('myt','Comment s’appelait le Bouddha avant l’éveil ?','Siddhartha Gautama','Confucius','Lao-Tseu','Mahavira');
+QQ('myt','Où se trouve le mont Olympe, séjour des dieux grecs ?','En Grèce','En Italie','En Turquie','En Égypte');
+// 🍽️ Gastronomie
+QQ('foo','De quel pays vient le sushi ?','Le Japon','La Chine','La Corée','Le Vietnam');
+QQ('foo','De quel pays vient la pizza ?','L’Italie','La Grèce','L’Espagne','La France');
+QQ('foo','Quelle est l’épice la plus chère du monde ?','Le safran','La vanille','Le poivre','La cannelle');
+QQ('foo','Avec quel fruit prépare-t-on le guacamole ?','L’avocat','La banane','La mangue','La tomate');
+QQ('foo','L’attiéké ivoirien est fait à partir de…','Manioc','Igname','Maïs','Riz');
+QQ('foo','Quel pays est le premier producteur mondial de cacao ?','La Côte d’Ivoire','Le Brésil','L’Équateur','L’Indonésie');
+QQ('foo','De quel pays vient la paella ?','L’Espagne','Le Mexique','L’Italie','Le Portugal');
+QQ('foo','De quel pays vient le kimchi ?','La Corée','Le Japon','La Chine','La Thaïlande');
+QQ('foo','Quel plat suisse est fait de fromage fondu ?','La fondue','La raclette','Le rösti','Le gratin');
+QQ('foo','Quel plat est un symbole du Maghreb à base de semoule ?','Le couscous','Le tajine seul','Le riz','Le boulgour');
+QQ('foo','D’où est originaire le café selon la légende ?','D’Éthiopie','Du Brésil','De Colombie','D’Inde');
+QQ('foo','La vanille est le fruit d’une…','Orchidée','Fougère','Liane de palmier','Rose');
+QQ('foo','Avec quelle plante fabrique-t-on la tequila ?','L’agave','Le maïs','La canne à sucre','Le cactus raquette');
+QQ('foo','Quel plat est très populaire en Afrique de l’Ouest, à base de riz et de tomate ?','Le riz jollof','Le risotto','Le pilaf','La paella');
+// 🌋 Nature & climat
+QQ('nat','Quelle ville italienne est menacée par le Vésuve ?','Naples','Rome','Venise','Florence');
+QQ('nat','Comment appelle-t-on la zone de volcans autour du Pacifique ?','La ceinture de feu','L’anneau de glace','Le cercle polaire','La dorsale');
+QQ('nat','Où se trouve la Grande Barrière de corail ?','En Australie','Au Brésil','Aux Maldives','En Indonésie');
+QQ('nat','Quel gaz est le principal responsable de l’effet de serre ajouté ?','Le dioxyde de carbone','L’hélium','L’azote','L’argon');
+QQ('nat','Quel est le plus grand arbre du monde par la hauteur ?','Le séquoia','Le baobab','Le chêne','Le sapin');
+QQ('nat','Que mesure l’échelle de Richter ?','Les séismes','Les vents','Les températures','Les pluies');
+QQ('nat','Contre quoi la couche d’ozone nous protège-t-elle ?','Les UV','Le froid','Les météorites','Le bruit');
+QQ('nat','Quelle plante donne le caoutchouc naturel ?','L’hévéa','Le palmier','Le coton','Le bambou');
+QQ('nat','Quel arbre africain est surnommé « l’arbre à l’envers » ?','Le baobab','L’acacia','Le fromager','Le teck');
+QQ('nat','Quelle plante est carnivore ?','La dionée','La rose','Le trèfle','La fougère');
+QQ('nat','Dans quel parc américain trouve-t-on le geyser Old Faithful ?','Yellowstone','Yosemite','Grand Canyon','Everglades');
+QQ('nat','Quelles chutes sont les plus hautes du monde ?','Angel (Venezuela)','Niagara','Victoria','Iguazú');
+QQ('nat','Comment appelle-t-on un vent tournant extrêmement violent ?','Une tornade','Une brise','Un alizé','Un mistral');
+QQ('nat','Comment appelle-t-on le vent saisonnier qui apporte les pluies en Asie du Sud ?','La mousson','Le blizzard','Le sirocco','Le foehn');
+// ➗ Maths & logique
+QQ('mat','Quelle est la valeur approchée de π ?','3,14','2,71','1,61','4,13');
+QQ('mat','Quelle est la racine carrée de 144 ?','12','14','11','16');
+QQ('mat','Quel nombre est premier ?','17','15','21','27');
+QQ('mat','Quelle est la somme des angles d’un triangle ?','180°','90°','360°','270°');
+QQ('mat','Combien font 7 × 8 ?','56','54','48','63');
+QQ('mat','Que vaut le chiffre romain X ?','10','5','50','100');
+QQ('mat','Combien de côtés a un hexagone ?','6','5','8','7');
+QQ('mat','Combien font 2 puissance 10 ?','1024','512','2048','100');
+QQ('mat','Quelle fraction équivaut à 25 % ?','1/4','1/3','1/2','2/5');
+QQ('mat','Quel nombre suit : 1, 1, 2, 3, 5, 8 ?','13','11','12','10');
+QQ('mat','Combien de côtés a un octogone ?','8','6','10','9');
+QQ('mat','Quel théorème relie les côtés d’un triangle rectangle ?','Pythagore','Thalès','Euclide','Fermat');
+QQ('mat','Quelle civilisation a popularisé le zéro et notre numération décimale ?','L’Inde','Rome','La Grèce','Les Mayas');
+QQ('mat','Combien font 15 % de 200 ?','30','15','20','25');
+// 🏆 Records & insolite
+QQ('rec','Quel est le plus haut gratte-ciel du monde ?','Burj Khalifa','Tour de Shanghai','Taipei 101','One WTC');
+QQ('rec','Quel pays est le premier producteur de café ?','Le Brésil','La Colombie','Le Vietnam','L’Éthiopie');
+QQ('rec','Quelle est la langue la plus parlée comme langue maternelle ?','Le mandarin','L’anglais','L’espagnol','L’hindi');
+QQ('rec','Quel pays possède le plus de fuseaux horaires (avec ses territoires) ?','La France','La Russie','Les États-Unis','La Chine');
+QQ('rec','Quel est le livre le plus vendu de l’histoire ?','La Bible','Le Coran','Le Petit Prince','Don Quichotte');
+QQ('rec','Quelle est la fosse océanique la plus profonde ?','La fosse des Mariannes','La fosse de Java','La fosse de Porto Rico','La fosse du Pérou');
+QQ('rec','Quel est le seul drapeau national non rectangulaire ?','Celui du Népal','Celui de la Suisse','Celui du Vatican','Celui de Monaco');
+QQ('rec','Quel est le plus petit pays d’Afrique par la superficie ?','Les Seychelles','La Gambie','Eswatini','Djibouti');
+QQ('rec','Quel est l’animal le plus mortel pour l’homme (via les maladies) ?','Le moustique','Le requin','Le lion','Le serpent');
+QQ('rec','Quelle est la ville la plus haute du monde pour sa capitale ?','La Paz','Quito','Bogota','Katmandou');
+QQ('rec','Quel pays compte le plus de lacs ?','Le Canada','La Russie','La Finlande','Les États-Unis');
+// 🏰 Monuments & merveilles
+QQ('mon','Dans quelle ville se trouve la tour Eiffel ?','Paris','Lyon','Bruxelles','Londres');
+QQ('mon','Dans quelle ville se trouve le Colisée ?','Rome','Athènes','Naples','Istanbul');
+QQ('mon','Dans quel pays se trouve le Taj Mahal ?','L’Inde','Le Pakistan','L’Iran','Le Bangladesh');
+QQ('mon','Dans quel pays se trouve la cité de Petra ?','La Jordanie','L’Égypte','Israël','Le Liban');
+QQ('mon','Dans quelle ville se trouve la statue du Christ Rédempteur ?','Rio de Janeiro','Lima','Buenos Aires','Bogota');
+QQ('mon','Quelle basilique, à Yamoussoukro, est l’une des plus grandes du monde ?','Notre-Dame de la Paix','Saint-Pierre','Sainte-Sophie','Sacré-Cœur');
+QQ('mon','Dans quel pays se trouve Tombouctou, cité des 333 saints ?','Le Mali','Le Niger','La Mauritanie','Le Tchad');
+QQ('mon','Quel temple immense se trouve au Cambodge ?','Angkor Vat','Borobudur','Wat Arun','Shwedagon');
+QQ('mon','Quelle ville abrite l’Acropole et le Parthénon ?','Athènes','Rome','Delphes','Istanbul');
+QQ('mon','Où se trouve la cité inca du Machu Picchu ?','Au Pérou','Au Chili','En Bolivie','En Colombie');
+QQ('mon','Dans quelle ville se trouve la Sagrada Família ?','Barcelone','Madrid','Séville','Valence');
+QQ('mon','Où se trouve l’Opéra à la forme de voiles ?','Sydney','Auckland','Londres','Singapour');
+QQ('mon','Quelle merveille se trouve à Gizeh ?','La Grande Pyramide','Le Sphinx de Tanis','Le Parthénon','Le Colisée');
+QQ('mon','Où se trouve le Mont-Saint-Michel ?','En Normandie','En Bretagne seulement','En Provence','En Alsace');
+// 🗣️ Langues
+QQ('lan','Quelle est la langue officielle du Brésil ?','Le portugais','L’espagnol','L’anglais','Le français');
+QQ('lan','Quel alphabet utilise le russe ?','Le cyrillique','Le latin','Le grec','L’arabe');
+QQ('lan','Comment dit-on « merci » en espagnol ?','Gracias','Grazie','Danke','Obrigado');
+QQ('lan','Dans quel sens s’écrit l’arabe ?','De droite à gauche','De gauche à droite','De haut en bas','En boustrophédon');
+QQ('lan','Quelle langue africaine sert de lingua franca en Afrique de l’Est ?','Le swahili','Le wolof','Le haoussa','Le zoulou');
+QQ('lan','Quelle est la langue officielle de la Côte d’Ivoire ?','Le français','L’anglais','Le baoulé','Le dioula');
+QQ('lan','Comment dit-on « merci » en allemand ?','Danke','Merci','Gracias','Tak');
+QQ('lan','Quelle est la langue officielle du Pakistan, avec l’anglais ?','L’ourdou','Le hindi','Le bengali','Le persan');
+QQ('lan','Qui a créé l’espéranto ?','Zamenhof','Champollion','Tolkien','Babel');
+QQ('lan','Quelle langue parle-t-on principalement en Iran ?','Le persan','L’arabe','Le turc','L’ourdou');
+QQ('lan','Quelle langue a le plus de locuteurs au total (natifs + seconde langue) ?','L’anglais','Le mandarin','L’espagnol','L’hindi');
+QQ('lan','Que signifie « Konnichiwa » en japonais ?','Bonjour','Merci','Au revoir','Pardon');
+const $=s=>document.querySelector(s),D=[[0,-1],[1,0],[0,1],[-1,0]],MAX=CT.length;
+const CONT=['Afrique','Europe','Asie','Amériques','Océanie'],CE={Afrique:'🌍',Europe:'🏰',Asie:'🏯','Amériques':'🌎','Océanie':'🏝️'};
+const TH={papier:{n:'Papier',bg:'#ffffff',bg2:'#e6ecf5',ink:'#111111',acc:'#2f80ff',on:'#fff',pr:0,h:215},marine:{n:'Marine',bg:'#f4f7fb',bg2:'#cfe0f7',ink:'#0b1b4a',acc:'#0b3d91',on:'#fff',pr:120,h:225},savane:{n:'Savane',bg:'#fff4dc',bg2:'#ffd98a',ink:'#3a2410',acc:'#e85d04',on:'#fff',pr:180,h:25},ocean:{n:'Océan',bg:'#03233a',bg2:'#0a6c8f',ink:'#e6fbff',acc:'#ffe66d',on:'#111',pr:220,h:190,d:1},neon:{n:'Néon',bg:'#0b1020',bg2:'#2a1065',ink:'#eaf0ff',acc:'#ffd166',on:'#111',pr:250,h:280,d:1},ivoire:{n:'Ivoire',bg:'#0f3d24',bg2:'#1d7a46',ink:'#ffffff',acc:'#ff8c1a',on:'#111',pr:300,h:30,d:1}};
+const ST={fin:{n:'Flèches fines',w:5,pr:0},epais:{n:'Flèches épaisses',w:8,pr:100},neon:{n:'Néon lumineux',w:8,g:1,pr:250},ultra:{n:'Flèches XL',w:11,pr:350}};
+const CN=[['💡 Indices ×3',60,s=>s.hints+=3],['↶ Annulations ×3',50,s=>s.undos+=3],['🧽 Gommes ×2',80,s=>s.eras+=2],['❤ Cœur en plus (max +2)',400,s=>s.extra++]];
+// ordre des niveaux : pays célèbres d'abord, puis alternance des continents
+const ST0=['FR','BR','US','JP','IN','AU','EG','KE','CN','IT','DE','CA','MX','GB','ZA','TH','RU','ES','AR','NZ','PE','MA','TZ','BW','ID','CO','CL','TR','SE','NO'];
+const ORD=(()=>{const f=ST0.map(i=>CT.findIndex(c=>c.id==i)).filter(i=>i>=0),u=new Set(f),by=CONT.map(ct=>CT.map((c,i)=>i).filter(i=>CT[i].ct==ct&&!u.has(i))),o=[...f];let k=0;while(o.length<CT.length){const b=by[k++%5];if(b.length)o.push(b.shift())}return o})();
+const cOf=l=>CT[ORD[(l-1)%MAX]];
+// ===== Silhouettes =====
+function ins(s,x,y){for(const q of s)if(q[0]=='x'&&(x-q[1])**2+(y-q[2])**2<=q[3]*q[3])return 0;for(const q of s){const t=q[0];if(t=='x')continue;
+ if(t=='e'){const a=(x-q[1])/q[3],b=(y-q[2])/q[4];if(a*a+b*b<=1)return 1}
+ else if(t=='r'){if(x>=q[1]&&x<=q[1]+q[3]&&y>=q[2]&&y<=q[2]+q[4])return 1}
+ else{const p=q[1];let c=0;for(let i=0,j=p.length-2;i<p.length;j=i,i+=2)if((p[i+1]>y)!=(p[j+1]>y)&&x<(p[j]-p[i])*(y-p[i+1])/(p[j+1]-p[i+1])+p[i])c=!c;if(c)return 1}}return 0}
+const BB={};function bbox(id){if(BB[id])return BB[id];const s=AN[id];let x0=1e9,y0=1e9,x1=-1,y1=-1;for(let y=0;y<100;y+=.5)for(let x=0;x<100;x+=.5)if(ins(s,x,y)){x0=Math.min(x0,x);x1=Math.max(x1,x);y0=Math.min(y0,y);y1=Math.max(y1,y)}return BB[id]={x0,y0,x1,y1}}
+// ===== Drapeaux en image =====
+const FI={};function flagURL(c,W=36,Hh=24){const k=c.id+W;if(FI[k])return FI[k];const cv=document.createElement('canvas');cv.width=W;cv.height=Hh;const x=cv.getContext('2d'),K={a:W/3,b:W/3,s:W/3};for(let j=0;j<Hh;j++)for(let i=0;i<W;i++){x.fillStyle=fc(c.fl,(i+.5)/W*3,(j+.5)/Hh*2,K);x.fillRect(i,j,1,1)}return FI[k]=cv.toDataURL()}
+const fimg=(c,W=36,Hh=24,st='')=>`<img src="${flagURL(c,W,Hh)}" width="${W}" height="${Hh}" style="image-rendering:pixelated;border-radius:3px;box-shadow:0 0 0 1px #8885;${st}">`;
+// ===== État =====
+let S={};try{S=JSON.parse(localStorage.getItem('fr4')||localStorage.getItem('fr3'))||{}}catch(e){}
+S=Object.assign({max:1,stars:{},coins:100,th:'papier',own:['papier'],st:'fin',ownst:['fin'],snd:true,mus:true,vib:true,hints:3,undos:3,eras:2,extra:0,last:'',streak:0,ms:{d:'',p:[0,0,0],c:[0,0,0]},spin:'',tut:0,ch:3,chT:Date.now(),seen:{},best:{},ach:{},qz:{d:'',n:0},cor:0,mcb:0,arr:0},S);
+if(!ST[S.st]){S.st='fin'}S.ownst=S.ownst.filter(k=>ST[k]);if(!S.ownst.includes(S.st))S.ownst.push(S.st);if(!S.ms.p)S.ms={d:'',p:[0,0,0],c:[0,0,0]};
+const save=()=>{try{localStorage.setItem('fr4',JSON.stringify(S))}catch(e){}};
+// ===== Audio =====
+let AC,tk=0;
+function ctx(){try{AC=AC||new(window.AudioContext||window.webkitAudioContext)();AC.state=='suspended'&&AC.resume()}catch(e){}return AC}
+function tn(f,d=.1,ty='sine',v=.08,at=0,sl=1){const c=ctx();if(!c)return;const o=c.createOscillator(),g=c.createGain(),t=c.currentTime+at;o.type=ty;o.frequency.setValueAtTime(f,t);if(sl!=1)o.frequency.exponentialRampToValueAtTime(Math.max(20,f*sl),t+d);g.gain.setValueAtTime(v,t);g.gain.exponentialRampToValueAtTime(.0001,t+d);o.connect(g);g.connect(c.destination);o.start(t);o.stop(t+d+.03)}
+function nz(d=.2,v=.05,f0=1500,f1=400,ty='lowpass',at=0){const c=ctx();if(!c)return;const n=c.sampleRate*d|0,bf=c.createBuffer(1,n,c.sampleRate),da=bf.getChannelData(0);for(let i=0;i<n;i++)da[i]=Math.random()*2-1;const s=c.createBufferSource(),f=c.createBiquadFilter(),g=c.createGain(),t=c.currentTime+at;s.buffer=bf;f.type=ty;f.frequency.setValueAtTime(f0,t);f.frequency.exponentialRampToValueAtTime(f1,t+d);g.gain.setValueAtTime(v,t);g.gain.exponentialRampToValueAtTime(.0001,t+d);s.connect(f);f.connect(g);g.connect(c.destination);s.start(t)}
+const fq=n=>220*2**(n/12);
+const SFX={
+ ui:()=>tn(660,.05,'square',.025),
+ tap:()=>tn(520,.06,'triangle',.07),
+ slide:c=>{nz(.5,.05,300,2600,'bandpass');tn(260+Math.min(c,10)*40,.4,'sine',.05,0,2.4)},
+ pop:c=>{const b=[0,2,4,7,9,12,14,16,19,21,24][Math.min(c,10)];tn(fq(b+12),.16,'triangle',.09);tn(fq(b+19),.12,'sine',.04,.05)},
+ combo:c=>{[0,4,7,12].forEach((n,i)=>tn(fq(n+19),.12,'square',.04,i*.05))},
+ bad:()=>{tn(150,.35,'sawtooth',.09,0,.45);nz(.25,.06,900,150)},
+ heart:()=>{tn(90,.15,'sine',.12);tn(90,.18,'sine',.12,.18)},
+ hint:()=>[880,1175,1568,2093].forEach((f,i)=>tn(f,.16,'sine',.05,i*.07)),
+ undo:()=>tn(800,.25,'triangle',.07,0,.35),
+ era:()=>{nz(.35,.08,200,5000,'highpass');tn(1200,.2,'sine',.04,.1,.5)},
+ eraOn:()=>tn(300,.12,'square',.04,0,2),
+ coin:()=>{tn(988,.07,'square',.04);tn(1319,.22,'square',.04,.07)},
+ buy:()=>{[0,4,7,12,16].forEach((n,i)=>tn(fq(n+24),.12,'triangle',.06,i*.045));nz(.1,.03,6000,3000,'highpass',.2)},
+ no:()=>{tn(200,.12,'square',.05);tn(150,.2,'square',.05,.1)},
+ claim:()=>[0,4,7,12,16,19].forEach((n,i)=>tn(fq(n+19),.18,'triangle',.07,i*.07)),
+ tick:()=>tn(1800,.03,'square',.03),
+ star:i=>tn(fq([12,16,19][i]+19),.35,'triangle',.09),
+ open:()=>{tn(400,.15,'sine',.05,0,2);},
+ close:()=>tn(500,.12,'sine',.04,0,.5),
+ right:()=>{tn(880,.1,'triangle',.08);tn(1175,.2,'triangle',.08,.09)},
+ wrong:()=>{tn(220,.3,'sawtooth',.07,0,.6)},
+ win:()=>[660,784,988,1318,1568].forEach((f,i)=>tn(f,.3,'triangle',.08,i*.11)),
+ lose:()=>[392,330,262,196].forEach((f,i)=>tn(f,.3,'sawtooth',.06,i*.16)),
+ reveal:()=>{nz(.6,.05,200,4000,'bandpass');[0,7,12,19].forEach((n,i)=>tn(fq(n+12),.4,'sine',.06,.2+i*.09))},
+ rec:()=>[0,5,9,12,17,21,24].forEach((n,i)=>tn(fq(n+24),.14,'square',.04,i*.06))
+};
+const sfx=(k,a)=>{if(S.snd&&SFX[k])try{SFX[k](a)}catch(e){}};
+// cris des animaux (synthèse)
+const CRY={lion:'roar',bigcat:'roar',bear:'roar',hippo:'moo',elephant:'trump',giraffe:'bleat',zebra:'neigh',horse:'neigh',llama:'neigh',deer:'bleat',antelope:'bleat',ibex:'bleat',camel:'moo',bull:'moo',buffalo:'moo',wolf:'howl',kangaroo:'squeak',beaver:'squeak',panda:'squeak',gorilla:'roar',monkey:'squeak',eagle:'screech',falcon:'screech',parrot:'squawk',peacock:'squawk',rooster:'crow',crane:'honk',swan:'honk',flamingo:'honk',pelican:'honk',kiwi:'chirp',dove:'chirp',hummingbird:'chirp',dodo:'honk',dolphin:'click',turtle:'bubble',fish:'bubble',crocodile:'hiss',lizard:'hiss',crab:'click'};
+function cry(id){if(!S.snd)return;const k=CRY[id]||'chirp';try{({
+ roar:()=>{tn(130,.9,'sawtooth',.1,0,.5);tn(65,.9,'square',.05,0,.6);nz(.9,.06,1200,200)},
+ trump:()=>{tn(380,.25,'sawtooth',.09,0,1.7);tn(640,.5,'sawtooth',.09,.22,.7);nz(.3,.03,2500,800,'bandpass')},
+ moo:()=>{tn(110,.8,'sawtooth',.09,0,.8);tn(112,.8,'sine',.06)},
+ bleat:()=>{for(let i=0;i<4;i++)tn(420+i*20,.1,'sawtooth',.05,i*.09,.9)},
+ neigh:()=>{tn(500,.2,'sawtooth',.07,0,1.8);tn(900,.3,'sawtooth',.07,.2,.5);for(let i=0;i<3;i++)tn(420,.06,'sawtooth',.05,.55+i*.07)},
+ howl:()=>{tn(300,.9,'sine',.09,0,1.9);tn(305,.9,'sine',.05,.02,1.9);tn(560,.7,'sine',.07,.9,.55)},
+ squeak:()=>{for(let i=0;i<4;i++)tn(1200+i*150,.08,'square',.04,i*.1,.7)},
+ screech:()=>{tn(2200,.5,'sawtooth',.05,0,.5);nz(.4,.03,6000,2000,'highpass')},
+ squawk:()=>{for(let i=0;i<2;i++){tn(900,.15,'sawtooth',.06,i*.2,.6);nz(.12,.04,3000,1000,'bandpass',i*.2)}},
+ crow:()=>{[0,.18,.4].forEach((t,i)=>tn(600+i*150,.2,'sawtooth',.06,t,1.4));tn(900,.5,'sawtooth',.06,.6,.6)},
+ honk:()=>{tn(330,.25,'square',.06,0,.9);tn(300,.3,'square',.06,.3,.8)},
+ chirp:()=>{for(let i=0;i<5;i++)tn(2400+(i%2)*600,.07,'sine',.06,i*.1,1.3)},
+ click:()=>{for(let i=0;i<5;i++)tn(2800,.03,'square',.04,i*.07,.4)},
+ bubble:()=>{for(let i=0;i<5;i++)tn(300+i*120,.12,'sine',.06,i*.1,1.8)},
+ hiss:()=>{nz(.9,.07,7000,2500,'highpass')}})[k]()}catch(e){}}
+// musique : une mélodie différente par niveau, gamme selon le continent
+const SCL={Afrique:[0,3,5,7,10],Europe:[0,2,4,5,7,9,11],Asie:[0,2,5,7,9],'Amériques':[0,2,4,7,9],'Océanie':[0,2,4,7,9,11]};
+let mel=[],bas=[0,5,7,3],mt=0,mct='Europe';
+function rng(a){return()=>{a|=0;a=a+0x6D2B79F5|0;let t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296}}
+function music(ct,seed){mct=ct;const sc=SCL[ct]||SCL.Europe,r=rng(seed*31+7);mel=Array.from({length:16},()=>r()<.22?null:sc[r()*sc.length|0]+(r()<.25?12:0));bas=[0,sc[2],sc[3],sc[1]];mt=0}
+document.addEventListener('visibilitychange',()=>{AC&&(document.hidden?AC.suspend():AC.resume())});
+document.addEventListener('click',e=>{if(e.target.closest('button')&&!e.target.closest('#bd'))sfx('ui')},true);
+function toast(t){const e=$('#toast');e.textContent=t;e.hidden=false;clearTimeout(toast.t);toast.t=setTimeout(()=>e.hidden=true,1700)}
+function theme(){const t=TH[S.th],s=document.documentElement.style;['bg','bg2','ink','acc','on'].forEach(k=>s.setProperty('--'+k,t[k]))}
+const vib=n=>S.vib&&navigator.vibrate&&navigator.vibrate(n);
+// ===== Génération =====
+let G;
+function gen(l){const c=cOf(l),id=c.an,sh=AN[id],bb=bbox(id),n=Math.min(16+(l/12|0),24),bw=bb.x1-bb.x0,bh=bb.y1-bb.y0,cu=Math.max(bw,bh)/n,W=bw>=bh?n:Math.max(6,Math.ceil(bh>bw?n*bw/bh:n)),Hh=bw>=bh?Math.max(6,Math.ceil(n*bh/bw)):n,cx=(bb.x0+bb.x1)/2,cy=(bb.y0+bb.y1)/2;
+ const r=rng(l*7919+13),mn=3,mx=Math.min(6+(l/12|0),14),occ=new Set,ray=new Set,A=[],ok=(x,y)=>x>=0&&y>=0&&x<W&&y<Hh,M=[],FC=[],K={a:bw/3,b:bh/2,s:Math.sqrt(bw*bh/6)};
+ for(let y=0;y<Hh;y++){M.push('');for(let x=0;x<W;x++){const px=cx+(x+.5-W/2)*cu,py=cy+(y+.5-Hh/2)*cu,m=ins(sh,px,py);M[y]+=m?'#':'.';if(!m)occ.add(y*W+x);FC[y*W+x]=fc(c.fl,Math.max(0,Math.min(3,(px-bb.x0)/bw*3)),Math.max(0,Math.min(2,(py-bb.y0)/bh*2)),K)}}
+ for(let t=0;t<W*Hh*40;t++){
+  const x=r()*W|0,y=r()*Hh|0,k=y*W+x;if(occ.has(k)||ray.has(k))continue;
+  const L=mn+(r()*(mx-mn+1)|0),cc=[[x,y]],used=new Set([k]);let ld=r()*4|0;
+  for(let i=1;i<L;i++){const[px,py]=cc[cc.length-1],ds=[0,1,2,3].sort(()=>r()-.5);if(r()<.5)ds.unshift(ld);let f=0;
+   for(const d of ds){const nx=px+D[d][0],ny=py+D[d][1],nk=ny*W+nx;if(ok(nx,ny)&&!occ.has(nk)&&!ray.has(nk)&&!used.has(nk)){cc.push([nx,ny]);used.add(nk);ld=d;f=1;break}}
+   if(!f)break}
+  const hd=cc.length>1&&r()<.75?ld:(r()*4|0),[hx,hy]=cc[cc.length-1],rc=[];let qx=hx+D[hd][0],qy=hy+D[hd][1],bad=0;
+  while(ok(qx,qy)){const q=qy*W+qx;if(used.has(q)){bad=1;break}rc.push(q);qx+=D[hd][0];qy+=D[hd][1]}
+  if(bad)continue;
+  cc.forEach(([a,b])=>occ.add(b*W+a));rc.forEach(q=>ray.add(q));A.push({c:cc,hd})}
+ const own=Array(W*Hh).fill(-1),rays=A.map(a=>{const[hx,hy]=a.c[a.c.length-1],[dx,dy]=D[a.hd],rc=[];let x=hx+dx,y=hy+dy;while(ok(x,y)){rc.push(y*W+x);x+=dx;y+=dy}return rc}),cov=Array.from({length:W*Hh},()=>[]);
+ A.forEach((a,i)=>a.c.forEach(([x,y])=>own[y*W+x]=i));rays.forEach((rc,i)=>rc.forEach(q=>cov[q].push(i)));
+ const dep=i=>{const s=new Set();for(const q of rays[i]){const o=own[q];if(o>=0&&o!=i)s.add(o)}return s};
+ const tryAdd=(cc,hd)=>{const[hx,hy]=cc[cc.length-1],[dx,dy]=D[hd],rc=[],ck=new Set(cc.map(([a,b])=>b*W+a));let x=hx+dx,y=hy+dy;
+  while(ok(x,y)){const q=y*W+x;if(ck.has(q))return 0;rc.push(q);x+=dx;y+=dy}
+  const id2=A.length;A.push({c:cc,hd});rays.push(rc);cc.forEach(([a,b])=>own[b*W+a]=id2);
+  const R=new Set();cc.forEach(([a,b])=>cov[b*W+a].forEach(e=>R.add(e)));
+  let bad=0;const seen=new Set([id2]),st=[id2];
+  while(st.length&&!bad){const u=st.pop();for(const v of dep(u)){if(R.has(v)){bad=1;break}if(!seen.has(v)){seen.add(v);st.push(v)}}}
+  if(bad){A.pop();rays.pop();cc.forEach(([a,b])=>own[b*W+a]=-1);return 0}
+  rc.forEach(q=>cov[q].push(id2));return 1};
+ const fr=[];for(let y=0;y<Hh;y++)for(let x=0;x<W;x++)if(own[y*W+x]<0&&M[y][x]=='#')fr.push([x,y]);
+ fr.sort(()=>r()-.5);
+ for(const[x0,y0]of fr){if(own[y0*W+x0]>=0)continue;let ok2=0;
+  for(const L of[3+(r()*4|0),4,3,2,1]){if(ok2)break;const cc=[[x0,y0]],u=new Set([y0*W+x0]);let ld=r()*4|0;
+   for(let i=1;i<L;i++){const[px,py]=cc[cc.length-1];let f=0;for(const d of[0,1,2,3].sort(()=>r()-.5)){const nx=px+D[d][0],ny=py+D[d][1],nk=ny*W+nx;if(ok(nx,ny)&&own[nk]<0&&!u.has(nk)&&M[ny][nx]=='#'){cc.push([nx,ny]);u.add(nk);ld=d;f=1;break}}if(!f)break}
+   for(const d of[ld,...[0,1,2,3].sort(()=>r()-.5)])if(tryAdd(cc,d)){ok2=1;break}}}
+ return{W,H:Hh,A,M,FC,c}}
+function start(l){l=Math.max(1,Math.min(MAX,l));const{W,H,A,M,FC,c}=gen(l),g=Array(W*H).fill(-1);A.forEach((a,i)=>a.c.forEach(([x,y])=>g[y*W+x]=i));const mx=3+S.extra;
+ G={l,W,H,A,g,M,FC,c,alive:A.length,tot:A.length,lives:mx,mx,mis:0,combo:0,u:[],done:0,er:0,t0:Date.now(),over:0};
+ $('#home').hidden=true;$('#game').hidden=false;$('#ov').hidden=true;draw();hud();music(c.ct,l);sfx('open');
+ if(!S.tut){S.tut=1;save();ov('<h2>Comment jouer ?</h2><p>Touche une flèche : elle glisse dans la direction de sa pointe et sort de la grille.</p><p>Si une autre flèche la bloque, tu perds un ❤. Les couleurs des flèches dessinent le <b>drapeau</b> d’un pays, et leur forme un <b>animal national</b> !</p><button class="btn big" onclick="cl()">C’est parti !</button>')}}
+const lum=h=>{const m=/#(..)(..)(..)/.exec(h);return m?(parseInt(m[1],16)*.3+parseInt(m[2],16)*.59+parseInt(m[3],16)*.11)/255:.5};
+function draw(){const{W,H,A,FC}=G,cs=40,s=ST[S.st],k=s.w>9?1.5:s.w>6?1.3:1;let h='';
+ for(let y=0;y<H;y++)for(let x=0;x<W;x++)if(G.M[y][x]=='#')h+=`<rect id="u${y*W+x}" x="${x*cs}" y="${y*cs}" width="${cs}" height="${cs}" fill="${lum(FC[y*W+x])>.9?'#c3ccdb':FC[y*W+x]}" opacity=".32"/>`;
+ A.forEach((a,i)=>{const L=a.c.length,[hx,hy]=a.c[L-1],[dx,dy]=D[a.hd],cx=hx*cs+20,cy=hy*cs+20,px=-dy,py=dx,hc=FC[hy*W+hx],
+  tip=`${cx+dx*15*k},${cy+dy*15*k} ${cx-dx*3*k+px*8*k},${cy-dy*3*k+py*8*k} ${cx-dx*3*k-px*8*k},${cy-dy*3*k-py*8*k}`,seg=[];
+  for(let j=0;j<L-1;j++)seg.push([a.c[j],a.c[j+1],FC[a.c[j][1]*W+a.c[j][0]]]);
+  if(L==1)seg.push([[hx,hy],[hx-dx*.4,hy-dy*.4],hc]);
+  const ol=c=>lum(c)>.5?'rgba(0,0,0,.5)':'rgba(255,255,255,.55)',ln=(p,c,w,v)=>`<line ${v?'class="v" ':''}x1="${p[0][0]*cs+20}" y1="${p[0][1]*cs+20}" x2="${p[1][0]*cs+20}" y2="${p[1][1]*cs+20}" stroke="${c}" stroke-width="${w}" stroke-linecap="round"/>`;
+  h+=`<g class="ar${s.g?' g':''}" id="a${i}" style="color:${hc}">`+seg.map(q=>ln(q,ol(q[2]),s.w+3)).join('')+`<polygon points="${tip}" fill="none" stroke="${ol(hc)}" stroke-width="3" stroke-linejoin="round"/>`+seg.map(q=>ln(q,q[2],s.w,1)).join('')+`<polygon class="v" points="${tip}" fill="${hc}"/><polyline points="${a.c.map(([x,y])=>`${x*cs+20},${y*cs+20}`).join(' ')}" fill="none" stroke="transparent" stroke-width="26" stroke-linecap="round" stroke-linejoin="round"/></g>`});
+ const b=$('#bd');b.setAttribute('viewBox',`0 0 ${W*cs} ${H*cs}`);b.style.aspectRatio=W/H;b.style.height='auto';b.innerHTML=h;A.forEach((a,i)=>a.gone&&($('#a'+i).style.display='none'))}
+function setU(a,o){a.c.forEach(([x,y])=>{const e=$('#u'+(y*G.W+x));e&&(e.style.opacity=o)})}
+function hud(){const c=G.c;$('#ttl').textContent='Niveau '+G.l;$('#cinfo').innerHTML=fimg(c,30,20,'vertical-align:middle')+' <b>'+c.n+'</b> · '+c.ann;$('#hud').textContent='❤'.repeat(G.lives)+'🖤'.repeat(G.mx-G.lives);$('#pg').style.width=G.done/G.tot*100+'%';$('#cn1').textContent='🪙 '+S.coins+' ⚡'+S.ch;$('#cmb').textContent=G.combo>1?'🔥×'+G.combo:'';$('#rm').textContent=G.alive+' flèche'+(G.alive>1?'s':'')+' restante'+(G.alive>1?'s':'');
+ [['bh','💡','hints'],['bu','↶','undos'],['be','🧽','eras']].forEach(([i,e,k])=>$('#'+i).textContent=e+' '+(S[k]||'25🪙'));$('#be').classList.toggle('eon',!!G.er)}
+function blk(i){const a=G.A[i],[hx,hy]=a.c[a.c.length-1],[dx,dy]=D[a.hd];let x=hx+dx,y=hy+dy;while(x>=0&&y>=0&&x<G.W&&y<G.H){const o=G.g[y*G.W+x];if(o>=0)return o;x+=dx;y+=dy}return-1}
+function use(k){if(S[k]>0){S[k]--;return 1}if(S.coins>=25){S.coins-=25;sfx('coin');return 1}toast('Pas assez de pièces');sfx('no');return 0}
+function mv(i){if(G.over||G.lives<1||G.A[i].gone)return;if(G.er&&!use('eras')){G.er=0;return hud()}const el=$('#a'+i),b=G.er?-1:blk(i),wasEr=G.er;G.er=0;
+ if(b<0){const a=G.A[i];a.gone=1;a.c.forEach(([x,y])=>G.g[y*G.W+x]=-1);G.u.push(i);G.alive--;G.done++;G.combo++;S.arr++;S.mcb=Math.max(S.mcb,G.combo);
+  const[dx,dy]=D[a.hd],k=Math.max(G.W,G.H)*40;el.style.transition='transform .55s cubic-bezier(.6,0,1,1),opacity .55s';el.style.transform=`translate(${dx*k}px,${dy*k}px)`;el.style.opacity=0;el.style.pointerEvents='none';setU(a,.95);
+  S.coins+=Math.min(G.combo,5);mp(1,1);if(wasEr)sfx('era');else{sfx('slide',G.combo);sfx('pop',G.combo)}if(G.combo>0&&G.combo%5==0)sfx('combo');vib(10);hud();if(!G.alive)win()}
+ else{G.mis++;G.lives--;G.combo=0;[el,$('#a'+b)].forEach(e=>{e.classList.remove('bad');void e.getBoundingClientRect();e.classList.add('bad')});
+  sfx('bad');G.lives==1&&setTimeout(()=>sfx('heart'),350);vib(60);hud();if(!G.lives){G.over=1;setTimeout(lose,450)}}save()}
+function ov(h){$('#ovc').innerHTML=h;$('#ov').hidden=false}
+function cl(){$('#ov').hidden=true;sfx('close');if(!$('#home').hidden)home()}
+function win(){G.over=1;const st=G.mis?G.mis>1?1:2:3,ch=G.l%5==0?50:0,g=10+st*5+ch,c=G.c,tm=(Date.now()-G.t0)/1e3|0,old=S.best[G.l],rec=!old||tm<old;let bonus=0;if(G.daily&&S.dc!=td()){bonus=50;S.dc=td();S.dcn=(S.dcn||0)+1}S.coins+=g+bonus;mp(0,1);if(!G.mis)mp(2,1);S.stars[G.l]=Math.max(S.stars[G.l]||0,st);S.max=Math.min(MAX,Math.max(S.max,G.l+1));if(rec)S.best[G.l]=tm;const nw=!S.seen[c.id];S.seen[c.id]=1;save();
+ for(let i=0;i<G.W*G.H;i++){const e=$('#u'+i);e&&(e.style.transition='opacity .6s',e.style.opacity=1)}
+ sfx('win');cry(c.an);confetti();hud();
+ setTimeout(()=>{sfx('reveal');ov(`<div style="font-size:15px;opacity:.7">${nw?'🆕 Pays découvert !':'Pays '+CE[c.ct]+' '+c.ct}</div>${fimg(c,150,100,'margin:4px')}<h2>${c.n}</h2><div>Animal national : <b>${c.ann}</b></div><div>🏛️ ${c.cap} · 💰 ${c.mon}</div><div id="stz" style="font-size:38px;color:var(--acc)">☆☆☆</div><div>+${g+bonus} 🪙${bonus?' · 🎯 défi du jour !':''}${ch?' · coffre bonus !':''} · ⏱ ${tm}s${rec&&old?' · 🏅 record !':''}</div>${G.l<MAX?`<button class="btn big" onclick="start(${G.l+1})">Suivant →</button>`:'<h3>🏆 Bravo, tous les pays sont découverts !</h3>'}<div class="row"><button class="btn" onclick="menu()">Menu</button><button class="btn" onclick="atl()">📖 Atlas</button></div>`);
+  for(let i=0;i<st;i++)setTimeout(()=>{$('#stz').textContent='★'.repeat(i+1)+'☆'.repeat(2-i);sfx('star',i)},300*(i+1));rec&&old&&setTimeout(()=>sfx('rec'),1200);chk()},900)}
+function rg(){if(S.ch<5){const d=(Date.now()-S.chT)/48e4|0;if(d>0){S.ch=Math.min(5,S.ch+d);S.chT+=d*48e4}}else S.chT=Date.now()}
+function rp(){if(S.ch<1)return;if(S.ch>=5)S.chT=Date.now();S.ch--;save();start(G.l)}
+function bch(n,p){if(S.coins<p){sfx('no');return toast('Pas assez de pièces')}S.coins-=p;S.ch+=n;save();sfx('buy');lose()}
+function lose(){sfx('lose');rg();ov(`<h2>Plus de vies 💔</h2><div>${fimg(G.c,60,40)}</div><div class="chip">⚡ Chances : ${S.ch} · 🪙 ${S.coins}</div><button class="btn big" ${S.ch?'':'disabled'} onclick="rp()">Rejouer (−1 ⚡)</button><button class="btn" onclick="revive()">+1 ❤ et continuer · 30 🪙</button><button class="btn" onclick="bch(3,60)">Acheter 3 ⚡ · 60 🪙</button><button class="btn" onclick="bch(10,150)">Acheter 10 ⚡ · 150 🪙</button><button class="btn" onclick="menu()">Menu</button>`)}
+function revive(){if(S.coins<30){sfx('no');return toast('Pas assez de pièces')}S.coins-=30;G.lives=1;G.over=0;save();sfx('buy');$('#ov').hidden=true;hud()}
+function hint(){if(G.lives<1)return;const i=G.A.findIndex((a,j)=>!a.gone&&blk(j)<0);if(i<0||!use('hints'))return;const e=$('#a'+i);e.classList.add('hint');sfx('hint');setTimeout(()=>e.classList.remove('hint'),1600);save();hud()}
+function undo(){if(!G.u.length||G.lives<1){sfx('no');return toast('Rien à annuler')}if(!use('undos'))return;const i=G.u.pop(),a=G.A[i],e=$('#a'+i);a.gone=0;a.c.forEach(([x,y])=>G.g[y*G.W+x]=i);
+ G.alive++;G.done--;G.combo=0;e.style.transition='none';e.style.transform='';e.style.opacity=1;e.style.pointerEvents='';e.style.display='';setU(a,.32);sfx('undo');save();hud()}
+function menu(){$('#game').hidden=true;$('#ov').hidden=true;$('#home').hidden=false;home()}
+const td=()=>new Date().toDateString();
+const RW=[30,40,50,60,80,100,200],MS=[['Terminer 3 niveaux',3,40],['Sortir 60 flèches',60,30],['Gagner sans erreur',1,50]];
+function mss(){if(S.ms.d!=td())S.ms={d:td(),p:[0,0,0],c:[0,0,0]}}
+function mp(i,n){mss();S.ms.p[i]=Math.min(MS[i][1],S.ms.p[i]+n)}
+const seenN=ct=>CT.filter(c=>S.seen[c.id]&&(!ct||c.ct==ct)).length,totN=ct=>CT.filter(c=>!ct||c.ct==ct).length,starN=()=>Object.values(S.stars).filter(v=>v==3).length;
+const ACH=[['Explorateur I · 10 pays',()=>seenN(),10,50],['Explorateur II · 50 pays',()=>seenN(),50,150],['Explorateur III · 100 pays',()=>seenN(),100,300],['Tour du monde · 195 pays',()=>seenN(),195,1000],
+ ...CONT.map(ct=>[CE[ct]+' '+ct+' complété',()=>seenN(ct),totN(ct),200]),
+ ['Perfectionniste · 10 niveaux ★★★',starN,10,100],['Grand perfectionniste · 50 ★★★',starN,50,300],['Combo ×10',()=>S.mcb,10,60],['Combo ×25',()=>S.mcb,25,150],['1000 flèches sorties',()=>S.arr,1000,120],['Quiz : 30 bonnes réponses',()=>S.cor,30,100],['Série de 7 jours',()=>S.streak,7,150]];
+function chk(){if(ACH.some((a,i)=>!S.ach[i]&&a[1]()>=a[2]))setTimeout(()=>{toast('🏆 Trophée à récupérer !');sfx('claim')},2500)}
+function trophies(){ov(`<h2>🏆 Trophées</h2><div class="chip">🪙 ${S.coins}</div>`+ACH.map((a,i)=>{const p=Math.min(a[1](),a[2]),d=S.ach[i];return`<div class="it"><span>${a[0]}<br><small>${p}/${a[2]}</small></span><button class="btn" ${d||p<a[2]?'disabled':''} onclick="aclaim(${i})">${d?'✓':'+'+a[3]+' 🪙'}</button></div>`}).join('')+'<button class="btn" onclick="cl()">Fermer</button>')}
+function aclaim(i){S.ach[i]=1;S.coins+=ACH[i][3];save();sfx('claim');trophies()}
+function claim(){const y=S.last&&(new Date(td())-new Date(S.last))/864e5==1;S.streak=y?S.streak%7+1:1;const g=RW[S.streak-1];S.coins+=g;S.last=td();save();sfx('claim');toast(`+${g} 🪙 · jour ${S.streak}/7`);dly()}
+function mclaim(i){S.ms.c[i]=1;S.coins+=MS[i][2];save();sfx('claim');dly()}
+function spin(){if(S.spin==td())return;const v=[10,10,20,20,30,50,100,200][Math.random()*8|0];S.spin=td();S.coins+=v;save();let i=0;const t=setInterval(()=>{sfx('tick');if(++i>8){clearInterval(t);sfx('claim');toast('🎰 +'+v+' 🪙');dly()}},90)}
+function dly(){mss();const c=S.last!=td(),nx=c?((S.last&&(new Date(td())-new Date(S.last))/864e5==1)?S.streak%7+1:1):S.streak,dn=c?nx-1:S.streak;
+ ov(`<h2>🎁 Récompenses</h2><div class="chip">🪙 ${S.coins}</div><div class="row">${RW.map((g,i)=>`<div class="chip" style="min-width:52px;text-align:center;${i+1==nx&&c?'outline:3px solid var(--acc)':''}${i<dn?';opacity:.5':''}">J${i+1}<br>${i<dn?'✓':g+'🪙'}</div>`).join('')}</div><button class="btn big" ${c?'':'disabled'} onclick="claim()">${c?'Récupérer · '+RW[nx-1]+' 🪙':'Déjà pris aujourd’hui'}</button><h3>Missions du jour</h3>${MS.map((m,i)=>`<div class="it"><span>${m[0]} (${S.ms.p[i]}/${m[1]})</span><button class="btn" ${S.ms.p[i]<m[1]||S.ms.c[i]?'disabled':''} onclick="mclaim(${i})">${S.ms.c[i]?'✓':'+'+m[2]+' 🪙'}</button></div>`).join('')}<h3>Roue de la chance</h3><button class="btn" ${S.spin==td()?'disabled':''} onclick="spin()">🎰 ${S.spin==td()?'Revenez demain':'Tourner gratuitement'}</button><button class="btn" onclick="cl()">Fermer</button>`)}
+function home(){theme();const c=cOf(S.max);$('#pl').innerHTML='JOUER · Niveau '+S.max;$('#nx').innerHTML=fimg(c,60,40,'vertical-align:middle')+' Prochain : <b>'+c.n+'</b>';mss();const cc=S.last!=td()||S.spin!=td()||S.ms.p.some((p,i)=>p>=MS[i][1]&&!S.ms.c[i]);$('#bgf').textContent=cc?'🎁 Récompenses du jour · à récupérer !':'🎁 Récompenses & missions';rg();$('#cn0').textContent='🪙 '+S.coins+' · ⚡ '+S.ch+' · ⭐ '+Object.values(S.stars).reduce((a,b)=>a+b,0);
+ $('#cp').innerHTML=`<div class="chip" style="width:100%;text-align:center">🌐 ${seenN()}/${MAX} pays découverts</div>`+CONT.map(ct=>`<div class="it"><span>${CE[ct]} ${ct}</span><span>${seenN(ct)}/${totN(ct)}</span></div><div class="prog"><i style="width:${seenN(ct)/totN(ct)*100}%"></i></div>`).join('')}
+const row=(n,pr,own,on,fn)=>`<div class="it"><span>${n}</span><button class="btn" ${on?'disabled':''} onclick="${fn}">${on?'Actif':own?'Choisir':'🪙 '+pr}</button></div>`;
+function shopp(){ov(`<h2>Boutique</h2><div class="chip">🪙 ${S.coins}</div><h3>Couleur de l’interface</h3>${Object.keys(TH).map(k=>row(TH[k].n,TH[k].pr,S.own.includes(k),S.th==k,`buy('th','${k}')`)).join('')}<h3>Style des flèches</h3>${Object.keys(ST).map(k=>row(ST[k].n,ST[k].pr,S.ownst.includes(k),S.st==k,`buy('st','${k}')`)).join('')}<h3>Bonus</h3>${CN.map((c,i)=>row(c[0],c[1],0,0,`buy('cn',${i})`)).join('')}<button class="btn" onclick="cl()">Fermer</button>`)}
+function buy(t,k){let pr,own;if(t=='th'){pr=TH[k].pr;own=S.own}else if(t=='st'){pr=ST[k].pr;own=S.ownst}else pr=CN[k][1];
+ if(own&&!own.includes(k)){if(S.coins<pr){sfx('no');return toast('Pas assez de pièces')}S.coins-=pr;own.push(k);sfx('buy')}
+ if(t=='th')S.th=k;else if(t=='st')S.st=k;else{if(k==3&&S.extra>=2){sfx('no');return toast('Maximum atteint')}if(S.coins<pr){sfx('no');return toast('Pas assez de pièces')}S.coins-=pr;CN[k][2](S);sfx('buy')}
+ save();theme();if(G&&!$('#game').hidden)draw();shopp()}
+let LF='';
+function lvs(){let h='<h2>Niveaux</h2><div class="row"><button class="btn" onclick="LF=\'\';lvs()">Tous</button>'+CONT.map(ct=>`<button class="btn" onclick="LF='${ct}';lvs()">${CE[ct]}</button>`).join('')+'</div><div id="lg">';for(let l=1;l<=MAX;l++){const c=cOf(l);if(LF&&c.ct!=LF)continue;h+=`<button ${l>S.max?'disabled':''} onclick="start(${l})">${l}<small>${l>S.max?'🔒':fimg(c,30,20)+'<br>'+'★'.repeat(S.stars[l]||0)}</small></button>`}ov(h+'</div><button class="btn" onclick="cl()">Fermer</button>')}
+let AF2='';
+function atl(){const L=CT.filter(c=>!AF2||c.ct==AF2);ov(`<h2>📖 Atlas · ${seenN()}/${MAX}</h2><div class="row"><button class="btn" onclick="AF2='';atl()">Tous</button>${CONT.map(ct=>`<button class="btn" onclick="AF2='${ct}';atl()">${CE[ct]} ${seenN(ct)}/${totN(ct)}</button>`).join('')}</div><div id="lg">${L.map(c=>S.seen[c.id]?`<button onclick="atd('${c.id}')">${fimg(c,30,20)}<small>${c.n}</small></button>`:`<button disabled>?<small>—</small></button>`).join('')}</div><button class="btn" onclick="cl()">Fermer</button>`)}
+function atd(id){const c=CT.find(x=>x.id==id),l=ORD.indexOf(CT.indexOf(c))+1,bb=bbox(c.an),sh=AN[c.an];let a='',hh='';for(const q of sh){const t=q[0];if(t=='e')a+=`<ellipse cx="${q[1]}" cy="${q[2]}" rx="${q[3]}" ry="${q[4]}"/>`;else if(t=='r')a+=`<rect x="${q[1]}" y="${q[2]}" width="${q[3]}" height="${q[4]}"/>`;else if(t=='p')a+=`<polygon points="${q[1].join(' ')}"/>`;else hh+=`<circle cx="${q[1]}" cy="${q[2]}" r="${q[3]}" fill="var(--bg)"/>`}
+ ov(`${fimg(c,150,100)}<h2>${c.n}</h2><div>${CE[c.ct]} ${c.ct}</div><svg viewBox="0 0 100 100" width="130" height="130" style="color:var(--acc)"><g fill="currentColor">${a}</g>${hh}</svg><div>Animal national : <b>${c.ann}</b></div><div>🏛️ Capitale : <b>${c.cap}</b></div><div>💰 Monnaie : <b>${c.mon}</b></div><div>Niveau ${l} · ${'★'.repeat(S.stars[l]||0)||'—'}${S.best[l]?' · ⏱ '+S.best[l]+'s':''}</div><button class="btn big" onclick="cry('${c.an}')">🔊 Entendre</button><div class="row"><button class="btn" onclick="start(${l})">Rejouer</button><button class="btn" onclick="atl()">← Atlas</button></div>`);cry(c.an)}
+// ===== Quiz =====
+let Z;const pick=(a,n)=>a.slice().sort(()=>Math.random()-.5).slice(0,n);
+function quiz(){if(S.qz.d!=td())S.qz={d:td(),n:0};if(S.qz.n>=3)return ov('<h2>🎓 Quiz</h2><p>Tu as fait tes 3 manches du jour. Reviens demain !</p><button class="btn" onclick="cl()">Fermer</button>');Z={i:0,ok:0};S.qz.n++;save();qq()}
+function qq(){if(Z.i>=5){const g=Z.ok*12;S.coins+=g;S.cor+=Z.ok;save();sfx(Z.ok>2?'win':'lose');chk();return ov(`<h2>🎓 Résultat</h2><div style="font-size:40px">${Z.ok}/5</div><div>+${g} 🪙</div><button class="btn big" onclick="quiz()">Manche suivante</button><button class="btn" onclick="cl()">Fermer</button>`)}
+ const c=pick(CT,1)[0],o=pick(CT.filter(x=>x!=c),3).concat(c).sort(()=>Math.random()-.5),fl=Math.random()<.5;Z.a=c;
+ ov(`<h2>🎓 Question ${Z.i+1}/5</h2>${fl?fimg(c,150,100)+'<div>À quel pays est ce drapeau ?</div>':`<div style="font-size:18px">Quel pays a pour animal national : <b>${c.ann}</b> ?</div>`}${o.map(x=>`<button class="btn" style="width:100%" onclick="qa(this,'${x.id}')">${x.n}</button>`).join('')}`)}
+function qa(b,id){const r=id==Z.a.id;document.querySelectorAll('#ovc .btn').forEach(x=>x.disabled=true);b.style.background=r?'#2ecc71':'#e63946';sfx(r?'right':'wrong');if(r)Z.ok++;Z.i++;setTimeout(qq,900)}
+function setp(){ov(`<h2>Réglages</h2><button class="btn" onclick="S.mus=!S.mus;save();setp()">🎵 Musique : ${S.mus?'oui':'non'}</button><button class="btn" onclick="S.snd=!S.snd;save();setp()">🔊 Effets : ${S.snd?'oui':'non'}</button><button class="btn" onclick="S.vib=!S.vib;save();setp()">📳 Vibrations : ${S.vib?'oui':'non'}</button><button class="btn" onclick="if(this.dataset.s){localStorage.removeItem('fr4');localStorage.removeItem('fr3');location.reload()}else{this.dataset.s=1;this.textContent='Appuie pour confirmer'}">🗑️ Tout réinitialiser</button><button class="btn" onclick="cl()">Fermer</button>`)}
+$('#bs0').onclick=$('#bs1').onclick=()=>setp();
+$('#bb').onclick=menu;$('#bsh1').onclick=shopp;$('#bsn').onclick=()=>{const o=S.snd&&S.mus;S.snd=S.mus=!o;save();$('#bsn').textContent=S.snd?'🔊':'🔇';if(S.snd)ctx()};$('#br').onclick=()=>start(G.l);$('#bh').onclick=hint;$('#bu').onclick=undo;
+$('#be').onclick=()=>{if(G.lives<1)return;G.er=!G.er;sfx('eraOn');if(G.er)toast('Touche une flèche à effacer');hud()};
+$('#bd').onclick=e=>{const g=e.target.closest('.ar');if(g){sfx('tap');mv(+g.id.slice(1))}};
+setTimeout(()=>{$('#tp').hidden=false;$('#sp').onclick=()=>{ctx();sfx('open');$('#sp').hidden=true;rg();home();$('#home').hidden=false}},1900);
+theme();
+// ===== Quiz enrichi : capitales, monnaies, drapeaux, animaux =====
+const QT=[['mix','🎲 Mélange'],['flag','🏳️ Drapeaux'],['animal','🦁 Animaux'],['cap','🏛️ Capitales'],['mon','💰 Monnaies']];
+function quiz(){if(S.qz.d!=td()||typeof S.qz.n!='object')S.qz={d:td(),n:{}};ov('<h2>🎓 Quiz</h2><p class="sub">3 manches par jour et par thème · 5 questions · 12 🪙 par bonne réponse</p>'+QT.map(q=>`<button class="btn" style="width:100%" onclick="quizs('${q[0]}')">${q[1]} · ${3-(S.qz.n[q[0]]||0)} restante(s)</button>`).join('')+'<button class="btn" onclick="cl()">Fermer</button>')}
+function quizs(k){if((S.qz.n[k]||0)>=3){toast('3 manches par jour atteintes');sfx('no');return}S.qz.n[k]=(S.qz.n[k]||0)+1;Z={i:0,ok:0,k};save();qq()}
+function mkq(k){const ty={flag:['flag'],animal:['animal'],cap:['cap2c','c2cap'],mon:['cur2c','c2cur'],mix:['flag','animal','cap2c','c2cap','cur2c','c2cur']}[k],t=ty[Math.random()*ty.length|0],c=pick(CT,1)[0];
+ const lab={flag:x=>x.n,animal:x=>x.n,c2cap:x=>x.n,cur2c:x=>x.n,cap2c:x=>x.cap,c2cur:x=>x.mon}[t],pool=pick(CT.filter(x=>x!=c),60),seen=new Set([lab(c)]),d=[];
+ for(const x of pool){const l=lab(x);if(seen.has(l)||(t=='cur2c'&&x.mon==c.mon))continue;seen.add(l);d.push(x);if(d.length==3)break}
+ const o=pick(d.concat(c),4),h={flag:fimg(c,150,100)+'<div>À quel pays est ce drapeau ?</div>',animal:`<div style="font-size:18px">Quel pays a pour animal national : <b>${c.ann}</b> ?</div>`,cap2c:`<div style="font-size:18px">Quelle est la capitale de <b>${c.n}</b> ?</div>`,c2cap:`<div style="font-size:18px"><b>${c.cap}</b> est la capitale de quel pays ?</div>`,cur2c:`<div style="font-size:18px">Quel pays utilise : <b>${c.mon}</b> ?</div>`,c2cur:`<div style="font-size:18px">Quelle est la monnaie de <b>${c.n}</b> ?</div>`}[t];
+ return{h,o:o.map(x=>[lab(x),x==c])}}
+function qq(){if(Z.i>=5){const g=Z.ok*12;S.coins+=g;S.cor+=Z.ok;save();sfx(Z.ok>2?'win':'lose');chk();return ov(`<h2>🎓 Résultat</h2><div style="font-size:40px">${Z.ok}/5</div><div>+${g} 🪙</div><button class="btn big" onclick="quiz()">Autres thèmes</button><button class="btn" onclick="cl()">Fermer</button>`)}
+ Z.q=mkq(Z.k);ov(`<h2>🎓 Question ${Z.i+1}/5</h2>${Z.q.h}${Z.q.o.map((x,i)=>`<button class="btn" style="width:100%" onclick="qa(this,${i})">${x[0]}</button>`).join('')}`)}
+function qa(b,i){const r=Z.q.o[i][1];document.querySelectorAll('#ovc .btn').forEach((x,j)=>{x.disabled=true;if(Z.q.o[j]&&Z.q.o[j][1])x.style.background='#2ecc71'});if(!r)b.style.background='#e63946';sfx(r?'right':'wrong');if(r)Z.ok++;Z.i++;setTimeout(qq,1000)}
+// ===== Interface aérée, accueil organisable, réglages, Culture générale =====
+S.cq=S.cq||{ok:0,tot:0,c:{},b:{}};S.qs=S.qs||[];S.qm=S.qm||'cl';S.dn=S.dn||'air';S.fs=S.fs||1;
+const HB={games:'🎮 Jeux',explore:'🌍 Explorer le monde',shop:'🛍️ Boutique & récompenses',prog:'📊 Progression'};
+if(!S.hs||S.hs.length!=4)S.hs=Object.keys(HB);S.hh=S.hh||{};
+const DN={air:['20px','20px','14px 18px'],std:['12px','14px','12px 16px'],cmp:['8px','10px','8px 12px']};
+function applyUI(){const d=DN[S.dn]||DN.air,s=document.documentElement.style;s.setProperty('--gap',d[0]);s.setProperty('--pad',d[1]);s.setProperty('--bp',d[2]);s.setProperty('--fs',S.fs)}
+const QC=[['geo','🌍','Géographie & déserts'],['spa','🪐','Espace & planètes'],['his','🏛️','Histoire'],['spo','⚽','Sports'],['sci','🔬','Sciences'],['ani','🐾','Animaux'],['bod','🫀','Corps humain'],['art','🎨','Arts & littérature'],['mus','🎵','Musique & cinéma'],['tec','💻','Technologie'],['myt','🔱','Mythes & religions'],['foo','🍽️','Gastronomie'],['nat','🌋','Nature & climat'],['mat','➗','Maths'],['rec','🏆','Records & insolite'],['mon','🏰','Monuments'],['lan','🗣️','Langues']];
+const LV=[[0,'Curieux'],[25,'Apprenti'],[75,'Érudit'],[150,'Savant'],[300,'Sage'],[600,'Encyclopédie vivante']];
+function cqLvl(){const o=S.cq.ok;let i=0;LV.forEach((l,j)=>{if(o>=l[0])i=j});const nx=LV[i+1];return{n:i+1,t:LV[i][1],p:nx?(o-LV[i][0])/(nx[0]-LV[i][0]):1,nx}}
+ACH.push(['Culture : 50 bonnes réponses',()=>S.cq.ok,50,100],['Culture : 300 bonnes réponses',()=>S.cq.ok,300,300],['Culture : survie 15',()=>S.cq.b.su||0,15,150]);
+// ----- Accueil -----
+function home(){theme();applyUI();rg();if(mct!='Home')music('Home',1);$('#cn0').textContent='🪙 '+S.coins+' · ⚡ '+S.ch;mss();const c=cOf(S.max),lv=cqLvl(),cc=S.last!=td()||S.spin!=td()||S.ms.p.some((p,i)=>p>=MS[i][1]&&!S.ms.c[i]);
+ const T=(f,i,t,s,h)=>`<button class="tile${h?' hero':''}" onclick="${f}"><b>${i}</b>${t}<small>${s||'&nbsp;'}</small></button>`,
+ B={games:`<div class="grid">${T('start(S.max)','🏹','Flèche Rush','Niveau '+S.max+' · '+c.n,1)}${T('cqMenu()','🧠','Culture générale','Niv. '+lv.n+' · '+lv.t,1)}<button class="tile hero span2" onclick="cwMenu()"><b>✏️</b>Mots croisés<small>Grilles infinies · 6 thèmes</small></button></div>`,
+ explore:`<div class="grid">${T('lvs()','🗺️','Niveaux',Object.keys(S.stars).length+' terminés')}${T('atl()','📖','Atlas',seenN()+'/'+MAX+' pays')}${T('quiz()','🎓','Quiz pays','Capitales, monnaies…')}${T('startDaily()','🎯','Défi du jour',S.dc==td()?'✅ terminé':'+50 🪙 bonus')}</div>`,
+ shop:`<div class="grid">${T('shopp()','🛒','Boutique','Thèmes, bonus')}${T('dly()','🎁','Récompenses',cc?'🔴 à récupérer':'Missions & roue')}${T('trophies()','🏆','Entrepôt de trophées',ACH.filter((a,i)=>S.ach[i]).length+'/'+ACH.length)}${T('profil()','👤','Profil',rankOf().t)}</div>`,
+ prog:`<div class="card"><div class="it"><span>🌐 Pays</span><span>${seenN()}/${MAX}</span></div>${CONT.map(ct=>`<div class="it"><small>${CE[ct]} ${ct}</small><small>${seenN(ct)}/${totN(ct)}</small></div><div class="prog"><i style="width:${seenN(ct)/totN(ct)*100}%"></i></div>`).join('')}<div class="it"><span>🧠 Culture</span><span>${S.cq.ok} ✔</span></div><div class="prog"><i style="width:${lv.p*100}%"></i></div></div>`};
+ $('#hb').innerHTML=S.hs.filter(k=>!S.hh[k]).map(k=>`<div class="st">${HB[k]}</div>`+B[k]).join('')}
+function setp(){const sw=(l,on,f)=>`<button class="btn${on?' on1':''}" onclick="${f}">${l}</button>`,tg=(l,v,f)=>`<button class="btn" onclick="${f}">${l} : ${v?'oui':'non'}</button>`;
+ ov(`<h2>⚙️ Réglages</h2><div class="st">Affichage</div><div class="sw">${sw('Aéré',S.dn=='air','sd(\'air\')')}${sw('Standard',S.dn=='std','sd(\'std\')')}${sw('Compact',S.dn=='cmp','sd(\'cmp\')')}</div><div class="sw">${sw('A−',S.fs==.9,'sf(.9)')}${sw('A',S.fs==1,'sf(1)')}${sw('A+',S.fs==1.15,'sf(1.15)')}</div><button class="btn" onclick="shopp()">🎨 Thème & style des flèches</button>
+ <div class="st">Son</div>${tg('🎵 Musique',S.mus,'S.mus=!S.mus;save();setp()')}${tg('🔊 Effets',S.snd,'S.snd=!S.snd;save();setp()')}${tg('📳 Vibrations',S.vib,'S.vib=!S.vib;save();setp()')}<div class="it"><span>🎵 Volume musique</span><input type="range" min="0" max="100" value="${Math.round(S.vm*100)}" oninput="S.vm=this.value/100;setVol();save()"></div><div class="it"><span>🔊 Volume effets</span><input type="range" min="0" max="100" value="${Math.round(S.vs*100)}" oninput="S.vs=this.value/100;setVol();save();sfx('coin')"></div>
+ <div class="st">Organisation de l’accueil</div>${S.hs.map((k,i)=>`<div class="it"><span style="opacity:${S.hh[k]?.4:1}">${HB[k]}</span><span class="row" style="flex-wrap:nowrap"><button class="btn" onclick="hsm(${i},-1)">▲</button><button class="btn" onclick="hsm(${i},1)">▼</button><button class="btn" onclick="hst('${k}')">${S.hh[k]?'🚫':'👁'}</button></span></div>`).join('')}
+ <div class="st">Aide</div><button class="btn" onclick="aide()">📘 Comment jouer ?</button><div class="st">Recommencer à zéro</div><button class="btn" onclick="rsc('fr')">🏹 Flèche Rush</button><button class="btn" onclick="rsc('cu')">🧠 Culture générale</button><button class="btn" onclick="rsc('all')">🗑️ Tout réinitialiser</button><button class="btn big" onclick="cl()">Terminé</button>`)}
+function sd(v){S.dn=v;save();applyUI();setp()}function sf(v){S.fs=v;save();applyUI();setp()}
+function hsm(i,d){const j=i+d;if(j<0||j>=S.hs.length)return;[S.hs[i],S.hs[j]]=[S.hs[j],S.hs[i]];save();setp()}
+function hst(k){S.hh[k]=!S.hh[k];save();setp()}
+// ----- Culture générale -----
+let X={};
+function cqShow(h){$('#home').hidden=true;$('#game').hidden=true;$('#ov').hidden=true;$('#cq').hidden=false;$('#cq').innerHTML=h}
+function cqExit(){clearInterval(X.tm);$('#cq').hidden=true;$('#home').hidden=false;sfx('close');home()}
+const MD=[['cl','📚 Classique','10 questions'],['su','❤ Survie','3 vies'],['ch','⏱ Chrono','60 secondes']];
+function cqMenu(){clearInterval(X.tm);music('Quiz',3);const lv=cqLvl(),ac=c=>{const a=S.cq.c[c];return a&&a[1]?Math.round(a[0]/a[1]*100)+' %':'—'};
+ cqShow(`<div class="bar"><button class="btn" onclick="cqExit()">←</button><b>🧠 Culture générale</b><span class="chip">🪙 ${S.coins}</span></div>
+ <div class="card"><div class="it"><b>Niveau ${lv.n} · ${lv.t}</b><span>${S.cq.ok} ✔</span></div><div class="prog"><i style="width:${lv.p*100}%"></i></div><small class="sub">${lv.nx?'Prochain titre à '+lv.nx[0]+' bonnes réponses':'Titre maximal !'}</small></div>
+ <div class="st">Mode de jeu</div><div class="sw">${MD.map(m=>`<button class="btn${S.qm==m[0]?' on1':''}" onclick="S.qm='${m[0]}';save();cqMenu()">${m[1]}<br><small>${m[2]}${S.cq.b[m[0]]?' · 🏅'+S.cq.b[m[0]]:''}</small></button>`).join('')}</div>
+ <button class="tile hero" style="width:100%" onclick="cqStart('mix')"><b>🎲</b>Tous les thèmes<small>Culture + drapeaux, capitales, monnaies</small></button>
+ <div class="st">Thèmes</div><div class="grid">${QC.map(c=>`<button class="tile" onclick="cqStart('${c[0]}')"><b>${c[1]}</b>${c[2]}<small>${ac(c[0])=='—'?'&nbsp;':'Réussite '+ac(c[0])}</small></button>`).join('')}</div>`)}
+function cqStart(cat){music('Quiz',ri(1,50));X={cat,m:S.qm,ok:0,n:0,lives:3,t:60};sfx('open');if(X.m=='ch')X.tm=setInterval(()=>{X.t--;sfx('tick');if(X.t<=0){clearInterval(X.tm);cqEnd()}else{const e=$('#cqi');e&&(e.textContent=cqInfo())}},1000);cqNext()}
+function cqInfo(){return X.m=='cl'?(X.n+1)+'/10':X.m=='su'?'❤'.repeat(X.lives)+'🖤'.repeat(3-X.lives)+' · ✔'+X.ok:'⏱ '+X.t+' s · ✔'+X.ok}
+function cqPick(){if(X.cat=='mix'&&Math.random()<.2){const q=mkq('mix');return{h:q.h,o:q.o,idx:-1}}
+ const pool=QB.map((q,i)=>i).filter(i=>X.cat=='mix'||QB[i].c==X.cat);let fr=pool.filter(i=>!S.qs.includes(i)&&i!=X.last);if(!fr.length){S.qs=S.qs.filter(i=>!pool.includes(i));fr=pool.filter(i=>i!=X.last)}
+ const i=fr[Math.random()*fr.length|0],q=QB[i];S.qs.push(i);X.last=i;return{h:`<div class="qt">${q.q}</div>`,o:q.o.map((l,j)=>[l,j==0]).sort(()=>Math.random()-.5),idx:i}}
+function cqNext(){if(X.m=='cl'&&X.n>=10)return cqEnd();X.q=cqPick();const cat=QC.find(c=>c[0]==(X.q.idx>=0?QB[X.q.idx].c:X.q.cat));
+ cqShow(`<div class="bar"><button class="btn" onclick="cqMenu()">✕</button><span class="chip" id="cqi">${cqInfo()}</span><span class="chip">🪙 ${S.coins}</span></div><div class="prog"><i style="width:${X.m=='cl'?X.n*10:X.m=='ch'?X.t/.6:100}%"></i></div>
+ <div class="card" style="text-align:center;min-height:130px;justify-content:center;align-items:center">${cat?`<small class="sub">${cat[1]} ${cat[2]}</small>`:''}${X.q.h}</div><div class="opts">${X.q.o.map((o,i)=>`<button class="btn" onclick="cqAns(this,${i})">${o[0]}</button>`).join('')}</div>`)}
+function cqAns(b,i){if(X.busy)return;X.busy=1;const r=X.q.o[i][1];document.querySelectorAll('#cq .opts .btn').forEach((x,j)=>{x.disabled=true;if(X.q.o[j][1])x.style.background='#2ecc71'});if(!r)b.style.background='#e63946';
+ const cat=X.q.idx>=0?QB[X.q.idx].c:(X.q.cat||'geo');const a=S.cq.c[cat]=S.cq.c[cat]||[0,0];a[1]++;S.cq.tot++;X.n++;
+ if(r){X.ok++;a[0]++;S.cq.ok++;sfx('right')}else{sfx('wrong');if(X.m=='su')X.lives--}
+ save();setTimeout(()=>{X.busy=0;if(X.m=='su'&&X.lives<1||X.m=='ch'&&X.t<=0)cqEnd();else if(cq_done())cqNext()},r?700:1300)}
+const cq_done=()=>!$('#cq').hidden;
+function cqEnd(){clearInterval(X.tm);if($('#cq').hidden)return;const g=X.ok*8+(X.m=='cl'&&X.ok==10?30:0),old=S.cq.b[X.m]||0,rec=X.ok>old;S.coins+=g;if(rec)S.cq.b[X.m]=X.ok;save();sfx(X.ok>=5?'win':'lose');if(X.ok>=8)confetti();chk();
+ cqShow(`<div class="card" style="text-align:center"><h2>${X.ok>=8?'🎉 Bravo !':X.ok>=5?'👍 Bien joué !':'💪 Continue !'}</h2><div style="font-size:3em">${X.ok}${X.m=='cl'?'/10':' ✔'}</div><div>+${g} 🪙${rec&&old?' · 🏅 nouveau record !':''}</div><small class="sub">Niveau ${cqLvl().n} · ${cqLvl().t}</small></div><button class="btn big" onclick="cqStart('${X.cat}')">Rejouer</button><button class="btn" onclick="cqMenu()">Autres thèmes</button><button class="btn" onclick="cqExit()">Accueil</button>`)}
+applyUI();
+
+// ----- Réinitialisation -----
+const RS={fr:['🏹 Flèche Rush','tes niveaux, étoiles, records et pays découverts (Atlas)'],cu:['🧠 Culture générale','ton niveau de culture, tes statistiques et l’historique des questions'],all:['🗑️ Tout le jeu','TOUT : progression, pièces, boutique, trophées et réglages']};
+function rsc(k){ov(`<h2>Recommencer ?</h2><div style="font-size:3em">⚠️</div><p>${RS[k][0]} : cela efface ${RS[k][1]}. Action définitive.</p><button class="btn big" style="background:#e63946" onclick="rsd('${k}')">Oui, effacer</button><button class="btn" onclick="setp()">Annuler</button>`)}
+function rsd(k){if(k=='all'){try{localStorage.removeItem('fr4');localStorage.removeItem('fr3')}catch(e){}location.reload();return}
+ if(k=='fr'){Object.assign(S,{max:1,stars:{},seen:{},best:{},ms:{d:'',p:[0,0,0],c:[0,0,0]},streak:0,last:'',spin:'',mcb:0,arr:0,tut:0,hints:3,undos:3,eras:2,ch:3,chT:Date.now()});S.ach={}}
+ else{S.cq={ok:0,tot:0,c:{},b:{}};S.qs=[];S.qg={geo:[],mat:[]};S.qz={d:'',n:{}};S.cor=0}
+ save();sfx('claim');cl();toast('✅ Remis à zéro');home()}
+// ===== Générateurs de questions (Géographie ≥ 2000 distinctes, Maths illimitées) =====
+const ri=(a,b)=>a+Math.floor(Math.random()*(b-a+1)),shuf=a=>a.slice().sort(()=>Math.random()-.5);
+function mk4(h,good,wrong){const w=[...new Set(wrong.map(String))].filter(x=>x!=String(good)).slice(0,3);return{h:`<div class="qt">${h}</div>`,o:shuf([[String(good),true],...w.map(x=>[x,false])])}}
+function geoQ(){const c=CT[ri(0,CT.length-1)],others=f=>shuf(CT.filter(x=>x!=c)),lab=(f,good)=>{const s=new Set([good]),o=[];for(const x of others()){const l=f(x);if(!s.has(l)){s.add(l);o.push(l);if(o.length==3)break}}return o};
+ const t=ri(0,11);
+ if(t==0)return mk4(`Quelle est la capitale de <b>${c.n}</b> ?`,c.cap,lab(x=>x.cap,c.cap));
+ if(t==1)return mk4(`<b>${c.cap}</b> est la capitale de quel pays ?`,c.n,lab(x=>x.n,c.n));
+ if(t==2)return mk4(`Quelle est la monnaie de <b>${c.n}</b> ?`,c.mon,lab(x=>x.mon,c.mon));
+ if(t==3){const s=new Set([c.n]),o=[];for(const x of others())if(x.mon!=c.mon&&!s.has(x.n)){s.add(x.n);o.push(x.n);if(o.length==3)break}return mk4(`Quel pays utilise : <b>${c.mon}</b> ?`,c.n,o)}
+ if(t==4)return mk4(`Quel pays a pour animal national : <b>${c.ann}</b> ?`,c.n,lab(x=>x.n,c.n));
+ if(t==5)return mk4(`Quel est l’animal national de <b>${c.n}</b> ?`,c.ann,lab(x=>x.ann,c.ann));
+ if(t==6)return mk4(`Sur quel continent se trouve <b>${c.n}</b> ?`,c.ct,CONT.filter(x=>x!=c.ct));
+ if(t==7)return mk4(`Quelle est la capitale du pays dont l’animal national est : <b>${c.ann}</b> ?`,c.cap,lab(x=>x.cap,c.cap));
+ if(t==8){const q=mk4('',c.n,lab(x=>x.n,c.n));q.h=fimg(c,150,100)+'<div>À quel pays est ce drapeau ?</div>';return q}
+ if(t==9)return mk4(`Dans quel continent se trouve la ville de <b>${c.cap}</b> ?`,c.ct,CONT.filter(x=>x!=c.ct));
+ if(t==10)return mk4(`Quelle monnaie utilise le pays dont la capitale est <b>${c.cap}</b> ?`,c.mon,lab(x=>x.mon,c.mon));
+ return mk4(`Quel est l’animal national du pays dont la capitale est <b>${c.cap}</b> ?`,c.ann,lab(x=>x.ann,c.ann))}
+const isP=n=>{if(n<2)return 0;for(let i=2;i*i<=n;i++)if(n%i==0)return 0;return 1};
+function matQ(){const t=ri(0,13),near=(v,k=1)=>[v+k,v-k,v+2*k,v+10*k,v-2*k,v*2].filter(x=>x>0&&x!=v);let a,b,c;
+ switch(t){
+ case 0:a=ri(12,99);b=ri(12,99);return mk4(`${a} + ${b} = ?`,a+b,near(a+b,ri(1,10)));
+ case 1:a=ri(50,300);b=ri(11,a-1);return mk4(`${a} − ${b} = ?`,a-b,near(a-b,ri(1,10)));
+ case 2:a=ri(3,15);b=ri(3,19);return mk4(`${a} × ${b} = ?`,a*b,near(a*b,ri(1,a)));
+ case 3:b=ri(2,12);c=ri(3,25);return mk4(`${b*c} ÷ ${b} = ?`,c,near(c,ri(1,3)));
+ case 4:a=ri(1,20)*5;b=[10,20,25,50][ri(0,3)];return mk4(`Combien font ${b} % de ${a*4} ?`,a*4*b/100,near(a*4*b/100,ri(1,5)));
+ case 5:a=ri(2,25);return mk4(`Quelle est la racine carrée de ${a*a} ?`,a,near(a,ri(1,3)));
+ case 6:a=ri(2,20);return mk4(`Combien font ${a}² ?`,a*a,near(a*a,ri(1,a)));
+ case 7:a=ri(2,6);b=ri(2,5);return mk4(`Combien font ${a} puissance ${b} ?`,a**b,near(a**b,ri(1,a)));
+ case 8:a=ri(3,20);b=ri(3,20);return mk4(`Quel est le périmètre d’un rectangle de ${a} cm sur ${b} cm ?`,2*(a+b)+' cm',near(2*(a+b),2).map(x=>x+' cm'));
+ case 9:a=ri(3,20);b=ri(3,20);return mk4(`Quelle est l’aire d’un rectangle de ${a} cm sur ${b} cm ?`,a*b+' cm²',near(a*b,ri(1,a)).map(x=>x+' cm²'));
+ case 10:a=ri(2,9);b=ri(2,9);c=ri(4,6);return mk4(`Quel nombre suit : ${a}, ${a+b}, ${a+2*b}, ${a+3*b} ?`,a+4*b,near(a+4*b,ri(1,b)));
+ case 11:{const ps=[],ns=[];while(ps.length<1){const n=ri(10,150);if(isP(n))ps.push(n)}while(ns.length<3){const n=ri(10,150);if(!isP(n)&&!ns.includes(n))ns.push(n)}return mk4('Lequel de ces nombres est premier ?',ps[0],ns)}
+ case 12:a=ri(2,12);b=ri(1,15);c=ri(2,9);return mk4(`Résous : ${c}x + ${b} = ${c*a+b}. Que vaut x ?`,a,near(a,ri(1,3)));
+ default:a=ri(1,9);b=ri(2,9);return mk4(`Combien de minutes dans ${a} h ${b*5} min ?`,a*60+b*5,near(a*60+b*5,5))}}
+// Banques FIXES de 2000 questions (tirage déterministe, sans doublon), chacune parcourue sans répétition
+const BN=2000,BK={};S.qg=S.qg||{geo:[],mat:[]};
+function bankBuild(cat){const f=cat=='geo'?geoQ:matQ,R=Math.random;Math.random=rng(cat=='geo'?4242:777);const out=[],seen=new Set();let g=0;try{while(out.length<BN&&g++<400000){const q=f();if(seen.has(q.h))continue;seen.add(q.h);out.push({h:q.h,o:q.o.map(x=>x[0]),a:q.o.findIndex(x=>x[1])})}}finally{Math.random=R}return out}
+function bankPick(cat){const b=BK[cat]||(BK[cat]=bankBuild(cat));let seen=S.qg[cat];let fr=[];for(let i=0;i<b.length;i++)if(!seen.includes(i))fr.push(i);if(!fr.length){seen=S.qg[cat]=[];fr=b.map((_,i)=>i);0}
+ const i=fr[Math.random()*fr.length|0],q=b[i];seen.push(i);return{h:q.h,o:shuf(q.o.map((l,j)=>[l,j==q.a])),idx:-1,cat}}
+const _pick=cqPick;cqPick=function(){const m=X.cat;if(m=='geo'&&Math.random()<.95)return bankPick('geo');if(m=='mat')return bankPick('mat');if(m=='mix'&&Math.random()<.3)return bankPick(Math.random()<.5?'geo':'mat');return _pick()};
+const qCnt=c=>(c=='geo'||c=='mat')?(S.qg[c].length+'/'+BN+' vues'):QB.filter(q=>q.c==c).length+' questions';
+// ===== Moteur audio amélioré : réverb, volumes séparés, musique multi-pistes par ambiance =====
+S.vm=S.vm??.7;S.vs=S.vs??.8;
+let MG,MB,SB,RV,RSB,CP;
+function mkRev(){const c=AC,n=c.sampleRate*1.8|0,b=c.createBuffer(2,n,c.sampleRate);for(let ch=0;ch<2;ch++){const d=b.getChannelData(ch);for(let i=0;i<n;i++)d[i]=(Math.random()*2-1)*Math.pow(1-i/n,2.6)}const cv=c.createConvolver();cv.buffer=b;return cv}
+function setVol(){if(!AC)return;MB.gain.value=(S.vm)*.95;SB.gain.value=(S.vs)*1.0}
+function ctx(){try{if(!AC){AC=new(window.AudioContext||window.webkitAudioContext)();CP=AC.createDynamicsCompressor();CP.threshold.value=-14;CP.ratio.value=6;CP.connect(AC.destination);MG=AC.createGain();MG.gain.value=.9;MG.connect(CP);MB=AC.createGain();SB=AC.createGain();MB.connect(MG);SB.connect(MG);RV=mkRev();const wet=AC.createGain();wet.gain.value=.35;RV.connect(wet);wet.connect(MG);RSB=AC.createGain();RSB.gain.value=1;RSB.connect(RV);setVol()}AC.state=='suspended'&&AC.resume()}catch(e){}return AC}
+// effets : enveloppe douce + envoi réverb
+function tn(f,d=.1,ty='sine',v=.08,at=0,sl=1){const c=ctx();if(!c)return;const o=c.createOscillator(),g=c.createGain(),t=c.currentTime+at;o.type=ty;o.frequency.setValueAtTime(f,t);if(sl!=1)o.frequency.exponentialRampToValueAtTime(Math.max(20,f*sl),t+d);g.gain.setValueAtTime(.0001,t);g.gain.exponentialRampToValueAtTime(v,t+.006);g.gain.exponentialRampToValueAtTime(.0001,t+d);o.connect(g);g.connect(SB);const s=c.createGain();s.gain.value=.25;g.connect(s);s.connect(RSB);o.start(t);o.stop(t+d+.03)}
+function nz(d=.2,v=.05,f0=1500,f1=400,ty='lowpass',at=0){const c=ctx();if(!c)return;const n=c.sampleRate*d|0,bf=c.createBuffer(1,n,c.sampleRate),da=bf.getChannelData(0);for(let i=0;i<n;i++)da[i]=Math.random()*2-1;const s=c.createBufferSource(),f=c.createBiquadFilter(),g=c.createGain(),t=c.currentTime+at;s.buffer=bf;f.type=ty;f.frequency.setValueAtTime(f0,t);f.frequency.exponentialRampToValueAtTime(Math.max(30,f1),t+d);g.gain.setValueAtTime(v,t);g.gain.exponentialRampToValueAtTime(.0001,t+d);s.connect(f);f.connect(g);g.connect(SB);s.start(t)}
+const bell=(f,at=0,v=.07)=>{tn(f,.9,'sine',v,at);tn(f*2.01,.5,'sine',v*.5,at);tn(f*3.97,.25,'sine',v*.25,at)};
+Object.assign(SFX,{
+ trophy:()=>{[0,4,7,12,16,19,24].forEach((n,i)=>bell(fq(n+24),i*.08,.06));nz(.5,.03,9000,3000,'highpass',.4)},
+ cwk:()=>tn(900,.04,'triangle',.05),cwok:()=>{bell(fq(31),0,.05);bell(fq(36),.08,.05)},cwbad:()=>tn(180,.25,'sawtooth',.05,0,.6),
+ sparkle:()=>{for(let i=0;i<6;i++)tn(2000+Math.random()*3000,.12,'sine',.03,i*.05)},
+ open:()=>{nz(.18,.03,300,2500,'bandpass');tn(480,.12,'sine',.04,0,1.6)},
+ win:()=>{[0,4,7,12].forEach((n,i)=>bell(fq(n+24),i*.12,.07));[7,12,16,19,24].forEach((n,i)=>tn(fq(n+24),.3,'triangle',.05,.5+i*.09))},
+ coin:()=>{bell(fq(35),0,.05);bell(fq(42),.07,.05)}});
+// ----- Musique -----
+function kick(t){const o=AC.createOscillator(),g=AC.createGain();o.frequency.setValueAtTime(150,t);o.frequency.exponentialRampToValueAtTime(42,t+.12);g.gain.setValueAtTime(.55,t);g.gain.exponentialRampToValueAtTime(.001,t+.25);o.connect(g);g.connect(MB);o.start(t);o.stop(t+.3)}
+function nzAt(t,d,v,f,ty){const n=AC.sampleRate*d|0,b=AC.createBuffer(1,n,AC.sampleRate),da=b.getChannelData(0);for(let i=0;i<n;i++)da[i]=Math.random()*2-1;const s=AC.createBufferSource(),fl=AC.createBiquadFilter(),g=AC.createGain();s.buffer=b;fl.type=ty;fl.frequency.value=f;g.gain.setValueAtTime(v,t);g.gain.exponentialRampToValueAtTime(.001,t+d);s.connect(fl);fl.connect(g);g.connect(MB);s.start(t)}
+function perc(t,k){const o=AC.createOscillator(),g=AC.createGain();o.type='sine';o.frequency.setValueAtTime(k=='dj'?260:k=='cl'?1800:330,t);o.frequency.exponentialRampToValueAtTime(k=='dj'?130:k=='cl'?1700:200,t+.08);g.gain.setValueAtTime(k=='cl'?.12:.3,t);g.gain.exponentialRampToValueAtTime(.001,t+(k=='cl'?.05:.14));o.connect(g);g.connect(MB);o.start(t);o.stop(t+.2)}
+function note(f,t,d,ty,v,lp=3500,send=.3){const o=AC.createOscillator(),g=AC.createGain(),fl=AC.createBiquadFilter();o.type=ty;o.frequency.value=f;fl.type='lowpass';fl.frequency.value=lp;g.gain.setValueAtTime(.0001,t);g.gain.exponentialRampToValueAtTime(v,t+.012);g.gain.exponentialRampToValueAtTime(.0001,t+d);o.connect(fl);fl.connect(g);g.connect(MB);const s=AC.createGain();s.gain.value=send;g.connect(s);s.connect(RSB);o.start(t);o.stop(t+d+.05)}
+const MJ=[0,2,4,5,7,9,11],PN=[0,2,4,7,9],PM=[0,3,5,7,10],MX=[0,2,4,5,7,9,10];
+const MSTY={
+ Home:{bpm:80,sc:PN,ty:'sine',lp:2500,lv:.07,lp2:.5,len:2.2,k:'',h:'',pad:1,arp:1,bass:1},
+ Quiz:{bpm:122,sc:MJ,ty:'square',lp:1800,lv:.04,lp2:.55,len:1.2,k:'1000100010001000',h:'0010001000100010',s:'0000100000001000',pad:0,arp:0,bass:1},
+ Cross:{bpm:74,sc:PN,ty:'triangle',lp:2200,lv:.08,lp2:.4,len:2,k:'',h:'',pad:1,arp:1,bass:0},
+ Afrique:{bpm:104,sc:PM,ty:'triangle',lp:2600,lv:.08,lp2:.55,len:1.4,k:'1000100010001010',h:'0010001000100010',p:'0010010100100101',pt:'dj',pad:0,arp:0,bass:1},
+ Europe:{bpm:98,sc:MJ,ty:'triangle',lp:3000,lv:.07,lp2:.5,len:1.6,k:'1000001010000010',h:'1010101010101010',s:'0000100000001000',pad:1,arp:1,bass:1},
+ Asie:{bpm:88,sc:PN,ty:'triangle',lp:4000,lv:.09,lp2:.45,len:.9,k:'1000000000001000',h:'',p:'0000100000001000',pt:'dj',pad:1,arp:0,bass:0},
+ 'Amériques':{bpm:112,sc:MX,ty:'square',lp:2000,lv:.05,lp2:.55,len:1.1,k:'1001001010010010',h:'0101010101010101',p:'1001001000101000',pt:'cl',pad:0,arp:0,bass:1},
+ 'Océanie':{bpm:100,sc:PN,ty:'sine',lp:3500,lv:.1,lp2:.5,len:.8,k:'1000100010001000',h:'0010001000100010',pad:1,arp:1,bass:1}};
+let MT={st:null,t:0,step:0,pat:null,id:0};
+function genPat(st,seed){const r=rng(seed*97+13),n=st.sc.length,L=[];let p=r()*n|0;for(let i=0;i<64;i++){if(i%16==0&&r()<.6)p=[0,2,4][r()*3|0]%n;if(r()<st.lp2*(i%4==0?1.3:.8)){p=Math.max(0,Math.min(n*2-1,p+[-2,-1,-1,0,1,1,2][r()*7|0]));L.push(p)}else L.push(null)}return{L,key:seed%7}}
+const dgr=(sc,d)=>sc[d%sc.length]+12*Math.floor(d/sc.length);
+function music(ct,seed){mct=ct;const st=MSTY[ct]||MSTY.Home;MT.st=st;MT.pat=genPat(st,seed||1);MT.step=0;MT.t=0;if(!MT.id)MT.id=setInterval(sched,90)}
+function sched(){if(!S.mus||!AC||AC.state!='running'||!MT.st||!MB)return;const sd=60/MT.st.bpm/4;if(MT.t<AC.currentTime)MT.t=AC.currentTime+.06;while(MT.t<AC.currentTime+.4){try{step(MT.step,MT.t,sd)}catch(e){}MT.step=(MT.step+1)%64;MT.t+=sd}}
+function step(i,t,sd){const st=MT.st,sc=st.sc,key=MT.pat.key,bar=i>>4,s=i&15,cp=[0,3,4,2][bar&3]%sc.length,ch=[cp,cp+2,cp+4],F=d=>fq(dgr(sc,d)+key);
+ if(st.k&&st.k[s]=='1')kick(t);if(st.s&&st.s[s]=='1')nzAt(t,.12,.12,1800,'bandpass');if(st.h&&st.h[s]=='1')nzAt(t,.04,.035,8000,'highpass');if(st.p&&st.p[s]=='1')perc(t,st.pt);
+ if(st.bass&&(s%8==0||(st.k&&st.k[s]=='1'&&s%4==2)))note(F(cp)/2,t,sd*3,'triangle',.11,500,.05);
+ if(st.pad&&s==0)ch.forEach(d=>note(F(d),t,sd*15,'sine',.028,1200,.5));
+ if(st.arp&&s%2==0)note(F(ch[(s>>1)%3])*2,t,sd*2.5,'triangle',.022,2800,.4);
+ const n=MT.pat.L[i];if(n!=null)note(F(n)*2,t,sd*st.len,st.ty,st.lv,st.lp,.35)}
+// bruit d'ambiance sur changement de volume
+// ===== Trophées : déblocage automatique + entrepôt, confettis, profil, aide, défi du jour =====
+S.cw=S.cw||{done:0,hard:0,pure:0,words:0};S.nm=S.nm||'Joueur';S.av=S.av||'🦁';S.dcn=S.dcn||0;
+const starSum=()=>Object.values(S.stars).reduce((a,b)=>a+b,0),lvDone=()=>Object.keys(S.stars).length;
+ACH.push(['Première victoire',lvDone,1,20],['10 niveaux gagnés',lvDone,10,40],['50 niveaux gagnés',lvDone,50,150],['100 niveaux gagnés',lvDone,100,300],['Tous les niveaux gagnés',lvDone,MAX,1000],
+ ['Première perfection ★★★',starN,1,30],['100 étoiles',starSum,100,100],['300 étoiles',starSum,300,250],['Éclair : niveau en moins de 30 s',()=>Object.values(S.best).filter(t=>t<30).length,1,80],
+ ['Défi du jour ×1',()=>S.dcn,1,40],['Défi du jour ×7',()=>S.dcn,7,200],['Série de 3 jours',()=>S.streak,3,60],
+ ['Quiz pays : 100 bonnes réponses',()=>S.cor,100,200],['Culture : 1000 bonnes réponses',()=>S.cq.ok,1000,600],['Culture : niveau Sage',()=>cqLvl().n>=5?1:0,1,300],
+ ['Mots croisés : 1 grille',()=>S.cw.done,1,40],['Mots croisés : 5 grilles',()=>S.cw.done,5,100],['Mots croisés : 25 grilles',()=>S.cw.done,25,250],['Mots croisés : 100 grilles',()=>S.cw.done,100,600],['Grille difficile terminée',()=>S.cw.hard,1,100],['Grille sans aucune aide',()=>S.cw.pure,1,80],
+ ['Riche : 1000 pièces',()=>S.coins,1000,100],['Millionnaire : 5000 pièces',()=>S.coins,5000,300]);
+const TC=[['all','Tous'],['monde','🌍 Monde'],['fleche','🏹 Flèche'],['culture','🧠 Culture'],['mots','✏️ Mots'],['divers','⭐ Divers']];
+function trMeta(i){const a=ACH[i],l=a[0],em=/^\p{Extended_Pictographic}/u.exec(l),cat=/Mots|grille/i.test(l)?'mots':/Culture|Quiz/i.test(l)?'culture':/Explorateur|Tour du monde|complété|^[🌍🏰🏯🌎🏝]/u.test(l)?'monde':/Combo|flèche|niveau|perfection|★|étoiles|Éclair|victoire|Défi/i.test(l)?'fleche':'divers',tier=a[3]>=500?'💎':a[3]>=200?'🥇':a[3]>=80?'🥈':'🥉',ic=em?em[0]:({monde:'🧭',fleche:'🏹',culture:'🧠',mots:'✏️',divers:'⭐'})[cat];return{ic,cat,tier,t:em?l.replace(/^\p{Extended_Pictographic}️?\s*/u,''):l}}
+// file d'attente des bannières
+let TQ=[],TB=0;
+function trCheck(){ACH.forEach((a,i)=>{if(!S.ach[i]&&a[1]()>=a[2]){S.ach[i]=1;S.coins+=a[3];TQ.push(i)}});if(TQ.length){save();trNext()}}
+function trNext(){if(TB||!TQ.length)return;TB=1;const i=TQ.shift(),m=trMeta(i),e=$('#tb');e.innerHTML=`<span style="font-size:40px">${m.ic}</span><div style="flex:1"><small>🏆 Trophée débloqué ! ${m.tier}</small><br><b>${m.t}</b><br><small>+${ACH[i][3]} 🪙</small></div>`;e.hidden=false;e.onclick=()=>{e.hidden=true;trophies()};sfx('trophy');confetti(34);vib([30,40,30]);setTimeout(()=>{e.hidden=true;TB=0;setTimeout(trNext,300)},3600)}
+function chk(){setTimeout(trCheck,500)}
+// confettis
+function confetti(n=50){const d=document.createElement('div');d.className='cf';const C=['#ff4d8d','#38b6ff','#2ecc71','#ffb020','#a855f7','#ffd166','#ff6b3d'];for(let i=0;i<n;i++){const e=document.createElement('i');e.style.left=Math.random()*100+'%';e.style.background=C[i%C.length];e.style.animationDelay=Math.random()*.8+'s';e.style.animationDuration=2+Math.random()*1.6+'s';d.appendChild(e)}document.body.appendChild(d);setTimeout(()=>d.remove(),4600)}
+// Entrepôt
+let TF='all';
+function trophies(){const L=ACH.map((a,i)=>({i,m:trMeta(i),a})).filter(x=>TF=='all'||x.m.cat==TF),got=ACH.filter((a,i)=>S.ach[i]).length;
+ cqShow(`<div class="bar"><button class="btn" onclick="cqExit()">←</button><b>🏆 Entrepôt de trophées</b><span class="chip">${got}/${ACH.length}</span></div><div class="card"><div class="it"><span>Collection</span><b>${Math.round(got/ACH.length*100)} %</b></div><div class="prog"><i style="width:${got/ACH.length*100}%"></i></div></div>
+ <div class="row">${TC.map(c=>`<button class="btn${TF==c[0]?' on1':''}" onclick="TF='${c[0]}';trophies()">${c[1]}</button>`).join('')}</div>
+ <div class="grid">${L.map(x=>{const ok=S.ach[x.i],p=Math.min(x.a[1](),x.a[2]);return`<div class="tr ${ok?'ok':'no'}"><div class="ic">${ok?x.m.ic:'🔒'}</div><b>${x.m.t}</b><small>${ok?'✅ Débloqué · '+x.m.tier:p+' / '+x.a[2]}</small>${ok?'':`<div class="prog" style="height:6px"><i style="width:${p/x.a[2]*100}%"></i></div>`}<small>🪙 ${x.a[3]}</small></div>`}).join('')}</div>`)}
+// Profil
+const RK=[[0,'Débutant','🌱'],[60,'Explorateur','🧭'],[180,'Voyageur','✈️'],[400,'Aventurier','🏔️'],[800,'Maître','🎖️'],[1400,'Légende','👑']];
+function pts(){return starSum()+seenN()*2+Math.floor(S.cq.ok/5)+S.cw.done*5+ACH.filter((a,i)=>S.ach[i]).length*10}
+function rankOf(){const p=pts();let r=RK[0],i=0;RK.forEach((x,j)=>{if(p>=x[0]){r={t:x[1],e:x[2]};i=j}});const nx=RK[i+1];return{t:r.t||RK[0][1],e:r.e||RK[0][2],p,nx,prog:nx?(p-RK[i][0])/(nx[0]-RK[i][0]):1}}
+const AVS=['🦁','🐘','🦅','🐼','🦒','🐢','🦋','🐬','🦘','🐯','🦉','🐻'];
+function profil(){const r=rankOf(),acc=S.cq.tot?Math.round(S.cq.ok/S.cq.tot*100)+' %':'—',row=(a,b)=>`<div class="it"><span>${a}</span><b>${b}</b></div>`;
+ cqShow(`<div class="bar"><button class="btn" onclick="cqExit()">←</button><b>👤 Profil</b><span class="chip">🪙 ${S.coins}</span></div>
+ <div class="card" style="align-items:center;text-align:center"><div style="font-size:64px">${S.av}</div><input id="nm" value="${S.nm}" maxlength="16" style="font:inherit;font-size:1.2em;text-align:center;border:0;border-radius:14px;padding:10px;background:#8882;color:var(--ink);width:80%" onchange="S.nm=this.value||'Joueur';save()"><div>${r.e} <b>${r.t}</b> · ${r.p} pts</div><div class="prog"><i style="width:${r.prog*100}%"></i></div><small class="sub">${r.nx?'Prochain rang à '+r.nx[0]+' pts':'Rang maximal !'}</small><div class="row">${AVS.map(a=>`<button class="btn" style="padding:8px 10px;font-size:1.3em" onclick="S.av='${a}';save();profil()">${a}</button>`).join('')}</div></div>
+ <div class="st">Flèche Rush</div><div class="card">${row('Niveaux gagnés',lvDone()+' / '+MAX)}${row('Étoiles',starSum())}${row('Pays découverts',seenN()+' / '+MAX)}${row('Flèches sorties',S.arr)}${row('Meilleur combo','×'+S.mcb)}</div>
+ <div class="st">Culture & mots</div><div class="card">${row('Bonnes réponses',S.cq.ok)}${row('Réussite',acc)}${row('Quiz pays (bonnes)',S.cor)}${row('Grilles de mots croisés',S.cw.done)}${row('Défis du jour',S.dcn)}</div>
+ <div class="st">Collection</div><div class="card">${row('Trophées',ACH.filter((a,i)=>S.ach[i]).length+' / '+ACH.length)}<button class="btn" onclick="trophies()">🏆 Ouvrir l’entrepôt</button></div>`)}
+// Défi du jour
+function startDaily(){const d=td();let h=0;for(const ch of d)h=(h*31+ch.charCodeAt(0))>>>0;const l=1+h%MAX;start(l);G.daily=1;toast('🎯 Défi du jour : '+G.c.n+(S.dc==td()?' (bonus déjà pris)':' · +50 🪙'))}
+// Aide
+function aide(){ov(`<h2>📘 Comment jouer ?</h2><div class="card" style="text-align:left"><b>🏹 Flèche Rush</b><small>Touche une flèche pour la faire sortir dans sa direction. Si une autre la bloque, tu perds un ❤. Les couleurs dessinent le drapeau d’un pays et les flèches forment son animal national.</small></div><div class="card" style="text-align:left"><b>🧠 Culture générale</b><small>Choisis un thème et un mode : Classique, Survie (3 vies) ou Chrono (60 s). Chaque bonne réponse rapporte des pièces et fait monter ton niveau.</small></div><div class="card" style="text-align:left"><b>✏️ Mots croisés</b><small>Touche une case, tape les lettres. Touche à nouveau la case pour changer de sens. Indices et vérifications disponibles.</small></div><div class="card" style="text-align:left"><b>🏆 Trophées</b><small>Ils se débloquent tout seuls pendant que tu joues et rapportent des pièces. Retrouve-les dans l’entrepôt.</small></div><button class="btn big" onclick="setp()">Compris</button>`)}
+$('#bpf').onclick=profil;$('#btw').onclick=trophies;
+setTimeout(trCheck,2500);
+// [réponse, définition, thème] A=animaux E=espace/sciences G=géographie C=culture
+const CWM=[
+['LION','Roi de la savane','A'],['ZEBRE','Cheval rayé d’Afrique','A'],['GIRAFE','Animal au très long cou','A'],['ELEPHANT','Il possède une trompe','A'],['KOALA','Il dort dans l’eucalyptus','A'],['PANDA','Il mange du bambou','A'],['DAUPHIN','Mammifère marin joueur','A'],['BALEINE','Géant des océans','A'],['CROCODILE','Reptile qui vit dans le Nil','A'],['TORTUE','Elle porte sa maison','A'],['AIGLE','Roi du ciel','A'],['HIBOU','Oiseau de nuit','A'],['CHAMEAU','Il traverse le désert','A'],['GUEPARD','Félin le plus rapide','A'],['KANGOUROU','Il saute et a une poche','A'],['PINGOUIN','Oiseau des glaces','A'],['FLAMANT','Oiseau rose sur une patte','A'],['SINGE','Il aime les bananes','A'],['OURS','Il hiberne en hiver','A'],['LOUP','Il hurle à la lune','A'],['ABEILLE','Elle fabrique le miel','A'],['PAPILLON','Insecte aux ailes colorées','A'],['REQUIN','Poisson aux dents redoutables','A'],['HIPPOPOTAME','Gros mammifère des fleuves','A'],['RHINOCEROS','Il porte une corne sur le nez','A'],['GORILLE','Grand singe d’Afrique','A'],['PERROQUET','Oiseau qui imite la voix','A'],['AUTRUCHE','Plus grand oiseau','A'],['CASTOR','Constructeur de barrages','A'],['LAMA','Camélidé des Andes','A'],
+['MARS','Planète rouge','E'],['VENUS','Planète la plus chaude','E'],['TERRE','Notre planète','E'],['JUPITER','La plus grosse planète','E'],['SATURNE','Planète aux anneaux','E'],['URANUS','Planète couchée','E'],['NEPTUNE','Planète bleue la plus lointaine','E'],['MERCURE','Planète la plus proche du Soleil','E'],['LUNE','Satellite de la Terre','E'],['SOLEIL','Notre étoile','E'],['COMETE','Boule de glace à longue queue','E'],['GALAXIE','La Voie lactée en est une','E'],['ETOILE','Elle brille la nuit','E'],['ATOME','Brique de la matière','E'],['OXYGENE','Gaz que l’on respire','E'],['HYDROGENE','Élément le plus léger','E'],['GRAVITE','Force qui nous retient au sol','E'],['CELLULE','Unité du vivant','E'],['VOLT','Unité de tension électrique','E'],['LASER','Faisceau de lumière intense','E'],['FUSEE','Elle va dans l’espace','E'],['ASTRONAUTE','Il voyage dans l’espace','E'],['MOLECULE','Assemblage d’atomes','E'],['NEURONE','Cellule du cerveau','E'],['ORBITE','Trajectoire autour d’un astre','E'],
+['SAHARA','Plus grand désert chaud','G'],['GOBI','Désert de Mongolie','G'],['NIL','Fleuve d’Égypte','G'],['AMAZONE','Fleuve géant d’Amérique du Sud','G'],['ALPES','Chaîne du Mont Blanc','G'],['ANDES','Chaîne d’Amérique du Sud','G'],['HIMALAYA','Toit du monde','G'],['EVEREST','Plus haut sommet','G'],['PACIFIQUE','Le plus grand océan','G'],['ATLANTIQUE','Océan entre Europe et Amérique','G'],['VOLCAN','Montagne qui crache de la lave','G'],['OASIS','Point d’eau du désert','G'],['ILE','Terre entourée d’eau','G'],['DESERT','Zone très aride','G'],['GLACIER','Rivière de glace','G'],['FJORD','Bras de mer norvégien','G'],['SAVANE','Herbes et acacias d’Afrique','G'],['JUNGLE','Forêt tropicale dense','G'],['EQUATEUR','Ligne à 0° de latitude','G'],['CONTINENT','L’Afrique ou l’Asie','G'],['BAOBAB','Arbre africain au tronc énorme','G'],['TAIGA','Forêt de conifères du Nord','G'],['TUNDRA','Plaine glacée','G'],['LAC','Étendue d’eau douce','G'],['DELTA','Embouchure en éventail','G'],['CANYON','Vallée profonde et étroite','G'],['ARCHIPEL','Groupe d’îles','G'],
+['FOOTBALL','Sport à onze joueurs','C'],['TENNIS','Sport de raquette','C'],['RUGBY','Sport au ballon ovale','C'],['JUDO','Art martial japonais','C'],['MARATHON','Course de 42 km','C'],['PIANO','Instrument à touches','C'],['GUITARE','Instrument à six cordes','C'],['VIOLON','Instrument à archet','C'],['TAMBOUR','Instrument de percussion','C'],['DJEMBE','Tambour d’Afrique de l’Ouest','C'],['LOUVRE','Musée de Paris','C'],['CINEMA','Le septième art','C'],['POEME','Texte en vers','C'],['ROMAN','Récit long en prose','C'],['PEINTURE','Art de la toile','C'],['SCULPTURE','Art de la pierre','C'],['CHOCOLAT','Fait avec du cacao','C'],['ATTIEKE','Semoule de manioc ivoirienne','C'],['BAGUETTE','Pain français','C'],['SUSHI','Plat japonais au poisson cru','C'],['PIZZA','Plat italien','C'],['COUSCOUS','Semoule du Maghreb','C'],['CAFE','Boisson stimulante','C'],['PYRAMIDE','Tombeau des pharaons','C'],['PHARAON','Roi d’Égypte','C'],['CHATEAU','Demeure fortifiée','C'],['EMPIRE','Vaste État d’un empereur','C'],['REVOLUTION','Soulèvement populaire','C'],['ALPHABET','Suite des lettres','C'],['DICTIONNAIRE','Il définit les mots','C'],['HORLOGE','Elle donne l’heure','C'],['BOUSSOLE','Elle indique le nord','C'],['INTERNET','Réseau mondial','C'],['ORDINATEUR','Machine à calculer','C'],['CLAVIER','On tape dessus','C'],['ROBOT','Machine automatique','C'],['OLYMPIQUE','Jeux tous les quatre ans','C'],['CARNAVAL','Fête costumée','C'],['MUSEE','Lieu d’expositions','C']];
+// ===== Mots croisés : grilles générées à l'infini =====
+const nrm=s=>s.normalize('NFD').replace(/[̀-ͯ]/g,'').replace(/œ/gi,'oe').toUpperCase().replace(/[^A-Z]/g,'');
+S.cwt=S.cwt||'mix';S.cwd=S.cwd||'mid';
+const CWT=[['mix','🎲 Mélange'],['pays','🌐 Pays & capitales'],['ani','🐾 Animaux'],['sci','🔬 Sciences & espace'],['geo','🏔️ Géographie'],['cul','🎭 Culture']],CWD={easy:['Facile',6,9,7],mid:['Moyen',9,11,9],hard:['Difficile',13,13,11]};
+function cwPool(t){const P=[],add=(w,c)=>{w=nrm(w);if(w.length>=3&&w.length<=12)P.push({w,c})};const cnt=(f)=>{const m={};CT.forEach(x=>m[f(x)]=(m[f(x)]||0)+1);return m},ca=cnt(x=>nrm(x.ann)),cm=cnt(x=>nrm(x.mon));
+ const pays=()=>CT.forEach(x=>{add(x.cap,'Capitale de '+x.n);add(x.n,'Pays dont la capitale est '+x.cap);if(ca[nrm(x.ann)]==1)add(x.ann,'Animal national de '+x.n);if(cm[nrm(x.mon)]==1)add(x.mon,'Monnaie de '+x.n)}),misc=th=>CWM.filter(m=>th.includes(m[2])).forEach(m=>add(m[0],m[1]));
+ if(t=='pays')pays();else if(t=='ani'){CT.forEach(x=>{if(ca[nrm(x.ann)]==1)add(x.ann,'Animal national de '+x.n)});misc('A')}else if(t=='sci')misc('E');else if(t=='geo'){misc('G');CT.forEach(x=>add(x.cap,'Capitale de '+x.n))}else if(t=='cul')misc('C');else{pays();misc('AEGC')}
+ const seen=new Set();return P.filter(x=>seen.has(x.w)?0:seen.add(x.w))}
+function cwGenerate(pool,span,target,maxLen){let best=null;const K=(r,c)=>r+','+c;
+ for(let at=0;at<80;at++){const ws=shuf(pool.filter(x=>x.w.length<=maxLen)).slice(0,90).sort((a,b)=>b.w.length-a.w.length+(Math.random()-.5)*4),g=new Map(),fl=new Map(),pl=[];let b={r0:0,r1:0,c0:0,c1:0};
+  const can=(w,r,c,d)=>{const dr=d,dc=1-d,L=w.length;if(g.get(K(r-dr,c-dc))||g.get(K(r+dr*L,c+dc*L)))return 0;let x=0;
+   for(let i=0;i<L;i++){const rr=r+dr*i,cc=c+dc*i,e=g.get(K(rr,cc));if(e){if(e!=w[i]||(fl.get(K(rr,cc))||[]).includes(d))return 0;x++}else if(g.get(K(rr+dc,cc+dr))||g.get(K(rr-dc,cc-dr)))return 0}
+   const r1=Math.max(b.r1,r+dr*(L-1)),c1=Math.max(b.c1,c+dc*(L-1)),r0=Math.min(b.r0,r),c0=Math.min(b.c0,c);return(r1-r0<span&&c1-c0<span)?x||(pl.length?0:1):0},
+  put=(x,r,c,d)=>{const dr=d,dc=1-d;for(let i=0;i<x.w.length;i++){const k=K(r+dr*i,c+dc*i);g.set(k,x.w[i]);fl.set(k,[...(fl.get(k)||[]),d])}b={r0:Math.min(b.r0,r),c0:Math.min(b.c0,c),r1:Math.max(b.r1,r+dr*(x.w.length-1)),c1:Math.max(b.c1,c+dc*(x.w.length-1))};pl.push({w:x.w,c:x.c,r,col:c,d})};
+  for(const x of ws){if(pl.length>=target)break;if(!pl.length){put(x,0,0,1-0&&0);continue}
+   const cand=[];for(const[k,ch]of g){const[r,c]=k.split(',').map(Number),f=fl.get(k);if(f.length>1)continue;const d=1-f[0];for(let i=0;i<x.w.length;i++)if(x.w[i]==ch){const rr=d?r-i:r,cc=d?c:c-i;if(can(x.w,rr,cc,d))cand.push([rr,cc,d])}}
+   if(cand.length){const q=cand[Math.random()*cand.length|0];put(x,q[0],q[1],q[2])}}
+  if(!best||pl.length>best.pl.length)best={pl,b};if(pl.length>=target)break}
+ const pl=best.pl,r0=best.b.r0,c0=best.b.c0,rows=best.b.r1-r0+1,cols=best.b.c1-c0+1,sol=Array.from({length:rows},()=>Array(cols).fill(null));
+ pl.forEach(x=>{x.r-=r0;x.col-=c0;for(let i=0;i<x.w.length;i++)sol[x.r+(x.d?i:0)][x.col+(x.d?0:i)]=x.w[i]});
+ const st=[...new Set(pl.map(x=>x.r*100+x.col))].sort((a,b)=>a-b),num={};st.forEach((v,i)=>num[v]=i+1);pl.forEach(x=>x.n=num[x.r*100+x.col]);return{rows,cols,sol,words:pl}}
+// d: 0 = horizontal, 1 = vertical
+let CW=null;
+function cwMenu(){music('Cross',5);cqShow(`<div class="bar"><button class="btn" onclick="cqExit()">←</button><b>✏️ Mots croisés</b><span class="chip">${S.cw.done} ✔</span></div>
+ <div class="card"><b>Thème</b><div class="row">${CWT.map(t=>`<button class="btn${S.cwt==t[0]?' on1':''}" onclick="S.cwt='${t[0]}';save();cwMenu()">${t[1]}</button>`).join('')}</div></div>
+ <div class="card"><b>Difficulté</b><div class="sw">${Object.entries(CWD).map(([k,v])=>`<button class="btn${S.cwd==k?' on1':''}" onclick="S.cwd='${k}';save();cwMenu()">${v[0]}<br><small>${v[1]} mots</small></button>`).join('')}</div></div>
+ <button class="btn big" onclick="cwNew()">Jouer</button><small class="sub">Chaque grille est nouvelle · les mots se croisent, à toi de les deviner</small>`)}
+function cwNew(){const d=CWD[S.cwd],pool=cwPool(S.cwt),g=cwGenerate(pool,d[2],d[1],d[3]);CW={...g,inp:g.sol.map(r=>r.map(()=>'')),bad:{},rev:{},sel:null,dir:0,aid:0,t0:Date.now(),done:{},diff:S.cwd};const f=g.words[0];CW.sel=[f.r,f.col];CW.dir=f.d;sfx('open');cwRender()}
+const cwWord=(r,c,d)=>CW.words.find(x=>x.d==d&&(d?x.col==c&&r>=x.r&&r<x.r+x.w.length:x.r==r&&c>=x.col&&c<x.col+x.w.length));
+const cwCells=x=>x.w.split('').map((_,i)=>[x.r+(x.d?i:0),x.col+(x.d?0:i)]);
+function cwRender(){const{rows,cols,sol}=CW,cs=Math.max(26,Math.min(42,Math.floor((Math.min(innerWidth,520)-44)/cols))),cur=cwWord(...CW.sel,CW.dir)||cwWord(...CW.sel,1-CW.dir),hl=new Set(cur?cwCells(cur).map(p=>p+''):[]);
+ const nums={};CW.words.forEach(x=>nums[x.r+','+x.col]=x.n);
+ let g='';for(let r=0;r<rows;r++)for(let c=0;c<cols;c++){if(!sol[r][c]){g+='<div class="cwb"></div>';continue}const k=r+','+c,sl=CW.sel[0]==r&&CW.sel[1]==c;g+=`<div class="cwc${sl?' sl':hl.has(k)?' hl':''}${CW.bad[k]?' bad':''}${CW.rev[k]?' rv':''}" onclick="cwTap(${r},${c})">${nums[k]?`<i>${nums[k]}</i>`:''}${CW.inp[r][c]}</div>`}
+ const rk=['AZERTYUIOP','QSDFGHJKLM','WXCVBN'];
+ cqShow(`<div class="bar"><button class="btn" onclick="cwMenu()">✕</button><span class="chip" id="cwt">⏱ ${Math.floor((Date.now()-CW.t0)/1000)} s</span><span class="chip">🪙 ${S.coins}</span></div>
+ <div class="card" style="min-height:74px;justify-content:center"><div class="it"><button class="btn" onclick="cwStep(-1)">◀</button><div style="flex:1;text-align:center"><small class="sub">${cur?cur.n+' · '+(cur.d?'Vertical ↓':'Horizontal →')+' · '+cur.w.length+' lettres':''}</small><div>${cur?cur.c:''}</div></div><button class="btn" onclick="cwStep(1)">▶</button></div></div>
+ <div class="cwg" style="--cs:${cs}px;grid-template-columns:repeat(${cols},var(--cs))">${g}</div>
+ <div style="width:100%;display:flex;flex-direction:column;gap:4px">${rk.map((r,i)=>`<div class="kb">${r.split('').map(l=>`<button class="btn" onclick="cwType('${l}')">${l}</button>`).join('')}${i==2?'<button class="btn" onclick="cwType(\'\')">⌫</button>':''}</div>`).join('')}</div>
+ <div class="row"><button class="btn" onclick="cwHint()">💡 Lettre</button><button class="btn" onclick="cwWordRev()">🪄 Mot · 40🪙</button><button class="btn" onclick="cwCheck()">✓ Vérifier</button><button class="btn" onclick="cwList()">📋 Définitions</button><button class="btn" onclick="cwNew()">⟳</button></div>`);
+ clearInterval(CW.tm);CW.tm=setInterval(()=>{const e=$('#cwt');if(!e||$('#cq').hidden)return clearInterval(CW.tm);e.textContent='⏱ '+Math.floor((Date.now()-CW.t0)/1000)+' s'},1000)}
+function cwTap(r,c){const same=CW.sel[0]==r&&CW.sel[1]==c;if(same){if(cwWord(r,c,0)&&cwWord(r,c,1))CW.dir=1-CW.dir}else{CW.sel=[r,c];if(!cwWord(r,c,CW.dir))CW.dir=1-CW.dir}sfx('cwk');cwRender()}
+function cwStep(n){const i=CW.words.findIndex(x=>x===(cwWord(...CW.sel,CW.dir)||cwWord(...CW.sel,1-CW.dir))),x=CW.words[(i+n+CW.words.length)%CW.words.length];CW.sel=[x.r,x.col];CW.dir=x.d;sfx('cwk');cwRender()}
+function cwList(){const f=d=>CW.words.filter(x=>x.d==d).sort((a,b)=>a.n-b.n).map(x=>`<button class="btn" style="text-align:left;width:100%" onclick="CW.sel=[${x.r},${x.col}];CW.dir=${x.d};cwRender()">${x.n}. ${x.c} <small>(${x.w.length})</small></button>`).join('');
+ ov(`<h2>Définitions</h2><div class="st">Horizontal →</div>${f(0)}<div class="st">Vertical ↓</div>${f(1)}<button class="btn" onclick="cl();cwRender()">Fermer</button>`)}
+function cwType(ch){const[r,c]=CW.sel;if(CW.rev[r+','+c]){return cwAdv(1)}CW.inp[r][c]=ch;delete CW.bad[r+','+c];sfx('cwk');const w=cwWord(r,c,CW.dir);if(w)cwDoneCheck();if(ch)cwAdv(1);else cwAdv(-1);cwFinish()}
+function cwAdv(n){const w=cwWord(...CW.sel,CW.dir);if(!w){return cwRender()}const cs=cwCells(w),i=cs.findIndex(p=>p[0]==CW.sel[0]&&p[1]==CW.sel[1]),j=i+n;if(j>=0&&j<cs.length)CW.sel=cs[j];cwRender()}
+function cwDoneCheck(){CW.words.forEach((x,i)=>{if(!CW.done[i]&&cwCells(x).every(([r,c])=>CW.inp[r][c]==CW.sol[r][c])){CW.done[i]=1;sfx('cwok')}})}
+function cwCheck(){let n=0;CW.bad={};for(let r=0;r<CW.rows;r++)for(let c=0;c<CW.cols;c++)if(CW.inp[r][c]&&CW.inp[r][c]!=CW.sol[r][c]){CW.bad[r+','+c]=1;n++}CW.chk=1;sfx(n?'cwbad':'right');toast(n?n+' lettre(s) incorrecte(s)':'✅ Tout est correct jusque-là');cwRender()}
+function cwHint(){if(!use('hints'))return;const[r,c]=CW.sel;CW.inp[r][c]=CW.sol[r][c];CW.rev[r+','+c]=1;CW.aid=1;delete CW.bad[r+','+c];sfx('hint');save();cwDoneCheck();cwRender();cwFinish()}
+function cwWordRev(){if(S.coins<40){sfx('no');return toast('Pas assez de pièces')}const w=cwWord(...CW.sel,CW.dir);if(!w)return;S.coins-=40;cwCells(w).forEach(([r,c])=>{CW.inp[r][c]=CW.sol[r][c];CW.rev[r+','+c]=1;delete CW.bad[r+','+c]});CW.aid=1;sfx('hint');save();cwDoneCheck();cwRender();cwFinish()}
+function cwFinish(){if(CW.over)return;for(let r=0;r<CW.rows;r++)for(let c=0;c<CW.cols;c++)if(CW.sol[r][c]&&CW.inp[r][c]!=CW.sol[r][c])return;CW.over=1;clearInterval(CW.tm);const n=CW.words.length,g=n*5+(CW.aid||CW.chk?0:20),tm=Math.floor((Date.now()-CW.t0)/1000);S.coins+=g;S.cw.done++;S.cw.words+=n;if(CW.diff=='hard')S.cw.hard++;if(!CW.aid)S.cw.pure++;save();sfx('win');confetti();
+ setTimeout(()=>{ov(`<div style="font-size:56px">🎉</div><h2>Grille terminée !</h2><div>${n} mots · ⏱ ${tm} s</div><div>+${g} 🪙${CW.aid||CW.chk?'':' · bonus sans aide !'}</div><button class="btn big" onclick="cl();cwNew()">Grille suivante</button><button class="btn" onclick="cl();cwMenu()">Menu</button>`);chk()},700)}
+document.addEventListener('keydown',e=>{if(!CW||$('#cq').hidden||CW.over||!$('#ov').hidden)return;if(/^[a-zA-Z]$/.test(e.key))cwType(e.key.toUpperCase());else if(e.key=='Backspace')cwType('');else if(e.key==' '||e.key=='Tab'){e.preventDefault();cwStep(1)}});
+</script></body></html>
